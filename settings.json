@@ -1,13 +1,20 @@
 {
-  "workbench.colorTheme": "Cobalt2",
+  // Show setting in json as default
+  "workbench.settings.editor": "json",
+  "workbench.startupEditor": "none",
+  // Color scheme and icon
+  "workbench.colorTheme": "Catppuccin Macchiato",
+  "workbench.iconTheme": "catppuccin-macchiato",
   // Set sidebar to the right
   "workbench.sideBar.location": "right",
   // Show relative number
   "editor.lineNumbers": "relative",
   // Disable mini map
   "editor.minimap.enabled": false,
-  // Apc setting Base on examples from https://github.com/drcika/apc-extension/issues/5
+  // Apc extension https://github.com/drcika/apc-extension, more examples on https://github.com/drcika/apc-extension/issues/5
   "window.nativeTabs": true,
+  // Uncomment below to hide tabs
+  // "workbench.editor.showTabs": "single",
   "window.titleBarStyle": "native",
   "window.customTitleBarVisibility": "never",
   "apc.electron": {
@@ -35,10 +42,7 @@
     "tab.activeBorder": "#ffc600"
   },
   "workbench.layoutControl.enabled": false,
-  // Show setting in json as default
-  "workbench.settings.editor": "json",
-  "workbench.startupEditor": "none",
-  // used by the toggle excluded files extension, refer for more detail https://github.com/jellydn/vscode-toggle-excluded-files
+    // used by the toggle excluded files extension, refer for more detail https://github.com/jellydn/vscode-toggle-excluded-files
   "files.exclude": {
     "**/.turbo": true,
     "**/.git": true,
@@ -246,5 +250,4 @@
   ],
   "vim.useCtrlKeys": true,
   "vim.useSystemClipboard": true,
-  "workbench.iconTheme": "catppuccin-macchiato",
 }

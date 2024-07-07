@@ -10,9 +10,4 @@
 	  "key": "z o",
 	  "when": "editorTextFocus && neovim.mode == normal"
 	},
-	{
-	  "key": "cmd+k 1",
-	  "command": "orta.vscode-twoslash-queries.insert-twoslash-query",
-	  "when": "editorTextFocus"
-	}
   ]

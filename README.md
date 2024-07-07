@@ -36,17 +36,24 @@ Update your settings.json file with the following configuration:
 <!-- ALL-SETTINGS:START -->
 
 ```json
-// settings.json, generated at Sun Jul 07 2024 17:00:42 GMT+0800 (Singapore Standard Time)
+// settings.json, generated at Sun Jul 07 2024 17:37:27 GMT+0800 (Singapore Standard Time)
 {
-  "workbench.colorTheme": "Cobalt2",
+  // Show setting in json as default
+  "workbench.settings.editor": "json",
+  "workbench.startupEditor": "none",
+  // Color scheme and icon
+  "workbench.colorTheme": "Catppuccin Macchiato",
+  "workbench.iconTheme": "catppuccin-macchiato",
   // Set sidebar to the right
   "workbench.sideBar.location": "right",
   // Show relative number
   "editor.lineNumbers": "relative",
   // Disable mini map
   "editor.minimap.enabled": false,
-  // Apc setting Base on examples from https://github.com/drcika/apc-extension/issues/5
+  // Apc extension https://github.com/drcika/apc-extension, more examples on https://github.com/drcika/apc-extension/issues/5
   "window.nativeTabs": true,
+  // Uncomment below to hide tabs
+  // "workbench.editor.showTabs": "single",
   "window.titleBarStyle": "native",
   "window.customTitleBarVisibility": "never",
   "apc.electron": {
@@ -74,10 +81,7 @@ Update your settings.json file with the following configuration:
     "tab.activeBorder": "#ffc600"
   },
   "workbench.layoutControl.enabled": false,
-  // Show setting in json as default
-  "workbench.settings.editor": "json",
-  "workbench.startupEditor": "none",
-  // used by the toggle excluded files extension, refer for more detail https://github.com/jellydn/vscode-toggle-excluded-files
+    // used by the toggle excluded files extension, refer for more detail https://github.com/jellydn/vscode-toggle-excluded-files
   "files.exclude": {
     "**/.turbo": true,
     "**/.git": true,
@@ -285,8 +289,8 @@ Update your settings.json file with the following configuration:
   ],
   "vim.useCtrlKeys": true,
   "vim.useSystemClipboard": true,
-  "workbench.iconTheme": "catppuccin-macchiato"
 }
+
 ```
 
 <!-- ALL-SETTINGS:END -->
@@ -298,25 +302,21 @@ Update your keybindings.json file with the following key bindings:
 <!-- ALL-KEYMAPS:START -->
 
 ```json
-// keybindings.json, generated at Sun Jul 07 2024 17:00:42 GMT+0800 (Singapore Standard Time)
+// keybindings.json, generated at Sun Jul 07 2024 17:37:27 GMT+0800 (Singapore Standard Time)
 [
-  // Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
-  {
-    "command": "editor.fold",
-    "key": "z c",
-    "when": "editorTextFocus && neovim.mode == normal"
-  },
-  {
-    "command": "editor.unfold",
-    "key": "z o",
-    "when": "editorTextFocus && neovim.mode == normal"
-  },
-  {
-    "key": "cmd+k 1",
-    "command": "orta.vscode-twoslash-queries.insert-twoslash-query",
-    "when": "editorTextFocus"
-  }
-]
+	// Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
+	{
+	  "command": "editor.fold",
+	  "key": "z c",
+	  "when": "editorTextFocus && neovim.mode == normal"
+	},
+	{
+	  "command": "editor.unfold",
+	  "key": "z o",
+	  "when": "editorTextFocus && neovim.mode == normal"
+	},
+  ]
+
 ```
 
 <!-- ALL-KEYMAPS:END -->
