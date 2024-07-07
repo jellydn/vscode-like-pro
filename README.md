@@ -1,7 +1,9 @@
 <h1 align="center">Welcome to vscode-like-pro 👋</h1>
 <p>
-  Make your VSCode Awesome!
+  Make your VSCode Awesome! Minimalist, Productive, and Performance.
 </p>
+
+[![Cobalt2](https://i.gyazo.com/79068e955711e7eab85fa7470de3097e.png)](https://gyazo.com/79068e955711e7eab85fa7470de3097e)
 
 ## Pre-requisites
 
@@ -283,9 +285,8 @@ Update your settings.json file with the following configuration:
   ],
   "vim.useCtrlKeys": true,
   "vim.useSystemClipboard": true,
-  "workbench.iconTheme": "catppuccin-macchiato",
+  "workbench.iconTheme": "catppuccin-macchiato"
 }
-
 ```
 
 <!-- ALL-SETTINGS:END -->
@@ -299,24 +300,23 @@ Update your keybindings.json file with the following key bindings:
 ```json
 // keybindings.json, generated at Sun Jul 07 2024 17:00:42 GMT+0800 (Singapore Standard Time)
 [
-	// Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
-	{
-	  "command": "editor.fold",
-	  "key": "z c",
-	  "when": "editorTextFocus && neovim.mode == normal"
-	},
-	{
-	  "command": "editor.unfold",
-	  "key": "z o",
-	  "when": "editorTextFocus && neovim.mode == normal"
-	},
-	{
-	  "key": "cmd+k 1",
-	  "command": "orta.vscode-twoslash-queries.insert-twoslash-query",
-	  "when": "editorTextFocus"
-	}
-  ]
-
+  // Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
+  {
+    "command": "editor.fold",
+    "key": "z c",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "editor.unfold",
+    "key": "z o",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "key": "cmd+k 1",
+    "command": "orta.vscode-twoslash-queries.insert-twoslash-query",
+    "when": "editorTextFocus"
+  }
+]
 ```
 
 <!-- ALL-KEYMAPS:END -->
@@ -327,9 +327,13 @@ Update your keybindings.json file with the following key bindings:
 sh cli.sh
 ```
 
+## Demo
+
+[![Theme switcher](https://i.gyazo.com/57139ebccf6b73f09e60125749c89584.gif)](https://gyazo.com/57139ebccf6b73f09e60125749c89584)
+
 ## Resources
 
-- [antfu/vscode-settings: My VS Code settings and extensions](https://github.com/antfu/vscode-settings)
+- [Anthony Fu VS Code settings and extensions](https://github.com/antfu/vscode-settings)
 - [Ahmed Elsakaan VS Code](https://gist.github.com/ixahmedxi/8a728facb9a6a258be60398414c5f3d9)
 - [Visual Studio Code User Interface](https://code.visualstudio.com/docs/getstarted/userinterface)
 
