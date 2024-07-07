@@ -21,6 +21,7 @@
 - [eamodio/vscode-toggle-excluded-files](https://github.com/eamodio/vscode-toggle-excluded-files)
 - [antfu/vscode-file-nesting-config](https://github.com/antfu/vscode-file-nesting-config)
 - [catppuccin/vscode-icons](https://github.com/catppuccin/vscode-icons)
+- [usernamehw/vscode-error-lens](https://github.com/usernamehw/vscode-error-lens)
 
 ### Recommended Extensions & Themes
 
@@ -36,13 +37,13 @@ Update your settings.json file with the following configuration:
 <!-- ALL-SETTINGS:START -->
 
 ```json
-// settings.json, generated at Sun Jul 07 2024 18:00:39 GMT+0800 (Singapore Standard Time)
+// settings.json, generated at Sun Jul 07 2024 20:50:24 GMT+0800 (Singapore Standard Time)
 {
   // Show setting in json as default
   "workbench.settings.editor": "json",
   "workbench.startupEditor": "none",
   // Color scheme and icon
-  "workbench.colorTheme": "Catppuccin Macchiato",
+  "workbench.colorTheme": "Cobalt2",
   "workbench.iconTheme": "catppuccin-macchiato",
   // Set sidebar to the right
   "workbench.sideBar.location": "right",
@@ -56,7 +57,7 @@ Update your settings.json file with the following configuration:
   // "workbench.editor.showTabs": "single",
   "window.titleBarStyle": "native",
   "window.customTitleBarVisibility": "never",
-   "apc.electron": {
+  "apc.electron": {
     "titleBarStyle": "hidden"
   },
   "apc.activityBar": {
@@ -81,7 +82,7 @@ Update your settings.json file with the following configuration:
     "tab.activeBorder": "#ffc600"
   },
   "workbench.layoutControl.enabled": false,
-    // used by the toggle excluded files extension, refer for more detail https://github.com/jellydn/vscode-toggle-excluded-files
+  // Toggle excluded files extension, refer for more detail https://github.com/jellydn/vscode-toggle-excluded-files
   "files.exclude": {
     "**/.turbo": true,
     "**/.git": true,
@@ -243,6 +244,12 @@ Update your settings.json file with the following configuration:
   "explorer.confirmDelete": false,
   "explorer.compactFolders": false,
   "explorer.confirmDragAndDrop": false,
+  // Error lens
+  "errorLens.enabledDiagnosticLevels": [
+    "warning",
+    "error"
+  ],
+  "errorLens.excludeBySource": ["cSpell"],
   // Neovim setting, refer https://open-vsx.org/extension/asvetliakov/vscode-neovim
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
@@ -302,7 +309,7 @@ Update your keybindings.json file with the following key bindings:
 <!-- ALL-KEYMAPS:START -->
 
 ```json
-// keybindings.json, generated at Sun Jul 07 2024 18:00:39 GMT+0800 (Singapore Standard Time)
+// keybindings.json, generated at Sun Jul 07 2024 20:50:24 GMT+0800 (Singapore Standard Time)
 [
 	// Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
 	{

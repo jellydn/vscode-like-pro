@@ -3,7 +3,7 @@
   "workbench.settings.editor": "json",
   "workbench.startupEditor": "none",
   // Color scheme and icon
-  "workbench.colorTheme": "Catppuccin Macchiato",
+  "workbench.colorTheme": "Cobalt2",
   "workbench.iconTheme": "catppuccin-macchiato",
   // Set sidebar to the right
   "workbench.sideBar.location": "right",
@@ -17,7 +17,7 @@
   // "workbench.editor.showTabs": "single",
   "window.titleBarStyle": "native",
   "window.customTitleBarVisibility": "never",
-   "apc.electron": {
+  "apc.electron": {
     "titleBarStyle": "hidden"
   },
   "apc.activityBar": {
@@ -42,7 +42,7 @@
     "tab.activeBorder": "#ffc600"
   },
   "workbench.layoutControl.enabled": false,
-    // used by the toggle excluded files extension, refer for more detail https://github.com/jellydn/vscode-toggle-excluded-files
+  // Toggle excluded files extension, refer for more detail https://github.com/jellydn/vscode-toggle-excluded-files
   "files.exclude": {
     "**/.turbo": true,
     "**/.git": true,
@@ -204,6 +204,12 @@
   "explorer.confirmDelete": false,
   "explorer.compactFolders": false,
   "explorer.confirmDragAndDrop": false,
+  // Error lens
+  "errorLens.enabledDiagnosticLevels": [
+    "warning",
+    "error"
+  ],
+  "errorLens.excludeBySource": ["cSpell"],
   // Neovim setting, refer https://open-vsx.org/extension/asvetliakov/vscode-neovim
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
