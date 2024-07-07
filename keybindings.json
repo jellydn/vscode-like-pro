@@ -10,4 +10,25 @@
 	  "key": "z o",
 	  "when": "editorTextFocus && neovim.mode == normal"
 	},
+	// Usage: CMD + K for trigger binding, then shift + t, m, s
+	// Use single tab
+	{
+		"key": "cmd+k shift+t",
+		"command": "workbench.action.showEditorTab"
+	},
+	// Use multiple tabs
+	{
+		"key": "cmd+k shift+m",
+		"command": "workbench.action.showMultipleEditorTabs"
+	},
+	// Toggle status bar
+	{
+		"key": "cmd+k shift+s",
+		"command": "workbench.action.toggleStatusbarVisibility"
+	},
+	// Toggle record screencast
+	{
+		"key": "cmd+k shift+r",
+		"command": "workbench.action.toggleScreencastMode"
+	},
   ]

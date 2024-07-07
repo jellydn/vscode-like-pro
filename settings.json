@@ -17,7 +17,7 @@
   // "workbench.editor.showTabs": "single",
   "window.titleBarStyle": "native",
   "window.customTitleBarVisibility": "never",
-  "apc.electron": {
+   "apc.electron": {
     "titleBarStyle": "hidden"
   },
   "apc.activityBar": {
