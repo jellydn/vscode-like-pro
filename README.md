@@ -18,11 +18,14 @@
 - [drcika/apc-extension](https://github.com/drcika/apc-extension)
 - [eamodio/vscode-toggle-excluded-files](https://github.com/eamodio/vscode-toggle-excluded-files)
 - [antfu/vscode-file-nesting-config](https://github.com/antfu/vscode-file-nesting-config)
+- [catppuccin/vscode-icons](https://github.com/catppuccin/vscode-icons)
 
-### Recommended Extensions
+### Recommended Extensions & Themes
 
-- [streetsidesoftware/vscode-spell-checker](https://github.com/streetsidesoftware/vscode-spell-checker)
-- [codeium – Open VSX Registry](https://open-vsx.org/extension/Codeium/codeium)
+- [cobalt2-vscode](https://github.com/wesbos/cobalt2-vscode) or [catppuccin](https://github.com/catppuccin/vscode)
+- [vscode-spell-checker](https://github.com/streetsidesoftware/vscode-spell-checker)
+- [codeium](https://open-vsx.org/extension/Codeium/codeium)
+- [vscode-neovim](https://github.com/vscode-neovim/vscode-neovim) or [VSCodeVim](https://github.com/VSCodeVim/Vim)
 
 ### Settings
 
@@ -31,7 +34,7 @@ Update your settings.json file with the following configuration:
 <!-- ALL-SETTINGS:START -->
 
 ```json
-// settings.json, generated at Sun Jul 07 2024 16:35:10 GMT+0800 (Singapore Standard Time)
+// settings.json, generated at Sun Jul 07 2024 17:00:42 GMT+0800 (Singapore Standard Time)
 {
   "workbench.colorTheme": "Cobalt2",
   // Set sidebar to the right
@@ -52,6 +55,8 @@ Update your settings.json file with the following configuration:
     "hideSettings": true,
     "size": 24
   },
+  // Disable status bar if needed
+  // "workbench.statusBar.visible": false,
   "apc.statusBar": {
     "position": "editor-bottom",
     "height": 24,
@@ -277,7 +282,8 @@ Update your settings.json file with the following configuration:
     }
   ],
   "vim.useCtrlKeys": true,
-  "vim.useSystemClipboard": true
+  "vim.useSystemClipboard": true,
+  "workbench.iconTheme": "catppuccin-macchiato",
 }
 
 ```
@@ -291,7 +297,7 @@ Update your keybindings.json file with the following key bindings:
 <!-- ALL-KEYMAPS:START -->
 
 ```json
-// keybindings.json, generated at Sun Jul 07 2024 16:35:10 GMT+0800 (Singapore Standard Time)
+// keybindings.json, generated at Sun Jul 07 2024 17:00:42 GMT+0800 (Singapore Standard Time)
 [
 	// Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
 	{
@@ -320,6 +326,12 @@ Update your keybindings.json file with the following key bindings:
 ```bash
 sh cli.sh
 ```
+
+## Resources
+
+- [antfu/vscode-settings: My VS Code settings and extensions](https://github.com/antfu/vscode-settings)
+- [Ahmed Elsakaan VS Code](https://gist.github.com/ixahmedxi/8a728facb9a6a258be60398414c5f3d9)
+- [Visual Studio Code User Interface](https://code.visualstudio.com/docs/getstarted/userinterface)
 
 ## Author
 

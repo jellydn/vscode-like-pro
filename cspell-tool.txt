@@ -7,6 +7,7 @@ getnf
 drcika
 eamodio
 antfu
+catppuccin
 codeium
 astro
 clangd
@@ -98,6 +99,7 @@ hlsearch
 incsearch
 nohl
 Keymaps
+Elsakaan
 Huynh
 jellydn
 kofi

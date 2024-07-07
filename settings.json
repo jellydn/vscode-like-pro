@@ -18,6 +18,8 @@
     "hideSettings": true,
     "size": 24
   },
+  // Disable status bar if needed
+  // "workbench.statusBar.visible": false,
   "apc.statusBar": {
     "position": "editor-bottom",
     "height": 24,
@@ -243,5 +245,6 @@
     }
   ],
   "vim.useCtrlKeys": true,
-  "vim.useSystemClipboard": true
+  "vim.useSystemClipboard": true,
+  "workbench.iconTheme": "catppuccin-macchiato",
 }
