@@ -3,6 +3,8 @@
   Make your VSCode Awesome! Minimalist, Productive, and Performance.
 </p>
 
+[![IT Man - VS Code Like a Pro](https://i.ytimg.com/vi/yMh0FQ-okog/hqdefault.jpg)](https://www.youtube.com/watch?v=yMh0FQ-okog)
+
 [![Cobalt2](https://i.gyazo.com/79068e955711e7eab85fa7470de3097e.png)](https://gyazo.com/79068e955711e7eab85fa7470de3097e)
 
 ## Pre-requisites
