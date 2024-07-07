@@ -39,7 +39,7 @@ Update your settings.json file with the following configuration:
 <!-- ALL-SETTINGS:START -->
 
 ```json
-// settings.json, generated at Sun Jul 07 2024 20:50:24 GMT+0800 (Singapore Standard Time)
+// settings.json, generated at Mon Jul 08 2024 00:04:14 GMT+0800 (Singapore Standard Time)
 {
   // Show setting in json as default
   "workbench.settings.editor": "json",
@@ -247,10 +247,7 @@ Update your settings.json file with the following configuration:
   "explorer.compactFolders": false,
   "explorer.confirmDragAndDrop": false,
   // Error lens
-  "errorLens.enabledDiagnosticLevels": [
-    "warning",
-    "error"
-  ],
+  "errorLens.enabledDiagnosticLevels": ["warning", "error"],
   "errorLens.excludeBySource": ["cSpell"],
   // Neovim setting, refer https://open-vsx.org/extension/asvetliakov/vscode-neovim
   "extensions.experimental.affinity": {
@@ -311,41 +308,51 @@ Update your keybindings.json file with the following key bindings:
 <!-- ALL-KEYMAPS:START -->
 
 ```json
-// keybindings.json, generated at Sun Jul 07 2024 20:50:24 GMT+0800 (Singapore Standard Time)
+// keybindings.json, generated at Mon Jul 08 2024 00:04:14 GMT+0800 (Singapore Standard Time)
 [
-	// Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
-	{
-	  "command": "editor.fold",
-	  "key": "z c",
-	  "when": "editorTextFocus && neovim.mode == normal"
-	},
-	{
-	  "command": "editor.unfold",
-	  "key": "z o",
-	  "when": "editorTextFocus && neovim.mode == normal"
-	},
-	// Usage: CMD + K for trigger binding, then shift + t, m, s
-	// Use single tab
-	{
-		"key": "cmd+k shift+t",
-		"command": "workbench.action.showEditorTab"
-	},
-	// Use multiple tabs
-	{
-		"key": "cmd+k shift+m",
-		"command": "workbench.action.showMultipleEditorTabs"
-	},
-	// Toggle status bar
-	{
-		"key": "cmd+k shift+s",
-		"command": "workbench.action.toggleStatusbarVisibility"
-	},
-	// Toggle record screencast
-	{
-		"key": "cmd+k shift+r",
-		"command": "workbench.action.toggleScreencastMode"
-	},
-  ]
+  // Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
+  {
+    "command": "editor.fold",
+    "key": "z c",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "editor.unfold",
+    "key": "z o",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  // Usage: CMD + K for trigger binding, then shift + t, m, s
+  // Use single tab
+  {
+    "key": "cmd+k shift+t",
+    "command": "workbench.action.showEditorTab"
+  },
+  // Use multiple tabs
+  {
+    "key": "cmd+k shift+m",
+    "command": "workbench.action.showMultipleEditorTabs"
+  },
+  // Toggle status bar
+  {
+    "key": "cmd+k shift+s",
+    "command": "workbench.action.toggleStatusbarVisibility"
+  },
+  // Toggle record screencast
+  {
+    "key": "cmd+k shift+r",
+    "command": "workbench.action.toggleScreencastMode"
+  },
+  // Toggle error lens - warning
+  {
+    "key": "cmd+k shift+w",
+    "command": "errorLens.toggleWarning"
+  },
+  // Go to 1st error in normal mode, TODO: Wait for this to resolve https://github.com/usernamehw/vscode-error-lens/issues/208
+  {
+    "key": "] e",
+    "command": "errorLens.selectProblem"
+  }
+]
 
 ```
 

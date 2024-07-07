@@ -1,34 +1,44 @@
 [
-	// Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
-	{
-	  "command": "editor.fold",
-	  "key": "z c",
-	  "when": "editorTextFocus && neovim.mode == normal"
-	},
-	{
-	  "command": "editor.unfold",
-	  "key": "z o",
-	  "when": "editorTextFocus && neovim.mode == normal"
-	},
-	// Usage: CMD + K for trigger binding, then shift + t, m, s
-	// Use single tab
-	{
-		"key": "cmd+k shift+t",
-		"command": "workbench.action.showEditorTab"
-	},
-	// Use multiple tabs
-	{
-		"key": "cmd+k shift+m",
-		"command": "workbench.action.showMultipleEditorTabs"
-	},
-	// Toggle status bar
-	{
-		"key": "cmd+k shift+s",
-		"command": "workbench.action.toggleStatusbarVisibility"
-	},
-	// Toggle record screencast
-	{
-		"key": "cmd+k shift+r",
-		"command": "workbench.action.toggleScreencastMode"
-	},
-  ]
+  // Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
+  {
+    "command": "editor.fold",
+    "key": "z c",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "editor.unfold",
+    "key": "z o",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  // Usage: CMD + K for trigger binding, then shift + t, m, s
+  // Use single tab
+  {
+    "key": "cmd+k shift+t",
+    "command": "workbench.action.showEditorTab"
+  },
+  // Use multiple tabs
+  {
+    "key": "cmd+k shift+m",
+    "command": "workbench.action.showMultipleEditorTabs"
+  },
+  // Toggle status bar
+  {
+    "key": "cmd+k shift+s",
+    "command": "workbench.action.toggleStatusbarVisibility"
+  },
+  // Toggle record screencast
+  {
+    "key": "cmd+k shift+r",
+    "command": "workbench.action.toggleScreencastMode"
+  },
+  // Toggle error lens - warning
+  {
+    "key": "cmd+k shift+w",
+    "command": "errorLens.toggleWarning"
+  },
+  // Go to 1st error in normal mode, TODO: Wait for this to resolve https://github.com/usernamehw/vscode-error-lens/issues/208
+  {
+    "key": "] e",
+    "command": "errorLens.selectProblem"
+  }
+]

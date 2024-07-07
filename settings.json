@@ -205,10 +205,7 @@
   "explorer.compactFolders": false,
   "explorer.confirmDragAndDrop": false,
   // Error lens
-  "errorLens.enabledDiagnosticLevels": [
-    "warning",
-    "error"
-  ],
+  "errorLens.enabledDiagnosticLevels": ["warning", "error"],
   "errorLens.excludeBySource": ["cSpell"],
   // Neovim setting, refer https://open-vsx.org/extension/asvetliakov/vscode-neovim
   "extensions.experimental.affinity": {
