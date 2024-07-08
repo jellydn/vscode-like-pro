@@ -24,10 +24,9 @@
 - [antfu/vscode-file-nesting-config](https://github.com/antfu/vscode-file-nesting-config)
 - [catppuccin/vscode-icons](https://github.com/catppuccin/vscode-icons)
 - [usernamehw/vscode-error-lens](https://github.com/usernamehw/vscode-error-lens)
-- [VSpaceCode/vscode-which-key](https://github.com/VSpaceCode/vscode-which-key)
 
 ### Recommended Extensions & Themes
-
+- [VSpaceCode/vscode-which-key](https://github.com/VSpaceCode/vscode-which-key)
 - [cobalt2-vscode](https://github.com/wesbos/cobalt2-vscode) or [catppuccin](https://github.com/catppuccin/vscode)
 - [vscode-spell-checker](https://github.com/streetsidesoftware/vscode-spell-checker)
 - [codeium](https://open-vsx.org/extension/Codeium/codeium)
