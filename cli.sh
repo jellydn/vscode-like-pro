@@ -12,6 +12,10 @@ cp ~/Library/Application\ Support/VSCodium/User/keybindings.json keybindings.jso
 echo "Copying global-js.code-snippets ..."
 cp ~/Library/Application\ Support/VSCodium/User/snippets/global-js.code-snippets global-js.code-snippets
 
+# Copy ~/.config/nvim/lua/plugins/vscode.lua
+echo "Copying vscode.lua..."
+cp ~/.config/nvim/lua/plugins/vscode.lua vscode.lua
+
 # Run cli.ts
 echo "Running cli.ts..."
 bun run cli.ts

@@ -1,6 +1,7 @@
 keymaps
-KEYMAPS
 neovim
+KEYMAPS
+NEOVIM
 Screencast
 Raycast
 whichkey
@@ -12,7 +13,6 @@ catppuccin
 usernamehw
 codeium
 macchiato
-muliple
 astro
 clangd
 envrc
@@ -103,6 +103,11 @@ incsearch
 nohl
 esbenp
 Keymaps
+textobjects
+commentstring
+autocmd
+Nvim
+keymap
 Elsakaan
 Huynh
 jellydn

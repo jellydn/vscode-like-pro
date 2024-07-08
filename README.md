@@ -26,6 +26,7 @@
 - [usernamehw/vscode-error-lens](https://github.com/usernamehw/vscode-error-lens)
 
 ### Recommended Extensions & Themes
+
 - [VSpaceCode/vscode-which-key](https://github.com/VSpaceCode/vscode-which-key)
 - [cobalt2-vscode](https://github.com/wesbos/cobalt2-vscode) or [catppuccin](https://github.com/catppuccin/vscode)
 - [vscode-spell-checker](https://github.com/streetsidesoftware/vscode-spell-checker)
@@ -39,7 +40,7 @@ Update your settings.json file with the following configuration:
 <!-- ALL-SETTINGS:START -->
 
 ```json
-// settings.json, generated at Mon Jul 08 2024 11:03:13 GMT+0800 (Singapore Standard Time)
+// settings.json, generated at Mon Jul 08 2024 20:02:49 GMT+0800 (Singapore Standard Time)
 {
   "workbench.settings.editor": "json", // Show setting in json as default
   "workbench.startupEditor": "none", // Don't open any editor
@@ -54,7 +55,7 @@ Update your settings.json file with the following configuration:
   "editor.minimap.enabled": false,
   // Apc extension https://github.com/drcika/apc-extension, more examples on https://github.com/drcika/apc-extension/issues/5
   "window.nativeTabs": true,
-  // Comment below to show muliple tabs
+  // Comment below to show multiple tabs
   "workbench.editor.showTabs": "single",
   "window.titleBarStyle": "native",
   "window.customTitleBarVisibility": "never",
@@ -346,7 +347,6 @@ Update your settings.json file with the following configuration:
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
-
 ```
 
 <!-- ALL-SETTINGS:END -->
@@ -358,7 +358,7 @@ Update your keybindings.json file with the following key bindings:
 <!-- ALL-KEYMAPS:START -->
 
 ```json
-// keybindings.json, generated at Mon Jul 08 2024 11:03:13 GMT+0800 (Singapore Standard Time)
+// keybindings.json, generated at Mon Jul 08 2024 20:02:49 GMT+0800 (Singapore Standard Time)
 [
   // Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
   {
@@ -411,12 +411,89 @@ Update your keybindings.json file with the following key bindings:
     "key": "cmd+space", // Disable Spotlight and usee Raycast with Alt+space, refer https://manual.raycast.com/hotkey
     "command": "whichkey.show",
     "when": "editorTextFocus"
+  },
+  // Toggle full screen
+  {
+    "key": "cmd+k shift+f",
+    "command": "workbench.action.toggleMaximizedPanel"
   }
 ]
-
 ```
 
 <!-- ALL-KEYMAPS:END -->
+
+## How to integrated with your Neovim
+
+1. Install the [VSCode Neovim](https://open-vsx.org/extension/asvetliakov/vscode-neovim) extension.
+2. Below is my configuration from my [my personal neovim configuration](https://github.com/jellydn/my-nvim-ide/blob/main/lua/plugins/vscode.lua) with lazy.nvim as package manager.
+
+<!-- ALL-NEOVIM:START -->
+
+```lua
+// vscode.lua, generated at Mon Jul 08 2024 20:02:49 GMT+0800 (Singapore Standard Time)
+if not vim.g.vscode then
+  return {}
+end
+
+local enabled = {
+  "lazy.nvim",
+  "nvim-treesitter",
+  "ts-comments.nvim",
+  "nvim-treesitter",
+  "nvim-treesitter-textobjects",
+  "nvim-ts-context-commentstring",
+  "vim-repeat",
+}
+
+local Config = require("lazy.core.config")
+Config.options.checker.enabled = false
+Config.options.change_detection.enabled = false
+Config.options.defaults.cond = function(plugin)
+  return vim.tbl_contains(enabled, plugin.name) or plugin.vscode
+end
+
+-- Add some vscode specific keymaps
+vim.api.nvim_create_autocmd("User", {
+  pattern = "NvimIdeKeymaps", -- This pattern will be called when the plugin is loaded
+  callback = function()
+    -- Find file
+    vim.keymap.set("n", "<leader><space>", "<cmd>Find<cr>")
+    -- Find in files
+    vim.keymap.set("n", "<leader>/", [[<cmd>call VSCodeNotify('workbench.action.findInFiles')<cr>]])
+    -- Open symbol
+    vim.keymap.set("n", "<leader>ss", [[<cmd>call VSCodeNotify('workbench.action.gotoSymbol')<cr>]])
+    -- View problem
+    vim.keymap.set("n", "<leader>xx", [[<cmd>call VSCodeNotify('workbench.actions.view.problems')<cr>]])
+    -- Open file explorer in left sidebar
+    vim.keymap.set("n", "<leader>e", [[<cmd>call VSCodeNotify('workbench.view.explorer')<cr>]])
+    -- Code Action
+    vim.keymap.set("n", "<leader>ca", [[<cmd>call VSCodeNotify('editor.action.codeAction')<cr>]])
+    -- Code Rename
+    vim.keymap.set("n", "<leader>cr", [[<cmd>call VSCodeNotify('editor.action.rename')<cr>]])
+    -- LSP Reference
+    vim.keymap.set("n", "gr", [[<cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<cr>]])
+    -- Git status
+    vim.keymap.set("n", "<leader>gs", [[<cmd>call VSCodeNotify('workbench.view.scm')<cr>]])
+    -- Switch project
+    vim.keymap.set("n", "<leader>fp", [[<cmd>call VSCodeNotify('workbench.action.openRecent')<cr>]])
+    -- Open terminal
+    vim.keymap.set("n", "<leader>ft", [[<cmd>call VSCodeNotify('workbench.action.terminal.focus')<cr>]])
+
+    -- Close buffer
+    vim.keymap.set("n", "<leader>bd", [[<cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<cr>]])
+  end,
+})
+
+return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = { highlight = { enable = false } },
+  },
+}
+
+```
+
+<!-- ALL-NEOVIM:END -->
 
 ## How to generate the settings
 
@@ -433,6 +510,12 @@ sh cli.sh
 - [Anthony Fu VS Code settings and extensions](https://github.com/antfu/vscode-settings)
 - [Ahmed Elsakaan VS Code](https://gist.github.com/ixahmedxi/8a728facb9a6a258be60398414c5f3d9)
 - [Visual Studio Code User Interface](https://code.visualstudio.com/docs/getstarted/userinterface)
+
+## My other editor setups
+
+- Zed 101 - https://github.com/jellydn/zed-101-setup
+- My Neovim 2024 - https://github.com/jellydn/my-nvim-ide
+- Learn Neovim with VSCode - https://github.com/jellydn/learn-vim-with-vscode
 
 ## Author
 

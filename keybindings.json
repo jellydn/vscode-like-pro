@@ -50,5 +50,10 @@
     "key": "cmd+space", // Disable Spotlight and usee Raycast with Alt+space, refer https://manual.raycast.com/hotkey
     "command": "whichkey.show",
     "when": "editorTextFocus"
+  },
+  // Toggle full screen
+  {
+    "key": "cmd+k shift+f",
+    "command": "workbench.action.toggleMaximizedPanel"
   }
 ]

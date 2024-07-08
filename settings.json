@@ -12,7 +12,7 @@
   "editor.minimap.enabled": false,
   // Apc extension https://github.com/drcika/apc-extension, more examples on https://github.com/drcika/apc-extension/issues/5
   "window.nativeTabs": true,
-  // Comment below to show muliple tabs
+  // Comment below to show multiple tabs
   "workbench.editor.showTabs": "single",
   "window.titleBarStyle": "native",
   "window.customTitleBarVisibility": "never",
