@@ -40,7 +40,7 @@ Update your settings.json file with the following configuration:
 <!-- ALL-SETTINGS:START -->
 
 ```json
-// settings.json, generated at Mon Jul 08 2024 20:02:49 GMT+0800 (Singapore Standard Time)
+// settings.json, generated at Mon Jul 08 2024 21:13:34 GMT+0800 (Singapore Standard Time)
 {
   "workbench.settings.editor": "json", // Show setting in json as default
   "workbench.startupEditor": "none", // Don't open any editor
@@ -347,6 +347,7 @@ Update your settings.json file with the following configuration:
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
+
 ```
 
 <!-- ALL-SETTINGS:END -->
@@ -358,7 +359,7 @@ Update your keybindings.json file with the following key bindings:
 <!-- ALL-KEYMAPS:START -->
 
 ```json
-// keybindings.json, generated at Mon Jul 08 2024 20:02:49 GMT+0800 (Singapore Standard Time)
+// keybindings.json, generated at Mon Jul 08 2024 21:13:34 GMT+0800 (Singapore Standard Time)
 [
   // Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
   {
@@ -398,14 +399,6 @@ Update your keybindings.json file with the following key bindings:
     "command": "errorLens.toggleWarning"
   },
   // TODO: Wait for this to resolve https://github.com/usernamehw/vscode-error-lens/issues/208
-  {
-    "key": "] e",
-    "command": "editor.action.marker.next"
-  },
-  {
-    "key": "[ e",
-    "command": "editor.action.marker.prev"
-  },
   // Setup which-key
   {
     "key": "cmd+space", // Disable Spotlight and usee Raycast with Alt+space, refer https://manual.raycast.com/hotkey
@@ -418,6 +411,7 @@ Update your keybindings.json file with the following key bindings:
     "command": "workbench.action.toggleMaximizedPanel"
   }
 ]
+
 ```
 
 <!-- ALL-KEYMAPS:END -->
@@ -430,7 +424,7 @@ Update your keybindings.json file with the following key bindings:
 <!-- ALL-NEOVIM:START -->
 
 ```lua
-// vscode.lua, generated at Mon Jul 08 2024 20:02:49 GMT+0800 (Singapore Standard Time)
+// vscode.lua, generated at Mon Jul 08 2024 21:13:34 GMT+0800 (Singapore Standard Time)
 if not vim.g.vscode then
   return {}
 end

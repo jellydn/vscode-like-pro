@@ -37,14 +37,6 @@
     "command": "errorLens.toggleWarning"
   },
   // TODO: Wait for this to resolve https://github.com/usernamehw/vscode-error-lens/issues/208
-  {
-    "key": "] e",
-    "command": "editor.action.marker.next"
-  },
-  {
-    "key": "[ e",
-    "command": "editor.action.marker.prev"
-  },
   // Setup which-key
   {
     "key": "cmd+space", // Disable Spotlight and usee Raycast with Alt+space, refer https://manual.raycast.com/hotkey
