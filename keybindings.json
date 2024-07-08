@@ -26,7 +26,7 @@
     "key": "cmd+k shift+s",
     "command": "workbench.action.toggleStatusbarVisibility"
   },
-  // Toggle record screencast
+  // Toggle record screen cast
   {
     "key": "cmd+k shift+r",
     "command": "workbench.action.toggleScreencastMode"
@@ -36,9 +36,19 @@
     "key": "cmd+k shift+w",
     "command": "errorLens.toggleWarning"
   },
-  // Go to 1st error in normal mode, TODO: Wait for this to resolve https://github.com/usernamehw/vscode-error-lens/issues/208
+  // TODO: Wait for this to resolve https://github.com/usernamehw/vscode-error-lens/issues/208
   {
     "key": "] e",
-    "command": "errorLens.selectProblem"
+    "command": "editor.action.marker.next"
+  },
+  {
+    "key": "[ e",
+    "command": "editor.action.marker.prev"
+  },
+  // Setup which-key
+  {
+    "key": "cmd+space", // Disable Spotlight and usee Raycast with Alt+space, refer https://manual.raycast.com/hotkey
+    "command": "whichkey.show",
+    "when": "editorTextFocus"
   }
 ]

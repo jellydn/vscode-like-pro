@@ -24,6 +24,7 @@
 - [antfu/vscode-file-nesting-config](https://github.com/antfu/vscode-file-nesting-config)
 - [catppuccin/vscode-icons](https://github.com/catppuccin/vscode-icons)
 - [usernamehw/vscode-error-lens](https://github.com/usernamehw/vscode-error-lens)
+- [VSpaceCode/vscode-which-key](https://github.com/VSpaceCode/vscode-which-key)
 
 ### Recommended Extensions & Themes
 
@@ -39,11 +40,10 @@ Update your settings.json file with the following configuration:
 <!-- ALL-SETTINGS:START -->
 
 ```json
-// settings.json, generated at Mon Jul 08 2024 00:04:14 GMT+0800 (Singapore Standard Time)
+// settings.json, generated at Mon Jul 08 2024 11:03:13 GMT+0800 (Singapore Standard Time)
 {
-  // Show setting in json as default
-  "workbench.settings.editor": "json",
-  "workbench.startupEditor": "none",
+  "workbench.settings.editor": "json", // Show setting in json as default
+  "workbench.startupEditor": "none", // Don't open any editor
   // Color scheme and icon
   "workbench.colorTheme": "Cobalt2",
   "workbench.iconTheme": "catppuccin-macchiato",
@@ -55,8 +55,8 @@ Update your settings.json file with the following configuration:
   "editor.minimap.enabled": false,
   // Apc extension https://github.com/drcika/apc-extension, more examples on https://github.com/drcika/apc-extension/issues/5
   "window.nativeTabs": true,
-  // Uncomment below to hide tabs
-  // "workbench.editor.showTabs": "single",
+  // Comment below to show muliple tabs
+  "workbench.editor.showTabs": "single",
   "window.titleBarStyle": "native",
   "window.customTitleBarVisibility": "never",
   "apc.electron": {
@@ -67,8 +67,8 @@ Update your settings.json file with the following configuration:
     "hideSettings": true,
     "size": 24
   },
-  // Disable status bar if needed
-  // "workbench.statusBar.visible": false,
+  // Comment below to show status bar
+  "workbench.statusBar.visible": false,
   "apc.statusBar": {
     "position": "editor-bottom",
     "height": 24,
@@ -77,6 +77,11 @@ Update your settings.json file with the following configuration:
   "apc.header": {
     "height": 35,
     "fontSize": 13
+  },
+  "apc.stylesheet": {
+    // Setup for CSS for Which-Key
+    // Let the quick pick take the full window height, so that more bindings are visible.
+    ".quick-input-widget > .quick-input-list > .monaco-list": "max-height: 100vh !important;"
   },
   "window.commandCenter": true,
   "workbench.colorCustomizations": {
@@ -228,7 +233,7 @@ Update your settings.json file with the following configuration:
   "editor.cursorBlinking": "solid",
   "editor.cursorStyle": "line",
   "editor.cursorWidth": 5,
-  "editor.fontFamily": "JetBrainsMono NF, Menlo, Monaco, 'Courier New', monospacere",
+  "editor.fontFamily": "OperatorMonoLig Nerd Font, JetBrainsMono NF, Menlo, Monaco, 'Courier New', monospacere",
   "editor.fontLigatures": true,
   "editor.fontSize": 19.5,
   "editor.fontWeight": "400",
@@ -262,6 +267,48 @@ Update your settings.json file with the following configuration:
       "command": "vscode-neovim.escape"
     }
   },
+  // which key, refer https://github.com/VSpaceCode/vscode-which-key
+  "whichkey.sortOrder": "alphabetically",
+  // Override from default key bindings https://github.com/VSpaceCode/vscode-which-key/blob/15c5aa2da5812a21210c5599d9779c46d7bfbd3c/package.json#L265
+  "whichkey.bindingOverrides": [
+    // +f File
+    // File explorer, remove the default mapping
+    {
+      "keys": "f.t",
+      "position": -1
+    },
+    {
+      "keys": "f.T",
+      "position": -1
+    },
+    // Prefer to use <leader>e from neovim instead
+    {
+      "keys": "f.e",
+      "name": "Show tree/explorer view",
+      "type": "command",
+      "command": "workbench.view.explorer"
+    },
+    // Open file
+    {
+      "keys": "f.f",
+      "name": "Quick open file",
+      "type": "command",
+      "command": "workbench.action.quickOpen"
+    },
+    {
+      "key": "f.F",
+      "name": "Open file/folder",
+      "type": "command",
+      "command": "whichkey.openFile"
+    },
+    // More advanced usage on https://vspacecode.github.io/docs/whichkey/extra
+    {
+      "keys": "f.E",
+      "name": "Show active file in tree/explorer view",
+      "type": "command",
+      "command": "workbench.files.action.showActiveFileInExplorer"
+    }
+  ],
   // Vim settings, refer https://open-vsx.org/extension/vscodevim/vim
   "vim.easymotion": true,
   "vim.foldfix": true,
@@ -295,6 +342,10 @@ Update your settings.json file with the following configuration:
   ],
   "vim.useCtrlKeys": true,
   "vim.useSystemClipboard": true,
+  // Setup formatter for jsonc
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
 
 ```
@@ -308,7 +359,7 @@ Update your keybindings.json file with the following key bindings:
 <!-- ALL-KEYMAPS:START -->
 
 ```json
-// keybindings.json, generated at Mon Jul 08 2024 00:04:14 GMT+0800 (Singapore Standard Time)
+// keybindings.json, generated at Mon Jul 08 2024 11:03:13 GMT+0800 (Singapore Standard Time)
 [
   // Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
   {
@@ -337,7 +388,7 @@ Update your keybindings.json file with the following key bindings:
     "key": "cmd+k shift+s",
     "command": "workbench.action.toggleStatusbarVisibility"
   },
-  // Toggle record screencast
+  // Toggle record screen cast
   {
     "key": "cmd+k shift+r",
     "command": "workbench.action.toggleScreencastMode"
@@ -347,10 +398,20 @@ Update your keybindings.json file with the following key bindings:
     "key": "cmd+k shift+w",
     "command": "errorLens.toggleWarning"
   },
-  // Go to 1st error in normal mode, TODO: Wait for this to resolve https://github.com/usernamehw/vscode-error-lens/issues/208
+  // TODO: Wait for this to resolve https://github.com/usernamehw/vscode-error-lens/issues/208
   {
     "key": "] e",
-    "command": "errorLens.selectProblem"
+    "command": "editor.action.marker.next"
+  },
+  {
+    "key": "[ e",
+    "command": "editor.action.marker.prev"
+  },
+  // Setup which-key
+  {
+    "key": "cmd+space", // Disable Spotlight and usee Raycast with Alt+space, refer https://manual.raycast.com/hotkey
+    "command": "whichkey.show",
+    "when": "editorTextFocus"
   }
 ]
 
