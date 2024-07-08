@@ -49,6 +49,7 @@
   // Toggle excluded files extension, refer for more detail https://github.com/jellydn/vscode-toggle-excluded-files
   "files.exclude": {
     "**/.turbo": true,
+    "**/.changes": true,
     "**/.git": true,
     "**/.github": true,
     "**/.grit": true,
@@ -58,6 +59,8 @@
     "**/dist": true,
     "**/.next": true,
     "**/*.tsbuildinfo": true,
+    "**/*.nyc_output": true,
+    "**/*.tap": true,
     "**/.astro": true
   },
   // Cspell, refer https://open-vsx.org/vscode/item?itemName=streetsidesoftware.code-spell-checker

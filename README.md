@@ -40,7 +40,7 @@ Update your settings.json file with the following configuration:
 <!-- ALL-SETTINGS:START -->
 
 ```json
-// settings.json, generated at Mon Jul 08 2024 21:13:34 GMT+0800 (Singapore Standard Time)
+// settings.json, generated at Tue Jul 09 2024 00:16:39 GMT+0800 (Singapore Standard Time)
 {
   "workbench.settings.editor": "json", // Show setting in json as default
   "workbench.startupEditor": "none", // Don't open any editor
@@ -92,6 +92,7 @@ Update your settings.json file with the following configuration:
   // Toggle excluded files extension, refer for more detail https://github.com/jellydn/vscode-toggle-excluded-files
   "files.exclude": {
     "**/.turbo": true,
+    "**/.changes": true,
     "**/.git": true,
     "**/.github": true,
     "**/.grit": true,
@@ -101,6 +102,8 @@ Update your settings.json file with the following configuration:
     "**/dist": true,
     "**/.next": true,
     "**/*.tsbuildinfo": true,
+    "**/*.nyc_output": true,
+    "**/*.tap": true,
     "**/.astro": true
   },
   // Cspell, refer https://open-vsx.org/vscode/item?itemName=streetsidesoftware.code-spell-checker
@@ -354,12 +357,14 @@ Update your settings.json file with the following configuration:
 
 ## Keymaps
 
-Update your keybindings.json file with the following key bindings:
+Generally, I use the combination of <CMD + K> + <shift + key> to trigger bindings. All other bindings are set up using Neovim's extension keymaps.
+
+Update your `keybindings.json` file with the following key bindings:
 
 <!-- ALL-KEYMAPS:START -->
 
 ```json
-// keybindings.json, generated at Mon Jul 08 2024 21:13:34 GMT+0800 (Singapore Standard Time)
+// keybindings.json, generated at Tue Jul 09 2024 00:16:39 GMT+0800 (Singapore Standard Time)
 [
   // Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
   {
@@ -424,7 +429,7 @@ Update your keybindings.json file with the following key bindings:
 <!-- ALL-NEOVIM:START -->
 
 ```lua
-// vscode.lua, generated at Mon Jul 08 2024 21:13:34 GMT+0800 (Singapore Standard Time)
+// vscode.lua, generated at Tue Jul 09 2024 00:16:39 GMT+0800 (Singapore Standard Time)
 if not vim.g.vscode then
   return {}
 end
@@ -456,25 +461,38 @@ vim.api.nvim_create_autocmd("User", {
     vim.keymap.set("n", "<leader>/", [[<cmd>call VSCodeNotify('workbench.action.findInFiles')<cr>]])
     -- Open symbol
     vim.keymap.set("n", "<leader>ss", [[<cmd>call VSCodeNotify('workbench.action.gotoSymbol')<cr>]])
-    -- View problem
-    vim.keymap.set("n", "<leader>xx", [[<cmd>call VSCodeNotify('workbench.actions.view.problems')<cr>]])
     -- Open file explorer in left sidebar
     vim.keymap.set("n", "<leader>e", [[<cmd>call VSCodeNotify('workbench.view.explorer')<cr>]])
     -- Code Action
     vim.keymap.set("n", "<leader>ca", [[<cmd>call VSCodeNotify('editor.action.codeAction')<cr>]])
     -- Code Rename
     vim.keymap.set("n", "<leader>cr", [[<cmd>call VSCodeNotify('editor.action.rename')<cr>]])
-    -- LSP Reference
-    vim.keymap.set("n", "gr", [[<cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<cr>]])
-    -- Git status
-    vim.keymap.set("n", "<leader>gs", [[<cmd>call VSCodeNotify('workbench.view.scm')<cr>]])
-    -- Switch project
-    vim.keymap.set("n", "<leader>fp", [[<cmd>call VSCodeNotify('workbench.action.openRecent')<cr>]])
+
+    -- Terminal
     -- Open terminal
     vim.keymap.set("n", "<leader>ft", [[<cmd>call VSCodeNotify('workbench.action.terminal.focus')<cr>]])
 
+    -- LSP
+    -- View problem
+    vim.keymap.set("n", "<leader>xx", [[<cmd>call VSCodeNotify('workbench.actions.view.problems')<cr>]])
+    -- Go to next/prev error
+    vim.keymap.set("n", "]e", [[<cmd>call VSCodeNotify('editor.action.marker.next')<cr>]])
+    vim.keymap.set("n", "[e", [[<cmd>call VSCodeNotify('editor.action.marker.prev')<cr>]])
+    -- LSP Reference, gd is for go to definition but it also works for reference if call it 'gd' on definition :)
+    vim.keymap.set("n", "gr", [[<cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<cr>]])
+
+    -- Git
+    -- Git status
+    vim.keymap.set("n", "<leader>gs", [[<cmd>call VSCodeNotify('workbench.view.scm')<cr>]])
+    -- Go to next/prev change
+    vim.keymap.set("n", "]h", [[<cmd>call VSCodeNotify('workbench.action.editor.nextChange')<cr>]])
+    vim.keymap.set("n", "[h", [[<cmd>call VSCodeNotify('workbench.action.editor.previousChange')<cr>]])
+
     -- Close buffer
     vim.keymap.set("n", "<leader>bd", [[<cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<cr>]])
+
+    -- Switch project
+    vim.keymap.set("n", "<leader>fp", [[<cmd>call VSCodeNotify('workbench.action.openRecent')<cr>]])
   end,
 })
 
