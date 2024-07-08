@@ -1,15 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
 
-/**
- * NOTE: Ensure you have copied your latest configuration before replacing it. Use the following commands:
- *
- * ```bash
- * cp ~/Library/Application\ Support/VSCodium/User/settings.json settings.json
- * cp ~/Library/Application\ Support/VSCodium/User/keybindings.json keybindings.json
- * ```
- */
-
 const filePath = path.join(__dirname, "README.md");
 
 const readFileSync = (filePath: string) => {

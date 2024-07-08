@@ -8,6 +8,10 @@ cp ~/Library/Application\ Support/VSCodium/User/settings.json settings.json
 echo "Copying keybindings.json..."
 cp ~/Library/Application\ Support/VSCodium/User/keybindings.json keybindings.json
 
+# Copy global-js.code-snippets
+echo "Copying global-js.code-snippets ..."
+cp ~/Library/Application\ Support/VSCodium/User/snippets/global-js.code-snippets global-js.code-snippets
+
 # Run cli.ts
 echo "Running cli.ts..."
 bun run cli.ts
