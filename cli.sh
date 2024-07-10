@@ -1,21 +1,61 @@
-#!/bin/bash
+# Usage: sh cli.sh <environment>
+# This script copies the settings, keybindings, snippets, and vscode.lua files from the specified environment to the current directory.
+# Valid environment names are: VSCodium, VSCodiumInsider, VSCode, VSCodeInsider
 
-# Copy settings.json
-echo "Copying settings.json..."
-cp ~/Library/Application\ Support/VSCodium/User/settings.json settings.json
+# Define the base path
+basePath="$HOME/Library/Application Support"
 
-# Copy keymap.json
-echo "Copying keybindings.json..."
-cp ~/Library/Application\ Support/VSCodium/User/keybindings.json keybindings.json
+# Define the paths for the different environments
+VSCodium="$basePath/VSCodium/User"
+VSCodiumInsider="$basePath/VSCodium - Insiders/User"
+VSCode="$basePath/Code/User"
+VSCodeInsider="$basePath/Code - Insiders/User"
 
-# Copy global-js.code-snippets
-echo "Copying global-js.code-snippets ..."
-cp ~/Library/Application\ Support/VSCodium/User/snippets/global-js.code-snippets global-js.code-snippets
+# Check the input parameter
+case $1 in
+"VSCodium") envPath=$VSCodium ;;
+"VSCodiumInsider") envPath=$VSCodiumInsider ;;
+"VSCode") envPath=$VSCode ;;
+"VSCodeInsider") envPath=$VSCodeInsider ;;
+*)
+  echo "Invalid environment name. Please use one of the following: VSCodium, VSCodiumInsider, VSCode, VSCodeInsider"
+  exit 1
+  ;;
+esac
 
-# Copy ~/.config/nvim/lua/plugins/vscode.lua
-echo "Copying vscode.lua..."
-cp ~/.config/nvim/lua/plugins/vscode.lua vscode.lua
+# Check if the chosen environment is installed
+echo "Checking $envPath folder..."
+if [ ! -d "$envPath" ]; then
+  echo "$1 not found. Please install it or choose a different environment."
+  exit 1
+fi
 
-# Run cli.ts
-echo "Running cli.ts..."
-bun run cli.ts
+# Define the files to copy
+files=("settings.json" "keybindings.json" "snippets/global-js.code-snippets")
+
+# Copy the files
+for file in "${files[@]}"; do
+  if [ -f "$envPath/$file" ]; then
+    echo "Copying $file..."
+    cp "$envPath/$file" .
+  else
+    echo "$file not found in $envPath. Skipping..."
+  fi
+done
+
+# Copy vscode.lua
+vscodeLuaPath="$HOME/.config/nvim/lua/plugins/vscode.lua"
+if [ -f "$vscodeLuaPath" ]; then
+  echo "Copying vscode.lua..."
+  cp "$vscodeLuaPath" .
+else
+  echo "vscode.lua not found. Skipping..."
+fi
+
+# Check if bun is installed and cli.ts exists before running it
+if command -v bun >/dev/null 2>&1 && [ -f "cli.ts" ]; then
+  echo "Running cli.ts..."
+  bun run cli.ts
+else
+  echo "bun command not found or cli.ts does not exist. Skipping..."
+fi
