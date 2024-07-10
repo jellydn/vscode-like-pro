@@ -14,6 +14,8 @@
   "window.nativeTabs": true,
   // Comment below to show multiple tabs
   "workbench.editor.showTabs": "single",
+  // Comment below to show status bar
+  "workbench.statusBar.visible": false,
   "window.titleBarStyle": "native",
   "window.customTitleBarVisibility": "never",
   "apc.electron": {
@@ -24,8 +26,6 @@
     "hideSettings": true,
     "size": 24
   },
-  // Comment below to show status bar
-  "workbench.statusBar.visible": false,
   "apc.statusBar": {
     "position": "editor-bottom",
     "height": 24,
@@ -48,8 +48,11 @@
   "workbench.layoutControl.enabled": false,
   // Toggle excluded files extension, refer for more detail https://github.com/jellydn/vscode-toggle-excluded-files
   "files.exclude": {
+    "**/bin": true,
     "**/.turbo": true,
     "**/.changes": true,
+    "**/.yarn": true,
+    "**/.vscode": true,
     "**/.git": true,
     "**/.github": true,
     "**/.grit": true,
@@ -57,6 +60,7 @@
     "**/node_modules": true,
     "**/.husky": true,
     "**/dist": true,
+    "**/coverage": true,
     "**/.next": true,
     "**/*.tsbuildinfo": true,
     "**/*.nyc_output": true,
@@ -267,6 +271,13 @@
       "name": "Show active file in tree/explorer view",
       "type": "command",
       "command": "workbench.files.action.showActiveFileInExplorer"
+    },
+    // Open Github Pull Request on sidebar
+    {
+      "keys": "g.r",
+      "name": "Github Pull Requests",
+      "type": "command",
+      "command": "workbench.view.extension.github-pull-request"
     }
   ],
   // Vim settings, refer https://open-vsx.org/extension/vscodevim/vim
@@ -304,6 +315,12 @@
   "vim.useSystemClipboard": true,
   // Setup formatter for jsonc
   "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

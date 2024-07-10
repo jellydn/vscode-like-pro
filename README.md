@@ -40,7 +40,7 @@ Update your settings.json file with the following configuration:
 <!-- ALL-SETTINGS:START -->
 
 ```json
-// settings.json, generated at Tue Jul 09 2024 00:16:39 GMT+0800 (Singapore Standard Time)
+// settings.json, generated at Fri Jul 12 2024 20:45:19 GMT+0800 (Singapore Standard Time)
 {
   "workbench.settings.editor": "json", // Show setting in json as default
   "workbench.startupEditor": "none", // Don't open any editor
@@ -57,6 +57,8 @@ Update your settings.json file with the following configuration:
   "window.nativeTabs": true,
   // Comment below to show multiple tabs
   "workbench.editor.showTabs": "single",
+  // Comment below to show status bar
+  "workbench.statusBar.visible": false,
   "window.titleBarStyle": "native",
   "window.customTitleBarVisibility": "never",
   "apc.electron": {
@@ -67,8 +69,6 @@ Update your settings.json file with the following configuration:
     "hideSettings": true,
     "size": 24
   },
-  // Comment below to show status bar
-  "workbench.statusBar.visible": false,
   "apc.statusBar": {
     "position": "editor-bottom",
     "height": 24,
@@ -91,8 +91,11 @@ Update your settings.json file with the following configuration:
   "workbench.layoutControl.enabled": false,
   // Toggle excluded files extension, refer for more detail https://github.com/jellydn/vscode-toggle-excluded-files
   "files.exclude": {
+    "**/bin": true,
     "**/.turbo": true,
     "**/.changes": true,
+    "**/.yarn": true,
+    "**/.vscode": true,
     "**/.git": true,
     "**/.github": true,
     "**/.grit": true,
@@ -100,6 +103,7 @@ Update your settings.json file with the following configuration:
     "**/node_modules": true,
     "**/.husky": true,
     "**/dist": true,
+    "**/coverage": true,
     "**/.next": true,
     "**/*.tsbuildinfo": true,
     "**/*.nyc_output": true,
@@ -310,6 +314,13 @@ Update your settings.json file with the following configuration:
       "name": "Show active file in tree/explorer view",
       "type": "command",
       "command": "workbench.files.action.showActiveFileInExplorer"
+    },
+    // Open Github Pull Request on sidebar
+    {
+      "keys": "g.r",
+      "name": "Github Pull Requests",
+      "type": "command",
+      "command": "workbench.view.extension.github-pull-request"
     }
   ],
   // Vim settings, refer https://open-vsx.org/extension/vscodevim/vim
@@ -348,6 +359,12 @@ Update your settings.json file with the following configuration:
   // Setup formatter for jsonc
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
 
@@ -364,9 +381,29 @@ Update your `keybindings.json` file with the following key bindings:
 <!-- ALL-KEYMAPS:START -->
 
 ```json
-// keybindings.json, generated at Tue Jul 09 2024 00:16:39 GMT+0800 (Singapore Standard Time)
+// keybindings.json, generated at Fri Jul 12 2024 20:45:19 GMT+0800 (Singapore Standard Time)
 [
   // Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
+  {
+    "command": "cursorDown",
+    "key": "j",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "cursorUp",
+    "key": "k",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "cursorDown",
+    "key": "down",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "cursorUp",
+    "key": "up",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
   {
     "command": "editor.fold",
     "key": "z c",
@@ -375,6 +412,16 @@ Update your `keybindings.json` file with the following key bindings:
   {
     "command": "editor.unfold",
     "key": "z o",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "editor.gotoNextFold",
+    "key": "z j",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "editor.gotoPreviousFold",
+    "key": "z k",
     "when": "editorTextFocus && neovim.mode == normal"
   },
   // Usage: CMD + K for trigger binding, then shift + t, m, s
@@ -414,6 +461,10 @@ Update your `keybindings.json` file with the following key bindings:
   {
     "key": "cmd+k shift+f",
     "command": "workbench.action.toggleMaximizedPanel"
+  },
+  {
+    "key": "cmd+k g",
+    "command": "workbench.view.extension.github-pull-requests"
   }
 ]
 
@@ -429,7 +480,7 @@ Update your `keybindings.json` file with the following key bindings:
 <!-- ALL-NEOVIM:START -->
 
 ```lua
-// vscode.lua, generated at Tue Jul 09 2024 00:16:39 GMT+0800 (Singapore Standard Time)
+// vscode.lua, generated at Fri Jul 12 2024 20:45:19 GMT+0800 (Singapore Standard Time)
 if not vim.g.vscode then
   return {}
 end
@@ -455,44 +506,72 @@ end
 vim.api.nvim_create_autocmd("User", {
   pattern = "NvimIdeKeymaps", -- This pattern will be called when the plugin is loaded
   callback = function()
+    -- +File
     -- Find file
     vim.keymap.set("n", "<leader><space>", "<cmd>Find<cr>")
+    -- Open other files
+    vim.keymap.set("n", "<leader>,", [[<cmd>call VSCodeNotify('workbench.action.showAllEditors')<cr>]])
     -- Find in files
     vim.keymap.set("n", "<leader>/", [[<cmd>call VSCodeNotify('workbench.action.findInFiles')<cr>]])
-    -- Open symbol
-    vim.keymap.set("n", "<leader>ss", [[<cmd>call VSCodeNotify('workbench.action.gotoSymbol')<cr>]])
     -- Open file explorer in left sidebar
     vim.keymap.set("n", "<leader>e", [[<cmd>call VSCodeNotify('workbench.view.explorer')<cr>]])
+
+    -- +Search
+    -- Open symbol
+    vim.keymap.set("n", "<leader>ss", [[<cmd>call VSCodeNotify('workbench.action.gotoSymbol')<cr>]])
+    -- Search word under cursor
+    vim.keymap.set("n", "<leader>sw", function()
+      local code = require("vscode")
+      code.action("editor.action.addSelectionToNextFindMatch")
+      code.action("workbench.action.findInFiles")
+    end)
+
+    -- +Code
     -- Code Action
     vim.keymap.set("n", "<leader>ca", [[<cmd>call VSCodeNotify('editor.action.codeAction')<cr>]])
+    -- Source Action
+    vim.keymap.set("n", "<leader>cA", [[<cmd>call VSCodeNotify('editor.action.sourceAction')<cr>]])
     -- Code Rename
     vim.keymap.set("n", "<leader>cr", [[<cmd>call VSCodeNotify('editor.action.rename')<cr>]])
+    -- Quickfix shortcut
+    vim.keymap.set("n", "<leader>.", [[<cmd>call VSCodeNotify('editor.action.quickFix')<cr>]])
+    -- Code format
+    vim.keymap.set("n", "<leader>cf", [[<cmd>call VSCodeNotify('editor.action.formatDocument')<cr>]])
+    -- Refactor
+    vim.keymap.set("n", "<leader>rm", [[<cmd>call VSCodeNotify('editor.action.refactor')<cr>]])
 
-    -- Terminal
+    -- +Terminal
     -- Open terminal
     vim.keymap.set("n", "<leader>ft", [[<cmd>call VSCodeNotify('workbench.action.terminal.focus')<cr>]])
 
-    -- LSP
+    -- +LSP
     -- View problem
     vim.keymap.set("n", "<leader>xx", [[<cmd>call VSCodeNotify('workbench.actions.view.problems')<cr>]])
     -- Go to next/prev error
     vim.keymap.set("n", "]e", [[<cmd>call VSCodeNotify('editor.action.marker.next')<cr>]])
     vim.keymap.set("n", "[e", [[<cmd>call VSCodeNotify('editor.action.marker.prev')<cr>]])
-    -- LSP Reference, gd is for go to definition but it also works for reference if call it 'gd' on definition :)
-    vim.keymap.set("n", "gr", [[<cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<cr>]])
 
-    -- Git
+    -- Find references
+    vim.keymap.set("n", "gr", [[<cmd>call VSCodeNotify('references-view.find')<cr>]])
+
+    -- +Git
     -- Git status
     vim.keymap.set("n", "<leader>gs", [[<cmd>call VSCodeNotify('workbench.view.scm')<cr>]])
     -- Go to next/prev change
     vim.keymap.set("n", "]h", [[<cmd>call VSCodeNotify('workbench.action.editor.nextChange')<cr>]])
     vim.keymap.set("n", "[h", [[<cmd>call VSCodeNotify('workbench.action.editor.previousChange')<cr>]])
 
+    -- +Buffer
     -- Close buffer
     vim.keymap.set("n", "<leader>bd", [[<cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<cr>]])
+    -- Close other buffers
+    vim.keymap.set("n", "<leader>bo", [[<cmd>call VSCodeNotify('workbench.action.closeOtherEditors')<cr>]])
 
-    -- Switch project
+    -- +Project
     vim.keymap.set("n", "<leader>fp", [[<cmd>call VSCodeNotify('workbench.action.openRecent')<cr>]])
+
+    -- Other keymaps will be used with https://github.com/VSpaceCode/vscode-which-key, so we don't need to define them here
+    -- Trigger which-key by pressing <CMD+Space>, refer more default keymaps https://github.com/VSpaceCode/vscode-which-key/blob/15c5aa2da5812a21210c5599d9779c46d7bfbd3c/package.json#L265
   end,
 })
 
@@ -510,7 +589,7 @@ return {
 ## How to generate the settings
 
 ```bash
-sh cli.sh
+sh cli.sh $EDITOR_NAME
 ```
 
 ## Demo

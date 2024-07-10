@@ -1,6 +1,26 @@
 [
   // Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
   {
+    "command": "cursorDown",
+    "key": "j",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "cursorUp",
+    "key": "k",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "cursorDown",
+    "key": "down",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "cursorUp",
+    "key": "up",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
     "command": "editor.fold",
     "key": "z c",
     "when": "editorTextFocus && neovim.mode == normal"
@@ -8,6 +28,16 @@
   {
     "command": "editor.unfold",
     "key": "z o",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "editor.gotoNextFold",
+    "key": "z j",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "editor.gotoPreviousFold",
+    "key": "z k",
     "when": "editorTextFocus && neovim.mode == normal"
   },
   // Usage: CMD + K for trigger binding, then shift + t, m, s
@@ -47,5 +77,9 @@
   {
     "key": "cmd+k shift+f",
     "command": "workbench.action.toggleMaximizedPanel"
+  },
+  {
+    "key": "cmd+k g",
+    "command": "workbench.view.extension.github-pull-requests"
   }
 ]
