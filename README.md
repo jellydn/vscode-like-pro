@@ -40,7 +40,7 @@ Update your settings.json file with the following configuration:
 <!-- ALL-SETTINGS:START -->
 
 ```json
-// settings.json, generated at Fri Jul 12 2024 20:45:19 GMT+0800 (Singapore Standard Time)
+// settings.json, generated at Sat Jul 13 2024 00:06:03 GMT+0800 (Singapore Standard Time)
 {
   "workbench.settings.editor": "json", // Show setting in json as default
   "workbench.startupEditor": "none", // Don't open any editor
@@ -275,19 +275,432 @@ Update your settings.json file with the following configuration:
     }
   },
   // which key, refer https://github.com/VSpaceCode/vscode-which-key
-  "whichkey.sortOrder": "alphabetically",
   // Override from default key bindings https://github.com/VSpaceCode/vscode-which-key/blob/15c5aa2da5812a21210c5599d9779c46d7bfbd3c/package.json#L265
+  "whichkey.sortOrder": "alphabetically",
+  "whichkey.bindings": [
+    {
+      "key": " ",
+      "name": "Commands",
+      "type": "command",
+      "command": "workbench.action.showCommands"
+    },
+    {
+      "key": "\t",
+      "name": "Last editor",
+      "type": "commands",
+      "commands": [
+        "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
+        "list.select"
+      ]
+    },
+    {
+      "key": "?",
+      "name": "Search keybindings",
+      "type": "command",
+      "command": "whichkey.searchBindings"
+    },
+    {
+      "key": ".",
+      "name": "Repeat most recent action",
+      "type": "command",
+      "command": "whichkey.repeatMostRecent"
+    },
+    {
+      "key": "b",
+      "name": "+Buffers/Editors",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "d",
+          "name": "Close active editor",
+          "type": "command",
+          "command": "workbench.action.closeActiveEditor"
+        },
+        {
+          "key": "o",
+          "name": "Close active editor",
+          "type": "command",
+          "command": "workbench.action.closeOtherEditors"
+        }
+      ]
+    },
+    {
+      "key": "c",
+      "name": "+Code",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "a",
+          "name": "Code Action",
+          "type": "command",
+          "command": "editor.action.codeAction"
+        },
+        {
+          "key": "A",
+          "name": "Source action",
+          "type": "command",
+          "command": "editor.action.sourceAction"
+        },
+        {
+          "key": "i",
+          "name": "Organize Imports",
+          "type": "command",
+          "command": "editor.action.organizeImports"
+        },
+        {
+          "key": "r",
+          "name": "Rename",
+          "type": "command",
+          "command": "editor.action.rename"
+        },
+        {
+          "key": "R",
+          "name": "Refactor",
+          "type": "command",
+          "command": "editor.action.Refactor"
+        },
+        {
+          "key": "f",
+          "name": "Format",
+          "type": "command",
+          "command": "editor.action.formatDocument"
+        },
+        {
+          "key": "=",
+          "name": "Format selection",
+          "type": "command",
+          "command": "editor.action.formatSelection"
+        },
+        {
+          "key": ".",
+          "name": "Quick Fix",
+          "type": "command",
+          "command": "editor.action.quickFix"
+        }
+      ]
+    },
+    {
+      "key": "x",
+      "name": "+Errors",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "x",
+          "name": "List errors",
+          "type": "command",
+          "command": "workbench.actions.view.problems"
+        },
+        {
+          "key": "n",
+          "name": "Next error",
+          "type": "command",
+          "command": "editor.action.marker.next"
+        },
+        {
+          "key": "p",
+          "name": "Previous error",
+          "type": "command",
+          "command": "editor.action.marker.prev"
+        }
+      ]
+    },
+    {
+      "key": "f",
+      "name": "+File",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "a",
+          "name": "Show all opened files",
+          "type": "command",
+          "command": "workbench.action.showAllEditors"
+        },
+        {
+          "key": "e",
+          "name": "Show active in explorer",
+          "type": "command",
+          "command": "workbench.files.action.showActiveFileInExplorer"
+        },
+        {
+          "key": "f",
+          "name": "Quick Open file",
+          "type": "command",
+          "command": "workbench.action.quickOpen"
+        },
+        {
+          "key": "F",
+          "name": "Open file in folder",
+          "type": "command",
+          "command": "workbench.action.files.openFileFolder"
+        },
+        {
+          "key": "n",
+          "name": "New Untitled",
+          "type": "command",
+          "command": "workbench.action.files.newUntitledFile"
+        },
+        {
+          "key": "p",
+          "name": "Switch project",
+          "type": "command",
+          "command": "workbench.action.openRecent"
+        },
+        {
+          "key": "s",
+          "name": "Save file",
+          "type": "command",
+          "command": "workbench.action.files.save"
+        },
+        {
+          "key": "S",
+          "name": "Save all files",
+          "type": "command",
+          "command": "workbench.action.files.saveAll"
+        },
+        {
+          "key": "w",
+          "name": "Open active in new window",
+          "type": "command",
+          "command": "workbench.action.files.showOpenedFileInNewWindow"
+        }
+      ]
+    },
+    {
+      "key": "g",
+      "name": "+Git",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "f",
+          "name": "Fetch",
+          "type": "command",
+          "command": "git.fetch"
+        },
+        {
+          "key": "i",
+          "name": "Init",
+          "type": "command",
+          "command": "git.init"
+        },
+        {
+          "key": "s",
+          "name": "Git status",
+          "type": "command",
+          "command": "workbench.view.scm"
+        },
+        {
+          "key": "r",
+          "name": "Pull Request",
+          "type": "command",
+          "command": "workbench.view.extension.github-pull-request"
+        }
+      ]
+    },
+    {
+      "key": "s",
+      "name": "+Search/Symbol",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "s",
+          "name": "Symbol in file",
+          "type": "command",
+          "command": "workbench.action.gotoSymbol"
+        },
+        {
+          "key": "S",
+          "name": "All symbols in workspace",
+          "type": "command",
+          "command": "workbench.action.showAllSymbols"
+        },
+        {
+          "key": "w",
+          "name": "Search word in a project",
+          "type": "commands",
+          "commands": [
+            "editor.action.addSelectionToNextFindMatch",
+            "workbench.action.findInFiles"
+          ]
+        },
+        {
+          "key": "r",
+          "name": "Search all references",
+          "type": "command",
+          "command": "editor.action.referenceSearch.trigger"
+        },
+        {
+          "key": "R",
+          "name": "Search all references in side bar",
+          "type": "command",
+          "command": "references-view.find"
+        }
+      ]
+    },
+    {
+      "key": "u",
+      "name": "+UI",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "c",
+          "name": "Select theme color",
+          "type": "command",
+          "command": "workbench.action.selectTheme"
+        },
+        {
+          "key": "x",
+          "name": "Show extensions",
+          "type": "command",
+          "command": "workbench.view.extensions"
+        },
+        {
+          "key": "o",
+          "name": "Show output",
+          "type": "command",
+          "command": "workbench.action.output.toggleOutput"
+        },
+        {
+          "key": "d",
+          "name": "Show debug console",
+          "type": "command",
+          "command": "workbench.debug.action.toggleRepl"
+        }
+      ]
+    },
+    {
+      "key": "t",
+      "name": "+Toggles",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "c",
+          "name": "Toggle find case sensitive",
+          "type": "command",
+          "command": "toggleFindCaseSensitive"
+        },
+        {
+          "key": "w",
+          "name": "Toggle ignore trim whitespace in diff",
+          "type": "command",
+          "command": "toggle.diff.ignoreTrimWhitespace"
+        },
+        {
+          "key": "W",
+          "name": "Toggle word wrap",
+          "type": "command",
+          "command": "editor.action.toggleWordWrap"
+        }
+      ]
+    },
+    {
+      "key": "w",
+      "name": "+Window",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "-",
+          "name": "Split editor below",
+          "type": "command",
+          "command": "workbench.action.splitEditorDown"
+        },
+        {
+          "key": "/",
+          "name": "Split editor right",
+          "type": "command",
+          "command": "workbench.action.splitEditor"
+        },
+        {
+          "key": "t",
+          "name": "Toggle editor group sizes",
+          "type": "command",
+          "command": "workbench.action.toggleEditorWidths"
+        },
+        {
+          "key": "m",
+          "name": "Maximize editor group",
+          "type": "command",
+          "command": "workbench.action.minimizeOtherEditors"
+        }
+      ]
+    },
+    {
+      "key": "z",
+      "name": "+Folding",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "a",
+          "name": "Toggle: around a point",
+          "type": "command",
+          "command": "editor.toggleFold"
+        },
+        {
+          "key": "c",
+          "name": "Close: at a point",
+          "type": "command",
+          "command": "editor.fold"
+        },
+        {
+          "key": "b",
+          "name": "Close: all block comments",
+          "type": "command",
+          "command": "editor.foldAllBlockComments"
+        },
+        {
+          "key": "g",
+          "name": "Close: all regions",
+          "type": "command",
+          "command": "editor.foldAllMarkerRegions"
+        },
+        {
+          "key": "m",
+          "name": "Close: all",
+          "type": "command",
+          "command": "editor.foldAll"
+        },
+        {
+          "key": "o",
+          "name": "Open: at a point",
+          "type": "command",
+          "command": "editor.unfold"
+        },
+        {
+          "key": "O",
+          "name": "Open: recursively",
+          "type": "command",
+          "command": "editor.unfoldRecursively"
+        },
+        {
+          "key": "G",
+          "name": "Open: all regions",
+          "type": "command",
+          "command": "editor.unfoldAllMarkerRegions"
+        },
+        {
+          "key": "r",
+          "name": "Open: all",
+          "type": "command",
+          "command": "editor.unfoldAll"
+        }
+      ]
+    },
+    {
+      "key": "!",
+      "name": "Show terminal",
+      "type": "command",
+      "command": "workbench.action.terminal.focus"
+    },
+    {
+      "key": "/",
+      "name": "Search in a project",
+      "type": "command",
+      "command": "workbench.action.findInFiles"
+    }
+  ],
+  /*
+   Incremental usage: only override some keymap
   "whichkey.bindingOverrides": [
     // +f File
-    // File explorer, remove the default mapping
-    {
-      "keys": "f.t",
-      "position": -1
-    },
-    {
-      "keys": "f.T",
-      "position": -1
-    },
     // Prefer to use <leader>e from neovim instead
     {
       "keys": "f.e",
@@ -322,7 +735,7 @@ Update your settings.json file with the following configuration:
       "type": "command",
       "command": "workbench.view.extension.github-pull-request"
     }
-  ],
+  ], */
   // Vim settings, refer https://open-vsx.org/extension/vscodevim/vim
   "vim.easymotion": true,
   "vim.foldfix": true,
@@ -381,29 +794,9 @@ Update your `keybindings.json` file with the following key bindings:
 <!-- ALL-KEYMAPS:START -->
 
 ```json
-// keybindings.json, generated at Fri Jul 12 2024 20:45:19 GMT+0800 (Singapore Standard Time)
+// keybindings.json, generated at Sat Jul 13 2024 00:06:03 GMT+0800 (Singapore Standard Time)
 [
   // Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
-  {
-    "command": "cursorDown",
-    "key": "j",
-    "when": "editorTextFocus && neovim.mode == normal"
-  },
-  {
-    "command": "cursorUp",
-    "key": "k",
-    "when": "editorTextFocus && neovim.mode == normal"
-  },
-  {
-    "command": "cursorDown",
-    "key": "down",
-    "when": "editorTextFocus && neovim.mode == normal"
-  },
-  {
-    "command": "cursorUp",
-    "key": "up",
-    "when": "editorTextFocus && neovim.mode == normal"
-  },
   {
     "command": "editor.fold",
     "key": "z c",
@@ -462,6 +855,7 @@ Update your `keybindings.json` file with the following key bindings:
     "key": "cmd+k shift+f",
     "command": "workbench.action.toggleMaximizedPanel"
   },
+  // Open Github Pull Request
   {
     "key": "cmd+k g",
     "command": "workbench.view.extension.github-pull-requests"
@@ -480,7 +874,7 @@ Update your `keybindings.json` file with the following key bindings:
 <!-- ALL-NEOVIM:START -->
 
 ```lua
-// vscode.lua, generated at Fri Jul 12 2024 20:45:19 GMT+0800 (Singapore Standard Time)
+// vscode.lua, generated at Sat Jul 13 2024 00:06:03 GMT+0800 (Singapore Standard Time)
 if not vim.g.vscode then
   return {}
 end
@@ -503,72 +897,117 @@ Config.options.defaults.cond = function(plugin)
 end
 
 -- Add some vscode specific keymaps
+-- Refer to https://github.com/vscode-neovim/vscode-neovim#code-navigation-bindings for default keymaps
 vim.api.nvim_create_autocmd("User", {
   pattern = "NvimIdeKeymaps", -- This pattern will be called when the plugin is loaded
   callback = function()
+    local vscode = require("vscode")
     -- +File
     -- Find file
     vim.keymap.set("n", "<leader><space>", "<cmd>Find<cr>")
     -- Open other files
-    vim.keymap.set("n", "<leader>,", [[<cmd>call VSCodeNotify('workbench.action.showAllEditors')<cr>]])
+    vim.keymap.set("n", "<leader>,", function()
+      vscode.call("workbench.action.showAllEditors")
+    end)
     -- Find in files
-    vim.keymap.set("n", "<leader>/", [[<cmd>call VSCodeNotify('workbench.action.findInFiles')<cr>]])
+    vim.keymap.set("n", "<leader>/", function()
+      vscode.call("workbench.action.findInFiles")
+    end)
     -- Open file explorer in left sidebar
-    vim.keymap.set("n", "<leader>e", [[<cmd>call VSCodeNotify('workbench.view.explorer')<cr>]])
+    vim.keymap.set("n", "<leader>e", function()
+      vscode.call("workbench.view.explorer")
+    end)
 
     -- +Search
     -- Open symbol
-    vim.keymap.set("n", "<leader>ss", [[<cmd>call VSCodeNotify('workbench.action.gotoSymbol')<cr>]])
+    vim.keymap.set("n", "<leader>ss", function()
+      vscode.call("workbench.action.gotoSymbol")
+    end)
     -- Search word under cursor
     vim.keymap.set("n", "<leader>sw", function()
       local code = require("vscode")
       code.action("editor.action.addSelectionToNextFindMatch")
       code.action("workbench.action.findInFiles")
+      -- Or send as the param like this: code.action("workbench.action.findInFiles", { args = { query = vim.fn.expand("<cword>") } })
     end)
 
     -- +Code
     -- Code Action
-    vim.keymap.set("n", "<leader>ca", [[<cmd>call VSCodeNotify('editor.action.codeAction')<cr>]])
+    vim.keymap.set("n", "<leader>ca", function()
+      vscode.call("editor.action.codeAction")
+    end)
     -- Source Action
-    vim.keymap.set("n", "<leader>cA", [[<cmd>call VSCodeNotify('editor.action.sourceAction')<cr>]])
+    vim.keymap.set("n", "<leader>cA", function()
+      vscode.call("editor.action.sourceAction")
+    end)
     -- Code Rename
-    vim.keymap.set("n", "<leader>cr", [[<cmd>call VSCodeNotify('editor.action.rename')<cr>]])
+    vim.keymap.set("n", "<leader>cr", function()
+      vscode.call("editor.action.rename")
+    end)
     -- Quickfix shortcut
-    vim.keymap.set("n", "<leader>.", [[<cmd>call VSCodeNotify('editor.action.quickFix')<cr>]])
+    vim.keymap.set("n", "<leader>.", function()
+      vscode.call("editor.action.quickFix")
+    end)
     -- Code format
-    vim.keymap.set("n", "<leader>cf", [[<cmd>call VSCodeNotify('editor.action.formatDocument')<cr>]])
+    vim.keymap.set("n", "<leader>cf", function()
+      vscode.call("editor.action.formatDocument")
+    end)
     -- Refactor
-    vim.keymap.set("n", "<leader>rm", [[<cmd>call VSCodeNotify('editor.action.refactor')<cr>]])
+    vim.keymap.set("n", "<leader>rm", function()
+      vscode.call("editor.action.refactor")
+    end)
 
     -- +Terminal
     -- Open terminal
-    vim.keymap.set("n", "<leader>ft", [[<cmd>call VSCodeNotify('workbench.action.terminal.focus')<cr>]])
+    vim.keymap.set("n", "<leader>ft", function()
+      vscode.call("workbench.action.terminal.focus")
+    end)
 
     -- +LSP
     -- View problem
-    vim.keymap.set("n", "<leader>xx", [[<cmd>call VSCodeNotify('workbench.actions.view.problems')<cr>]])
+    vim.keymap.set("n", "<leader>xx", function()
+      vscode.call("workbench.actions.view.problems")
+    end)
     -- Go to next/prev error
-    vim.keymap.set("n", "]e", [[<cmd>call VSCodeNotify('editor.action.marker.next')<cr>]])
-    vim.keymap.set("n", "[e", [[<cmd>call VSCodeNotify('editor.action.marker.prev')<cr>]])
+    vim.keymap.set("n", "]e", function()
+      vscode.call("editor.action.marker.next")
+    end)
+    vim.keymap.set("n", "[e", function()
+      vscode.call("editor.action.marker.prev")
+    end)
 
     -- Find references
-    vim.keymap.set("n", "gr", [[<cmd>call VSCodeNotify('references-view.find')<cr>]])
+    vim.keymap.set("n", "gr", function()
+      vscode.call("references-view.find")
+    end)
 
     -- +Git
     -- Git status
-    vim.keymap.set("n", "<leader>gs", [[<cmd>call VSCodeNotify('workbench.view.scm')<cr>]])
+    vim.keymap.set("n", "<leader>gs", function()
+      vscode.call("workbench.view.scm")
+    end)
     -- Go to next/prev change
-    vim.keymap.set("n", "]h", [[<cmd>call VSCodeNotify('workbench.action.editor.nextChange')<cr>]])
-    vim.keymap.set("n", "[h", [[<cmd>call VSCodeNotify('workbench.action.editor.previousChange')<cr>]])
+    vim.keymap.set("n", "]h", function()
+      vscode.call("workbench.action.editor.nextChange")
+    end)
+    vim.keymap.set("n", "[h", function()
+      vscode.call("workbench.action.editor.previousChange")
+    end)
 
     -- +Buffer
     -- Close buffer
-    vim.keymap.set("n", "<leader>bd", [[<cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<cr>]])
+    vim.keymap.set("n", "<leader>bd", function()
+      vscode.call("workbench.action.closeActiveEditor")
+    end)
     -- Close other buffers
-    vim.keymap.set("n", "<leader>bo", [[<cmd>call VSCodeNotify('workbench.action.closeOtherEditors')<cr>]])
+    vim.keymap.set("n", "<leader>bo", function()
+      vscode.call("workbench.action.closeOtherEditors")
+    end)
 
     -- +Project
-    vim.keymap.set("n", "<leader>fp", [[<cmd>call VSCodeNotify('workbench.action.openRecent')<cr>]])
+    vim.keymap.set("n", "<leader>fp", function()
+      vscode.call("workbench.action.openRecent")
+    end)
 
     -- Other keymaps will be used with https://github.com/VSpaceCode/vscode-which-key, so we don't need to define them here
     -- Trigger which-key by pressing <CMD+Space>, refer more default keymaps https://github.com/VSpaceCode/vscode-which-key/blob/15c5aa2da5812a21210c5599d9779c46d7bfbd3c/package.json#L265

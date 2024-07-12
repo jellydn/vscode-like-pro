@@ -232,19 +232,432 @@
     }
   },
   // which key, refer https://github.com/VSpaceCode/vscode-which-key
-  "whichkey.sortOrder": "alphabetically",
   // Override from default key bindings https://github.com/VSpaceCode/vscode-which-key/blob/15c5aa2da5812a21210c5599d9779c46d7bfbd3c/package.json#L265
+  "whichkey.sortOrder": "alphabetically",
+  "whichkey.bindings": [
+    {
+      "key": " ",
+      "name": "Commands",
+      "type": "command",
+      "command": "workbench.action.showCommands"
+    },
+    {
+      "key": "\t",
+      "name": "Last editor",
+      "type": "commands",
+      "commands": [
+        "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
+        "list.select"
+      ]
+    },
+    {
+      "key": "?",
+      "name": "Search keybindings",
+      "type": "command",
+      "command": "whichkey.searchBindings"
+    },
+    {
+      "key": ".",
+      "name": "Repeat most recent action",
+      "type": "command",
+      "command": "whichkey.repeatMostRecent"
+    },
+    {
+      "key": "b",
+      "name": "+Buffers/Editors",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "d",
+          "name": "Close active editor",
+          "type": "command",
+          "command": "workbench.action.closeActiveEditor"
+        },
+        {
+          "key": "o",
+          "name": "Close active editor",
+          "type": "command",
+          "command": "workbench.action.closeOtherEditors"
+        }
+      ]
+    },
+    {
+      "key": "c",
+      "name": "+Code",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "a",
+          "name": "Code Action",
+          "type": "command",
+          "command": "editor.action.codeAction"
+        },
+        {
+          "key": "A",
+          "name": "Source action",
+          "type": "command",
+          "command": "editor.action.sourceAction"
+        },
+        {
+          "key": "i",
+          "name": "Organize Imports",
+          "type": "command",
+          "command": "editor.action.organizeImports"
+        },
+        {
+          "key": "r",
+          "name": "Rename",
+          "type": "command",
+          "command": "editor.action.rename"
+        },
+        {
+          "key": "R",
+          "name": "Refactor",
+          "type": "command",
+          "command": "editor.action.Refactor"
+        },
+        {
+          "key": "f",
+          "name": "Format",
+          "type": "command",
+          "command": "editor.action.formatDocument"
+        },
+        {
+          "key": "=",
+          "name": "Format selection",
+          "type": "command",
+          "command": "editor.action.formatSelection"
+        },
+        {
+          "key": ".",
+          "name": "Quick Fix",
+          "type": "command",
+          "command": "editor.action.quickFix"
+        }
+      ]
+    },
+    {
+      "key": "x",
+      "name": "+Errors",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "x",
+          "name": "List errors",
+          "type": "command",
+          "command": "workbench.actions.view.problems"
+        },
+        {
+          "key": "n",
+          "name": "Next error",
+          "type": "command",
+          "command": "editor.action.marker.next"
+        },
+        {
+          "key": "p",
+          "name": "Previous error",
+          "type": "command",
+          "command": "editor.action.marker.prev"
+        }
+      ]
+    },
+    {
+      "key": "f",
+      "name": "+File",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "a",
+          "name": "Show all opened files",
+          "type": "command",
+          "command": "workbench.action.showAllEditors"
+        },
+        {
+          "key": "e",
+          "name": "Show active in explorer",
+          "type": "command",
+          "command": "workbench.files.action.showActiveFileInExplorer"
+        },
+        {
+          "key": "f",
+          "name": "Quick Open file",
+          "type": "command",
+          "command": "workbench.action.quickOpen"
+        },
+        {
+          "key": "F",
+          "name": "Open file in folder",
+          "type": "command",
+          "command": "workbench.action.files.openFileFolder"
+        },
+        {
+          "key": "n",
+          "name": "New Untitled",
+          "type": "command",
+          "command": "workbench.action.files.newUntitledFile"
+        },
+        {
+          "key": "p",
+          "name": "Switch project",
+          "type": "command",
+          "command": "workbench.action.openRecent"
+        },
+        {
+          "key": "s",
+          "name": "Save file",
+          "type": "command",
+          "command": "workbench.action.files.save"
+        },
+        {
+          "key": "S",
+          "name": "Save all files",
+          "type": "command",
+          "command": "workbench.action.files.saveAll"
+        },
+        {
+          "key": "w",
+          "name": "Open active in new window",
+          "type": "command",
+          "command": "workbench.action.files.showOpenedFileInNewWindow"
+        }
+      ]
+    },
+    {
+      "key": "g",
+      "name": "+Git",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "f",
+          "name": "Fetch",
+          "type": "command",
+          "command": "git.fetch"
+        },
+        {
+          "key": "i",
+          "name": "Init",
+          "type": "command",
+          "command": "git.init"
+        },
+        {
+          "key": "s",
+          "name": "Git status",
+          "type": "command",
+          "command": "workbench.view.scm"
+        },
+        {
+          "key": "r",
+          "name": "Pull Request",
+          "type": "command",
+          "command": "workbench.view.extension.github-pull-request"
+        }
+      ]
+    },
+    {
+      "key": "s",
+      "name": "+Search/Symbol",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "s",
+          "name": "Symbol in file",
+          "type": "command",
+          "command": "workbench.action.gotoSymbol"
+        },
+        {
+          "key": "S",
+          "name": "All symbols in workspace",
+          "type": "command",
+          "command": "workbench.action.showAllSymbols"
+        },
+        {
+          "key": "w",
+          "name": "Search word in a project",
+          "type": "commands",
+          "commands": [
+            "editor.action.addSelectionToNextFindMatch",
+            "workbench.action.findInFiles"
+          ]
+        },
+        {
+          "key": "r",
+          "name": "Search all references",
+          "type": "command",
+          "command": "editor.action.referenceSearch.trigger"
+        },
+        {
+          "key": "R",
+          "name": "Search all references in side bar",
+          "type": "command",
+          "command": "references-view.find"
+        }
+      ]
+    },
+    {
+      "key": "u",
+      "name": "+UI",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "c",
+          "name": "Select theme color",
+          "type": "command",
+          "command": "workbench.action.selectTheme"
+        },
+        {
+          "key": "x",
+          "name": "Show extensions",
+          "type": "command",
+          "command": "workbench.view.extensions"
+        },
+        {
+          "key": "o",
+          "name": "Show output",
+          "type": "command",
+          "command": "workbench.action.output.toggleOutput"
+        },
+        {
+          "key": "d",
+          "name": "Show debug console",
+          "type": "command",
+          "command": "workbench.debug.action.toggleRepl"
+        }
+      ]
+    },
+    {
+      "key": "t",
+      "name": "+Toggles",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "c",
+          "name": "Toggle find case sensitive",
+          "type": "command",
+          "command": "toggleFindCaseSensitive"
+        },
+        {
+          "key": "w",
+          "name": "Toggle ignore trim whitespace in diff",
+          "type": "command",
+          "command": "toggle.diff.ignoreTrimWhitespace"
+        },
+        {
+          "key": "W",
+          "name": "Toggle word wrap",
+          "type": "command",
+          "command": "editor.action.toggleWordWrap"
+        }
+      ]
+    },
+    {
+      "key": "w",
+      "name": "+Window",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "-",
+          "name": "Split editor below",
+          "type": "command",
+          "command": "workbench.action.splitEditorDown"
+        },
+        {
+          "key": "/",
+          "name": "Split editor right",
+          "type": "command",
+          "command": "workbench.action.splitEditor"
+        },
+        {
+          "key": "t",
+          "name": "Toggle editor group sizes",
+          "type": "command",
+          "command": "workbench.action.toggleEditorWidths"
+        },
+        {
+          "key": "m",
+          "name": "Maximize editor group",
+          "type": "command",
+          "command": "workbench.action.minimizeOtherEditors"
+        }
+      ]
+    },
+    {
+      "key": "z",
+      "name": "+Folding",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "a",
+          "name": "Toggle: around a point",
+          "type": "command",
+          "command": "editor.toggleFold"
+        },
+        {
+          "key": "c",
+          "name": "Close: at a point",
+          "type": "command",
+          "command": "editor.fold"
+        },
+        {
+          "key": "b",
+          "name": "Close: all block comments",
+          "type": "command",
+          "command": "editor.foldAllBlockComments"
+        },
+        {
+          "key": "g",
+          "name": "Close: all regions",
+          "type": "command",
+          "command": "editor.foldAllMarkerRegions"
+        },
+        {
+          "key": "m",
+          "name": "Close: all",
+          "type": "command",
+          "command": "editor.foldAll"
+        },
+        {
+          "key": "o",
+          "name": "Open: at a point",
+          "type": "command",
+          "command": "editor.unfold"
+        },
+        {
+          "key": "O",
+          "name": "Open: recursively",
+          "type": "command",
+          "command": "editor.unfoldRecursively"
+        },
+        {
+          "key": "G",
+          "name": "Open: all regions",
+          "type": "command",
+          "command": "editor.unfoldAllMarkerRegions"
+        },
+        {
+          "key": "r",
+          "name": "Open: all",
+          "type": "command",
+          "command": "editor.unfoldAll"
+        }
+      ]
+    },
+    {
+      "key": "!",
+      "name": "Show terminal",
+      "type": "command",
+      "command": "workbench.action.terminal.focus"
+    },
+    {
+      "key": "/",
+      "name": "Search in a project",
+      "type": "command",
+      "command": "workbench.action.findInFiles"
+    }
+  ],
+  /*
+   Incremental usage: only override some keymap
   "whichkey.bindingOverrides": [
     // +f File
-    // File explorer, remove the default mapping
-    {
-      "keys": "f.t",
-      "position": -1
-    },
-    {
-      "keys": "f.T",
-      "position": -1
-    },
     // Prefer to use <leader>e from neovim instead
     {
       "keys": "f.e",
@@ -279,7 +692,7 @@
       "type": "command",
       "command": "workbench.view.extension.github-pull-request"
     }
-  ],
+  ], */
   // Vim settings, refer https://open-vsx.org/extension/vscodevim/vim
   "vim.easymotion": true,
   "vim.foldfix": true,
