@@ -40,10 +40,10 @@ Update your settings.json file with the following configuration:
 <!-- ALL-SETTINGS:START -->
 
 ```json
-// settings.json, generated at Sat Jul 13 2024 00:06:03 GMT+0800 (Singapore Standard Time)
+// settings.json, generated at Sat Jul 13 2024 10:15:19 GMT+0800 (Singapore Standard Time)
 {
   "workbench.settings.editor": "json", // Show setting in json as default
-  "workbench.startupEditor": "none", // Don't open any editor
+  "workbench.startupEditor": "none",
   // Color scheme and icon
   "workbench.colorTheme": "Cobalt2",
   "workbench.iconTheme": "catppuccin-macchiato",
@@ -794,7 +794,7 @@ Update your `keybindings.json` file with the following key bindings:
 <!-- ALL-KEYMAPS:START -->
 
 ```json
-// keybindings.json, generated at Sat Jul 13 2024 00:06:03 GMT+0800 (Singapore Standard Time)
+// keybindings.json, generated at Sat Jul 13 2024 10:15:19 GMT+0800 (Singapore Standard Time)
 [
   // Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
   {
@@ -874,7 +874,7 @@ Update your `keybindings.json` file with the following key bindings:
 <!-- ALL-NEOVIM:START -->
 
 ```lua
-// vscode.lua, generated at Sat Jul 13 2024 00:06:03 GMT+0800 (Singapore Standard Time)
+// vscode.lua, generated at Sat Jul 13 2024 10:15:19 GMT+0800 (Singapore Standard Time)
 if not vim.g.vscode then
   return {}
 end
@@ -1009,6 +1009,11 @@ vim.api.nvim_create_autocmd("User", {
       vscode.call("workbench.action.openRecent")
     end)
 
+    -- Markdown preview
+    vim.keymap.set("n", "<leader>mp", function()
+      vscode.call("markdown.showPreviewToSide")
+    end)
+
     -- Other keymaps will be used with https://github.com/VSpaceCode/vscode-which-key, so we don't need to define them here
     -- Trigger which-key by pressing <CMD+Space>, refer more default keymaps https://github.com/VSpaceCode/vscode-which-key/blob/15c5aa2da5812a21210c5599d9779c46d7bfbd3c/package.json#L265
   end,
@@ -1025,11 +1030,71 @@ return {
 
 <!-- ALL-NEOVIM:END -->
 
-## How to generate the settings
+## Tips
+
+- Improve key repeat on Mac OSX, need to restart
+
+```sh
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 14
+```
+
+- VSCode on Mac
+
+To enable key-repeating, execute the following in your Terminal, log out and back in, and then restart VS Code:
+
+```sh
+# For VS Code
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+# For VS Codium
+defaults write com.microsoft.VSCodium ApplePressAndHoldEnabled -bool false
+# For VS Code Insider
+defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false
+# For Codium Insider
+defaults write com.microsoft.VSCodiumInsiders ApplePressAndHoldEnabled -bool false
+# If necessary, reset global default
+defaults delete -g ApplePressAndHoldEnabled
+# For Cursor
+defaults write com.todesktop.230313mzl4w4u92 ApplePressAndHoldEnabled -bool false
+```
+
+Also increasing Key Repeat and Delay Until Repeat settings in System Preferences -> Keyboard.
+
+[![Key repeat rate](https://i.gyazo.com/e58be996275fe50bee31412ea5930017.png)](https://gyazo.com/e58be996275fe50bee31412ea5930017)
+
+- Disable `full stop with double-space` if you see the delay with `<space>-<space>`
+
+[![Which-key](https://i.gyazo.com/6403f6c57d2e54aca230589b2173eeb0.png)](https://gyazo.com/6403f6c57d2e54aca230589b2173eeb0)## How to generate the settings
 
 ```bash
 sh cli.sh $EDITOR_NAME
 ```
+
+- Improve key repeat on Mac OSX, need to restart
+
+```sh
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 14
+```
+
+- VSCode on Mac
+
+To enable key-repeating, execute the following in your Terminal, log out and back in, and then restart VS Code:
+
+```sh
+# For VS Code
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+# For VS Code Insider
+defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false
+# If necessary, reset global default
+defaults delete -g ApplePressAndHoldEnabled
+# For Cursor
+defaults write com.todesktop.230313mzl4w4u92 ApplePressAndHoldEnabled -bool false
+```
+
+Also increasing Key Repeat and Delay Until Repeat settings in System Preferences -> Keyboard.
+
+[![Key repeat rate](https://i.gyazo.com/e58be996275fe50bee31412ea5930017.png)](https://gyazo.com/e58be996275fe50bee31412ea5930017)
 
 ## Demo
 

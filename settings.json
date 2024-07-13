@@ -1,6 +1,6 @@
 {
   "workbench.settings.editor": "json", // Show setting in json as default
-  "workbench.startupEditor": "none", // Don't open any editor
+  "workbench.startupEditor": "none",
   // Color scheme and icon
   "workbench.colorTheme": "Cobalt2",
   "workbench.iconTheme": "catppuccin-macchiato",
