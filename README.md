@@ -40,10 +40,10 @@ Update your settings.json file with the following configuration:
 <!-- ALL-SETTINGS:START -->
 
 ```json
-// settings.json, generated at Sat Jul 13 2024 10:15:19 GMT+0800 (Singapore Standard Time)
+// settings.json, generated at Sat Jul 13 2024 21:50:06 GMT+0800 (Singapore Standard Time)
 {
   "workbench.settings.editor": "json", // Show setting in json as default
-  "workbench.startupEditor": "none",
+  "workbench.startupEditor": "newUntitledFile",
   // Color scheme and icon
   "workbench.colorTheme": "Cobalt2",
   "workbench.iconTheme": "catppuccin-macchiato",
@@ -81,7 +81,9 @@ Update your settings.json file with the following configuration:
   "apc.stylesheet": {
     // Setup for CSS for Which-Key
     // Let the quick pick take the full window height, so that more bindings are visible.
-    ".quick-input-widget > .quick-input-list > .monaco-list": "max-height: 100vh !important;"
+    ".quick-input-widget > .quick-input-list > .monaco-list": "max-height: 100vh !important;",
+    // Hide editor top-right buttons, except for the dirty file indicator and settings goto icon
+    ".editor .title .actions-container .action-item a:not(.codicon-close-dirty):not(.codicon-preferences-open-settings)": "display: none !important;"
   },
   "window.commandCenter": true,
   "workbench.colorCustomizations": {
@@ -240,7 +242,7 @@ Update your settings.json file with the following configuration:
   "editor.cursorBlinking": "solid",
   "editor.cursorStyle": "line",
   "editor.cursorWidth": 5,
-  "editor.fontFamily": "OperatorMonoLig Nerd Font, JetBrainsMono NF, Menlo, Monaco, 'Courier New', monospacere",
+  "editor.fontFamily": "GeistMono Nerd Font, JetBrainsMono NF, Menlo, Monaco, 'Courier New', monospacere",
   "editor.fontLigatures": true,
   "editor.fontSize": 19.5,
   "editor.fontWeight": "400",
@@ -794,7 +796,7 @@ Update your `keybindings.json` file with the following key bindings:
 <!-- ALL-KEYMAPS:START -->
 
 ```json
-// keybindings.json, generated at Sat Jul 13 2024 10:15:19 GMT+0800 (Singapore Standard Time)
+// keybindings.json, generated at Sat Jul 13 2024 21:50:06 GMT+0800 (Singapore Standard Time)
 [
   // Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
   {
@@ -874,7 +876,7 @@ Update your `keybindings.json` file with the following key bindings:
 <!-- ALL-NEOVIM:START -->
 
 ```lua
-// vscode.lua, generated at Sat Jul 13 2024 10:15:19 GMT+0800 (Singapore Standard Time)
+// vscode.lua, generated at Sat Jul 13 2024 21:50:06 GMT+0800 (Singapore Standard Time)
 if not vim.g.vscode then
   return {}
 end
@@ -953,7 +955,7 @@ vim.api.nvim_create_autocmd("User", {
       vscode.call("editor.action.formatDocument")
     end)
     -- Refactor
-    vim.keymap.set("n", "<leader>rm", function()
+    vim.keymap.set("n", "<leader>cR", function()
       vscode.call("editor.action.refactor")
     end)
 
