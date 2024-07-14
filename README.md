@@ -40,12 +40,12 @@ Update your settings.json file with the following configuration:
 <!-- ALL-SETTINGS:START -->
 
 ```json
-// settings.json, generated at Sat Jul 13 2024 21:50:06 GMT+0800 (Singapore Standard Time)
+// settings.json, generated at Sun Jul 14 2024 21:26:51 GMT+0800 (Singapore Standard Time)
 {
   "workbench.settings.editor": "json", // Show setting in json as default
   "workbench.startupEditor": "newUntitledFile",
   // Color scheme and icon
-  "workbench.colorTheme": "Cobalt2",
+  "workbench.colorTheme": "Kanagawa Wave",
   "workbench.iconTheme": "catppuccin-macchiato",
   // Set sidebar to the right
   "workbench.sideBar.location": "right",
@@ -277,7 +277,7 @@ Update your settings.json file with the following configuration:
     }
   },
   // which key, refer https://github.com/VSpaceCode/vscode-which-key
-  // Override from default key bindings https://github.com/VSpaceCode/vscode-which-key/blob/15c5aa2da5812a21210c5599d9779c46d7bfbd3c/package.json#L265
+  // Override from default key bindings, search for 'whichkey.bindings' on https://github.com/VSpaceCode/vscode-which-key/blob/master/package.json#L265
   "whichkey.sortOrder": "alphabetically",
   "whichkey.bindings": [
     {
@@ -581,6 +581,18 @@ Update your settings.json file with the following configuration:
           "command": "toggleFindCaseSensitive"
         },
         {
+          "key": "r",
+          "name": "Toggle screencast record",
+          "type": "command",
+          "command": "workbench.action.toggleScreencastMode"
+        },
+        {
+          "key": "s",
+          "name": "Toggle status bar",
+          "type": "command",
+          "command": "workbench.action.toggleStatusbarVisibility"
+        },
+        {
           "key": "w",
           "name": "Toggle ignore trim whitespace in diff",
           "type": "command",
@@ -796,7 +808,7 @@ Update your `keybindings.json` file with the following key bindings:
 <!-- ALL-KEYMAPS:START -->
 
 ```json
-// keybindings.json, generated at Sat Jul 13 2024 21:50:06 GMT+0800 (Singapore Standard Time)
+// keybindings.json, generated at Sun Jul 14 2024 21:26:51 GMT+0800 (Singapore Standard Time)
 [
   // Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
   {
@@ -848,7 +860,7 @@ Update your `keybindings.json` file with the following key bindings:
   // TODO: Wait for this to resolve https://github.com/usernamehw/vscode-error-lens/issues/208
   // Setup which-key
   {
-    "key": "cmd+space", // Disable Spotlight and usee Raycast with Alt+space, refer https://manual.raycast.com/hotkey
+    "key": "cmd+space", // Disable Spotlight and use Raycast with Alt+space, refer https://manual.raycast.com/hotkey
     "command": "whichkey.show",
     "when": "editorTextFocus"
   },
@@ -876,7 +888,7 @@ Update your `keybindings.json` file with the following key bindings:
 <!-- ALL-NEOVIM:START -->
 
 ```lua
-// vscode.lua, generated at Sat Jul 13 2024 21:50:06 GMT+0800 (Singapore Standard Time)
+// vscode.lua, generated at Sun Jul 14 2024 21:26:51 GMT+0800 (Singapore Standard Time)
 if not vim.g.vscode then
   return {}
 end
