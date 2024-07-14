@@ -5,6 +5,8 @@
 
 [![IT Man - VS Code Like a Pro](https://i.ytimg.com/vi/yMh0FQ-okog/hqdefault.jpg)](https://www.youtube.com/watch?v=yMh0FQ-okog)
 
+[![IT Man - Level up your VS Code with which-key like menu](https://i.ytimg.com/vi/2LXOv8jA6Io/hqdefault.jpg)](https://www.youtube.com/watch?v=2LXOv8jA6Io)
+
 [![Cobalt2](https://i.gyazo.com/79068e955711e7eab85fa7470de3097e.png)](https://gyazo.com/79068e955711e7eab85fa7470de3097e)
 
 ## Pre-requisites
