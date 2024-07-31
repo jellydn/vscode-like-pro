@@ -42,12 +42,12 @@ Update your settings.json file with the following configuration:
 <!-- ALL-SETTINGS:START -->
 
 ```json
-// settings.json, generated at Sun Jul 14 2024 21:26:51 GMT+0800 (Singapore Standard Time)
+// settings.json, generated at Wed Jul 31 2024 20:27:48 GMT+0800 (Singapore Standard Time)
 {
   "workbench.settings.editor": "json", // Show setting in json as default
-  "workbench.startupEditor": "newUntitledFile",
+  "workbench.startupEditor": "newUntitledFile", // Better to use with neovim and which-key
   // Color scheme and icon
-  "workbench.colorTheme": "Kanagawa Wave",
+  "workbench.colorTheme": "Cobalt2",
   "workbench.iconTheme": "catppuccin-macchiato",
   // Set sidebar to the right
   "workbench.sideBar.location": "right",
@@ -63,6 +63,9 @@ Update your settings.json file with the following configuration:
   "workbench.statusBar.visible": false,
   "window.titleBarStyle": "native",
   "window.customTitleBarVisibility": "never",
+  // Change below font to your favorite font if you want to custom UI and sidebar
+  "apc.font.family": "JetBrainsMono Nerd Font Mono",
+  "apc.monospace.font.family": "JetBrainsMono Nerd Font Mono",
   "apc.electron": {
     "titleBarStyle": "hidden"
   },
@@ -97,6 +100,7 @@ Update your settings.json file with the following configuration:
   "files.exclude": {
     "**/bin": true,
     "**/.turbo": true,
+    "**/.vercel": true,
     "**/.changes": true,
     "**/.yarn": true,
     "**/.vscode": true,
@@ -245,6 +249,7 @@ Update your settings.json file with the following configuration:
   "editor.cursorStyle": "line",
   "editor.cursorWidth": 5,
   "editor.fontFamily": "GeistMono Nerd Font, JetBrainsMono NF, Menlo, Monaco, 'Courier New', monospacere",
+  "editor.codeLensFontFamily": "JetBrainsMono Nerd Font Mono",
   "editor.fontLigatures": true,
   "editor.fontSize": 19.5,
   "editor.fontWeight": "400",
@@ -714,44 +719,44 @@ Update your settings.json file with the following configuration:
     }
   ],
   /*
-   Incremental usage: only override some keymap
-  "whichkey.bindingOverrides": [
-    // +f File
-    // Prefer to use <leader>e from neovim instead
-    {
-      "keys": "f.e",
-      "name": "Show tree/explorer view",
-      "type": "command",
-      "command": "workbench.view.explorer"
-    },
-    // Open file
-    {
-      "keys": "f.f",
-      "name": "Quick open file",
-      "type": "command",
-      "command": "workbench.action.quickOpen"
-    },
-    {
-      "key": "f.F",
-      "name": "Open file/folder",
-      "type": "command",
-      "command": "whichkey.openFile"
-    },
-    // More advanced usage on https://vspacecode.github.io/docs/whichkey/extra
-    {
-      "keys": "f.E",
-      "name": "Show active file in tree/explorer view",
-      "type": "command",
-      "command": "workbench.files.action.showActiveFileInExplorer"
-    },
-    // Open Github Pull Request on sidebar
-    {
-      "keys": "g.r",
-      "name": "Github Pull Requests",
-      "type": "command",
-      "command": "workbench.view.extension.github-pull-request"
-    }
-  ], */
+     Incremental usage: only override some keymap
+    "whichkey.bindingOverrides": [
+      // +f File
+      // Prefer to use <leader>e from neovim instead
+      {
+        "keys": "f.e",
+        "name": "Show tree/explorer view",
+        "type": "command",
+        "command": "workbench.view.explorer"
+      },
+      // Open file
+      {
+        "keys": "f.f",
+        "name": "Quick open file",
+        "type": "command",
+        "command": "workbench.action.quickOpen"
+      },
+      {
+        "key": "f.F",
+        "name": "Open file/folder",
+        "type": "command",
+        "command": "whichkey.openFile"
+      },
+      // More advanced usage on https://vspacecode.github.io/docs/whichkey/extra
+      {
+        "keys": "f.E",
+        "name": "Show active file in tree/explorer view",
+        "type": "command",
+        "command": "workbench.files.action.showActiveFileInExplorer"
+      },
+      // Open Github Pull Request on sidebar
+      {
+        "keys": "g.r",
+        "name": "Github Pull Requests",
+        "type": "command",
+        "command": "workbench.view.extension.github-pull-request"
+      }
+    ], */
   // Vim settings, refer https://open-vsx.org/extension/vscodevim/vim
   "vim.easymotion": true,
   "vim.foldfix": true,
@@ -794,7 +799,8 @@ Update your settings.json file with the following configuration:
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "extensions.ignoreRecommendations": true
 }
 
 ```
@@ -810,74 +816,73 @@ Update your `keybindings.json` file with the following key bindings:
 <!-- ALL-KEYMAPS:START -->
 
 ```json
-// keybindings.json, generated at Sun Jul 14 2024 21:26:51 GMT+0800 (Singapore Standard Time)
+// keybindings.json, generated at Wed Jul 31 2024 20:27:48 GMT+0800 (Singapore Standard Time)
 [
-  // Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
-  {
-    "command": "editor.fold",
-    "key": "z c",
-    "when": "editorTextFocus && neovim.mode == normal"
-  },
-  {
-    "command": "editor.unfold",
-    "key": "z o",
-    "when": "editorTextFocus && neovim.mode == normal"
-  },
-  {
-    "command": "editor.gotoNextFold",
-    "key": "z j",
-    "when": "editorTextFocus && neovim.mode == normal"
-  },
-  {
-    "command": "editor.gotoPreviousFold",
-    "key": "z k",
-    "when": "editorTextFocus && neovim.mode == normal"
-  },
-  // Usage: CMD + K for trigger binding, then shift + t, m, s
-  // Use single tab
-  {
-    "key": "cmd+k shift+t",
-    "command": "workbench.action.showEditorTab"
-  },
-  // Use multiple tabs
-  {
-    "key": "cmd+k shift+m",
-    "command": "workbench.action.showMultipleEditorTabs"
-  },
-  // Toggle status bar
-  {
-    "key": "cmd+k shift+s",
-    "command": "workbench.action.toggleStatusbarVisibility"
-  },
-  // Toggle record screen cast
-  {
-    "key": "cmd+k shift+r",
-    "command": "workbench.action.toggleScreencastMode"
-  },
-  // Toggle error lens - warning
-  {
-    "key": "cmd+k shift+w",
-    "command": "errorLens.toggleWarning"
-  },
-  // TODO: Wait for this to resolve https://github.com/usernamehw/vscode-error-lens/issues/208
-  // Setup which-key
-  {
-    "key": "cmd+space", // Disable Spotlight and use Raycast with Alt+space, refer https://manual.raycast.com/hotkey
-    "command": "whichkey.show",
-    "when": "editorTextFocus"
-  },
-  // Toggle full screen
-  {
-    "key": "cmd+k shift+f",
-    "command": "workbench.action.toggleMaximizedPanel"
-  },
-  // Open Github Pull Request
-  {
-    "key": "cmd+k g",
-    "command": "workbench.view.extension.github-pull-requests"
-  }
-]
-
+	// Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
+	{
+	  "command": "editor.fold",
+	  "key": "z c",
+	  "when": "editorTextFocus && neovim.mode == normal"
+	},
+	{
+	  "command": "editor.unfold",
+	  "key": "z o",
+	  "when": "editorTextFocus && neovim.mode == normal"
+	},
+	{
+	  "command": "editor.gotoNextFold",
+	  "key": "z j",
+	  "when": "editorTextFocus && neovim.mode == normal"
+	},
+	{
+	  "command": "editor.gotoPreviousFold",
+	  "key": "z k",
+	  "when": "editorTextFocus && neovim.mode == normal"
+	},
+	// Usage: CMD + K for trigger binding, then shift + t, m, s
+	// Use single tab
+	{
+	  "key": "cmd+k shift+t",
+	  "command": "workbench.action.showEditorTab"
+	},
+	// Use multiple tabs
+	{
+	  "key": "cmd+k shift+m",
+	  "command": "workbench.action.showMultipleEditorTabs"
+	},
+	// Toggle status bar
+	{
+	  "key": "cmd+k shift+s",
+	  "command": "workbench.action.toggleStatusbarVisibility"
+	},
+	// Toggle record screen cast
+	{
+	  "key": "cmd+k shift+r",
+	  "command": "workbench.action.toggleScreencastMode"
+	},
+	// Toggle error lens - warning
+	{
+	  "key": "cmd+k shift+w",
+	  "command": "errorLens.toggleWarning"
+	},
+	// TODO: Wait for this to resolve https://github.com/usernamehw/vscode-error-lens/issues/208
+	// Setup which-key
+	{
+	  "key": "cmd+space", // Disable Spotlight and use Raycast with Alt+space, refer https://manual.raycast.com/hotkey
+	  "command": "whichkey.show",
+	  "when": "editorTextFocus"
+	},
+	// Toggle full screen
+	{
+	  "key": "cmd+k shift+f",
+	  "command": "workbench.action.toggleMaximizedPanel"
+	},
+	// Open Github Pull Request
+	{
+	  "key": "cmd+k g",
+	  "command": "workbench.view.extension.github-pull-requests"
+	}
+  ]
 ```
 
 <!-- ALL-KEYMAPS:END -->
@@ -890,7 +895,7 @@ Update your `keybindings.json` file with the following key bindings:
 <!-- ALL-NEOVIM:START -->
 
 ```lua
-// vscode.lua, generated at Sun Jul 14 2024 21:26:51 GMT+0800 (Singapore Standard Time)
+// vscode.lua, generated at Wed Jul 31 2024 20:27:48 GMT+0800 (Singapore Standard Time)
 if not vim.g.vscode then
   return {}
 end

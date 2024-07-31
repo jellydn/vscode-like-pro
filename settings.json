@@ -1,8 +1,8 @@
 {
   "workbench.settings.editor": "json", // Show setting in json as default
-  "workbench.startupEditor": "newUntitledFile",
+  "workbench.startupEditor": "newUntitledFile", // Better to use with neovim and which-key
   // Color scheme and icon
-  "workbench.colorTheme": "Kanagawa Wave",
+  "workbench.colorTheme": "Cobalt2",
   "workbench.iconTheme": "catppuccin-macchiato",
   // Set sidebar to the right
   "workbench.sideBar.location": "right",
@@ -18,6 +18,9 @@
   "workbench.statusBar.visible": false,
   "window.titleBarStyle": "native",
   "window.customTitleBarVisibility": "never",
+  // Change below font to your favorite font if you want to custom UI and sidebar
+  "apc.font.family": "JetBrainsMono Nerd Font Mono",
+  "apc.monospace.font.family": "JetBrainsMono Nerd Font Mono",
   "apc.electron": {
     "titleBarStyle": "hidden"
   },
@@ -52,6 +55,7 @@
   "files.exclude": {
     "**/bin": true,
     "**/.turbo": true,
+    "**/.vercel": true,
     "**/.changes": true,
     "**/.yarn": true,
     "**/.vscode": true,
@@ -200,6 +204,7 @@
   "editor.cursorStyle": "line",
   "editor.cursorWidth": 5,
   "editor.fontFamily": "GeistMono Nerd Font, JetBrainsMono NF, Menlo, Monaco, 'Courier New', monospacere",
+  "editor.codeLensFontFamily": "JetBrainsMono Nerd Font Mono",
   "editor.fontLigatures": true,
   "editor.fontSize": 19.5,
   "editor.fontWeight": "400",
@@ -669,44 +674,44 @@
     }
   ],
   /*
-   Incremental usage: only override some keymap
-  "whichkey.bindingOverrides": [
-    // +f File
-    // Prefer to use <leader>e from neovim instead
-    {
-      "keys": "f.e",
-      "name": "Show tree/explorer view",
-      "type": "command",
-      "command": "workbench.view.explorer"
-    },
-    // Open file
-    {
-      "keys": "f.f",
-      "name": "Quick open file",
-      "type": "command",
-      "command": "workbench.action.quickOpen"
-    },
-    {
-      "key": "f.F",
-      "name": "Open file/folder",
-      "type": "command",
-      "command": "whichkey.openFile"
-    },
-    // More advanced usage on https://vspacecode.github.io/docs/whichkey/extra
-    {
-      "keys": "f.E",
-      "name": "Show active file in tree/explorer view",
-      "type": "command",
-      "command": "workbench.files.action.showActiveFileInExplorer"
-    },
-    // Open Github Pull Request on sidebar
-    {
-      "keys": "g.r",
-      "name": "Github Pull Requests",
-      "type": "command",
-      "command": "workbench.view.extension.github-pull-request"
-    }
-  ], */
+     Incremental usage: only override some keymap
+    "whichkey.bindingOverrides": [
+      // +f File
+      // Prefer to use <leader>e from neovim instead
+      {
+        "keys": "f.e",
+        "name": "Show tree/explorer view",
+        "type": "command",
+        "command": "workbench.view.explorer"
+      },
+      // Open file
+      {
+        "keys": "f.f",
+        "name": "Quick open file",
+        "type": "command",
+        "command": "workbench.action.quickOpen"
+      },
+      {
+        "key": "f.F",
+        "name": "Open file/folder",
+        "type": "command",
+        "command": "whichkey.openFile"
+      },
+      // More advanced usage on https://vspacecode.github.io/docs/whichkey/extra
+      {
+        "keys": "f.E",
+        "name": "Show active file in tree/explorer view",
+        "type": "command",
+        "command": "workbench.files.action.showActiveFileInExplorer"
+      },
+      // Open Github Pull Request on sidebar
+      {
+        "keys": "g.r",
+        "name": "Github Pull Requests",
+        "type": "command",
+        "command": "workbench.view.extension.github-pull-request"
+      }
+    ], */
   // Vim settings, refer https://open-vsx.org/extension/vscodevim/vim
   "vim.easymotion": true,
   "vim.foldfix": true,
@@ -749,5 +754,6 @@
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "extensions.ignoreRecommendations": true
 }
