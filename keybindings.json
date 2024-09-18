@@ -62,5 +62,10 @@
   {
     "key": "cmd+k g",
     "command": "workbench.view.extension.github-pull-requests"
+  },
+  // Toggle version lens
+  {
+    "key": "cmd+k shift+v",
+    "command": "versionlens.icons.showVersionLenses"
   }
 ]

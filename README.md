@@ -42,7 +42,7 @@ Update your settings.json file with the following configuration:
 <!-- ALL-SETTINGS:START -->
 
 ```json
-// settings.json, generated at Wed Jul 31 2024 20:27:48 GMT+0800 (Singapore Standard Time)
+// settings.json, generated at Wed Sep 18 2024 18:37:28 GMT+0800 (Singapore Standard Time)
 {
   "workbench.settings.editor": "json", // Show setting in json as default
   "workbench.startupEditor": "newUntitledFile", // Better to use with neovim and which-key
@@ -98,25 +98,29 @@ Update your settings.json file with the following configuration:
   "workbench.layoutControl.enabled": false,
   // Toggle excluded files extension, refer for more detail https://github.com/jellydn/vscode-toggle-excluded-files
   "files.exclude": {
-    "**/bin": true,
-    "**/.turbo": true,
-    "**/.vercel": true,
-    "**/.changes": true,
-    "**/.yarn": true,
-    "**/.vscode": true,
-    "**/.git": true,
-    "**/.github": true,
-    "**/.grit": true,
-    "**/.changeset": true,
-    "**/node_modules": true,
-    "**/.husky": true,
-    "**/dist": true,
-    "**/coverage": true,
-    "**/.next": true,
-    "**/*.tsbuildinfo": true,
-    "**/*.nyc_output": true,
-    "**/*.tap": true,
-    "**/.astro": true
+    "**/bin": false,
+    "**/git": false,
+    "**/.turbo": false,
+    "**/.vercel": false,
+    "**/.changes": false,
+    "**/.yarn": false,
+    "**/.vscode": false,
+    "**/.git": false,
+    "**/.github": false,
+    "**/.grit": false,
+    "**/.changeset": false,
+    "**/node_modules": false,
+    "**/.husky": false,
+    "**/dist": false,
+    "**/coverage": false,
+    "**/.next": false,
+    "**/*.tsbuildinfo": false,
+    "**/*.nyc_output": false,
+    "**/*.tap": false,
+    "**/*.econ": false,
+    "**/.astro": false,
+    "**/.encore": false,
+    "**/encore.gen": false
   },
   // Cspell, refer https://open-vsx.org/vscode/item?itemName=streetsidesoftware.code-spell-checker
   "cSpell.userWords": [],
@@ -274,7 +278,6 @@ Update your settings.json file with the following configuration:
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
   },
-  "vscode-neovim.neovimExecutablePaths.darwin": "/Users/huynhdung/.local/share/bob/nvim-bin/nvim",
   "vscode-neovim.compositeKeys": {
     "jj": {
       "command": "vscode-neovim.escape"
@@ -800,7 +803,14 @@ Update your settings.json file with the following configuration:
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "extensions.ignoreRecommendations": true
+  "extensions.ignoreRecommendations": true,
+  "chat.experimental.detectParticipant.enabled": true,
+  "github.copilot.chat.experimental.codeGeneration.instructions": [
+    {
+      "file": "rules.md"
+    }
+  ],
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true
 }
 
 ```
@@ -816,73 +826,79 @@ Update your `keybindings.json` file with the following key bindings:
 <!-- ALL-KEYMAPS:START -->
 
 ```json
-// keybindings.json, generated at Wed Jul 31 2024 20:27:48 GMT+0800 (Singapore Standard Time)
+// keybindings.json, generated at Wed Sep 18 2024 18:37:28 GMT+0800 (Singapore Standard Time)
 [
-	// Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
-	{
-	  "command": "editor.fold",
-	  "key": "z c",
-	  "when": "editorTextFocus && neovim.mode == normal"
-	},
-	{
-	  "command": "editor.unfold",
-	  "key": "z o",
-	  "when": "editorTextFocus && neovim.mode == normal"
-	},
-	{
-	  "command": "editor.gotoNextFold",
-	  "key": "z j",
-	  "when": "editorTextFocus && neovim.mode == normal"
-	},
-	{
-	  "command": "editor.gotoPreviousFold",
-	  "key": "z k",
-	  "when": "editorTextFocus && neovim.mode == normal"
-	},
-	// Usage: CMD + K for trigger binding, then shift + t, m, s
-	// Use single tab
-	{
-	  "key": "cmd+k shift+t",
-	  "command": "workbench.action.showEditorTab"
-	},
-	// Use multiple tabs
-	{
-	  "key": "cmd+k shift+m",
-	  "command": "workbench.action.showMultipleEditorTabs"
-	},
-	// Toggle status bar
-	{
-	  "key": "cmd+k shift+s",
-	  "command": "workbench.action.toggleStatusbarVisibility"
-	},
-	// Toggle record screen cast
-	{
-	  "key": "cmd+k shift+r",
-	  "command": "workbench.action.toggleScreencastMode"
-	},
-	// Toggle error lens - warning
-	{
-	  "key": "cmd+k shift+w",
-	  "command": "errorLens.toggleWarning"
-	},
-	// TODO: Wait for this to resolve https://github.com/usernamehw/vscode-error-lens/issues/208
-	// Setup which-key
-	{
-	  "key": "cmd+space", // Disable Spotlight and use Raycast with Alt+space, refer https://manual.raycast.com/hotkey
-	  "command": "whichkey.show",
-	  "when": "editorTextFocus"
-	},
-	// Toggle full screen
-	{
-	  "key": "cmd+k shift+f",
-	  "command": "workbench.action.toggleMaximizedPanel"
-	},
-	// Open Github Pull Request
-	{
-	  "key": "cmd+k g",
-	  "command": "workbench.view.extension.github-pull-requests"
-	}
-  ]
+  // Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
+  {
+    "command": "editor.fold",
+    "key": "z c",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "editor.unfold",
+    "key": "z o",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "editor.gotoNextFold",
+    "key": "z j",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "editor.gotoPreviousFold",
+    "key": "z k",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  // Usage: CMD + K for trigger binding, then shift + t, m, s
+  // Use single tab
+  {
+    "key": "cmd+k shift+t",
+    "command": "workbench.action.showEditorTab"
+  },
+  // Use multiple tabs
+  {
+    "key": "cmd+k shift+m",
+    "command": "workbench.action.showMultipleEditorTabs"
+  },
+  // Toggle status bar
+  {
+    "key": "cmd+k shift+s",
+    "command": "workbench.action.toggleStatusbarVisibility"
+  },
+  // Toggle record screen cast
+  {
+    "key": "cmd+k shift+r",
+    "command": "workbench.action.toggleScreencastMode"
+  },
+  // Toggle error lens - warning
+  {
+    "key": "cmd+k shift+w",
+    "command": "errorLens.toggleWarning"
+  },
+  // TODO: Wait for this to resolve https://github.com/usernamehw/vscode-error-lens/issues/208
+  // Setup which-key
+  {
+    "key": "cmd+space", // Disable Spotlight and use Raycast with Alt+space, refer https://manual.raycast.com/hotkey
+    "command": "whichkey.show",
+    "when": "editorTextFocus"
+  },
+  // Toggle full screen
+  {
+    "key": "cmd+k shift+f",
+    "command": "workbench.action.toggleMaximizedPanel"
+  },
+  // Open Github Pull Request
+  {
+    "key": "cmd+k g",
+    "command": "workbench.view.extension.github-pull-requests"
+  },
+  // Toggle version lens
+  {
+    "key": "cmd+k shift+v",
+    "command": "versionlens.icons.showVersionLenses"
+  }
+]
+
 ```
 
 <!-- ALL-KEYMAPS:END -->
@@ -895,7 +911,7 @@ Update your `keybindings.json` file with the following key bindings:
 <!-- ALL-NEOVIM:START -->
 
 ```lua
-// vscode.lua, generated at Wed Jul 31 2024 20:27:48 GMT+0800 (Singapore Standard Time)
+// vscode.lua, generated at Wed Sep 18 2024 18:37:28 GMT+0800 (Singapore Standard Time)
 if not vim.g.vscode then
   return {}
 end
