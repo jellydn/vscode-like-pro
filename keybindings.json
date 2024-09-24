@@ -67,5 +67,10 @@
   {
     "key": "cmd+k shift+v",
     "command": "versionlens.icons.showVersionLenses"
+  },
+  // Zen mode (center layout)
+  {
+    "key": "cmd+k c",
+    "command": "workbench.action.toggleCenteredLayout"
   }
 ]
