@@ -1,13 +1,43 @@
 [
   // Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
   {
-    "command": "editor.fold",
-    "key": "z c",
+    "command": "editor.toggleFold",
+    "key": "z a",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "editor.unfoldAll",
+    "key": "z shift+r",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "editor.foldAll",
+    "key": "z shift+m",
     "when": "editorTextFocus && neovim.mode == normal"
   },
   {
     "command": "editor.unfold",
     "key": "z o",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "editor.unfoldRecursively",
+    "key": "z shift+o",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "editor.fold",
+    "key": "z c",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "editor.foldRecursively",
+    "key": "z shift+c",
+    "when": "editorTextFocus && neovim.mode == normal"
+  },
+  {
+    "command": "editor.foldAllExcept",
+    "key": "z shift+v",
     "when": "editorTextFocus && neovim.mode == normal"
   },
   {
@@ -20,7 +50,6 @@
     "key": "z k",
     "when": "editorTextFocus && neovim.mode == normal"
   },
-  // Usage: CMD + K for trigger binding, then shift + t, m, s
   // Use single tab
   {
     "key": "cmd+k shift+t",
@@ -55,7 +84,7 @@
   },
   // Toggle full screen
   {
-    "key": "cmd+k shift+f",
+    "key": "cmd+k f",
     "command": "workbench.action.toggleMaximizedPanel"
   },
   // Open Github Pull Request
@@ -68,9 +97,19 @@
     "key": "cmd+k shift+v",
     "command": "versionlens.icons.showVersionLenses"
   },
-  // Zen mode (center layout)
+  // Zen mode
   {
     "key": "cmd+k c",
     "command": "workbench.action.toggleCenteredLayout"
+  },
+  {
+    "key": "ctrl+cmd+k",
+    "command": "cursorai.action.generateInTerminal",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "cmd+k",
+    "command": "-cursorai.action.generateInTerminal",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
   }
 ]

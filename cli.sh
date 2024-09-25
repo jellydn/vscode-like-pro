@@ -1,6 +1,6 @@
 # Usage: sh cli.sh <environment>
 # This script copies the settings, keybindings, snippets, and vscode.lua files from the specified environment to the current directory.
-# Valid environment names are: VSCodium, VSCodiumInsider, VSCode, VSCodeInsider
+# Valid environment names are: VSCodium, VSCodiumInsider, VSCode, VSCodeInsider, Cursor
 
 # Define the base path
 basePath="$HOME/Library/Application Support"
@@ -10,6 +10,7 @@ VSCodium="$basePath/VSCodium/User"
 VSCodiumInsider="$basePath/VSCodium - Insiders/User"
 VSCode="$basePath/Code/User"
 VSCodeInsider="$basePath/Code - Insiders/User"
+Cursor="$basePath/Cursor/User"
 
 # Check the input parameter
 case $1 in
@@ -17,8 +18,9 @@ case $1 in
 "VSCodiumInsider") envPath=$VSCodiumInsider ;;
 "VSCode") envPath=$VSCode ;;
 "VSCodeInsider") envPath=$VSCodeInsider ;;
+"Cursor") envPath=$Cursor ;;
 *)
-  echo "Invalid environment name. Please use one of the following: VSCodium, VSCodiumInsider, VSCode, VSCodeInsider"
+  echo "Invalid environment name. Please use one of the following: VSCodium, VSCodiumInsider, VSCode, VSCodeInsider, Cursor"
   exit 1
   ;;
 esac
