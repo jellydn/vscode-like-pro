@@ -587,6 +587,25 @@ Update your settings.json file with the following configuration:
       ]
     },
     {
+      "key": "r",
+      "name": "+Run",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "t",
+          "name": "Run task",
+          "type": "command",
+          "command": "workbench.action.tasks.runTask"
+        },
+        {
+          "key": "r",
+          "name": "Run last task",
+          "type": "command",
+          "command": "workbench.action.tasks.reRunTask"
+        }
+      ]
+    },
+    {
       "key": "t",
       "name": "+Toggles",
       "type": "bindings",
@@ -620,6 +639,25 @@ Update your settings.json file with the following configuration:
           "name": "Toggle word wrap",
           "type": "command",
           "command": "editor.action.toggleWordWrap"
+        },
+        {
+          "key": "i",
+          "name": "Toggle inlay hint",
+          "type": "command",
+          // Need to install https://marketplace.cursorapi.com/items?itemName=hoovercj.vscode-settings-cycler
+          "command": "settings.cycle",
+          "args": {
+            "id": "toggle-inlay-hints",
+            "overrideWorkspaceSettings": false,
+            "values": [
+              {
+                "editor.inlayHints.enabled": "off"
+              },
+              {
+                "editor.inlayHints.enabled": "on"
+              }
+            ]
+          }
         }
       ]
     },
@@ -821,7 +859,7 @@ Update your settings.json file with the following configuration:
   "cursor.chat.alwaysSearchWeb": true,
   "chat.editor.fontSize": 21,
   // Only show error on Eslint
-  "eslint.quiet": true
+  "eslint.quiet": true,
 }
 
 ```

@@ -541,6 +541,25 @@
       ]
     },
     {
+      "key": "r",
+      "name": "+Run",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "t",
+          "name": "Run task",
+          "type": "command",
+          "command": "workbench.action.tasks.runTask"
+        },
+        {
+          "key": "r",
+          "name": "Run last task",
+          "type": "command",
+          "command": "workbench.action.tasks.reRunTask"
+        }
+      ]
+    },
+    {
       "key": "t",
       "name": "+Toggles",
       "type": "bindings",
@@ -574,6 +593,25 @@
           "name": "Toggle word wrap",
           "type": "command",
           "command": "editor.action.toggleWordWrap"
+        },
+        {
+          "key": "i",
+          "name": "Toggle inlay hint",
+          "type": "command",
+          // Need to install https://marketplace.cursorapi.com/items?itemName=hoovercj.vscode-settings-cycler
+          "command": "settings.cycle",
+          "args": {
+            "id": "toggle-inlay-hints",
+            "overrideWorkspaceSettings": false,
+            "values": [
+              {
+                "editor.inlayHints.enabled": "off"
+              },
+              {
+                "editor.inlayHints.enabled": "on"
+              }
+            ]
+          }
         }
       ]
     },
