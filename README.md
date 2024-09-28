@@ -42,7 +42,7 @@ Update your settings.json file with the following configuration:
 <!-- ALL-SETTINGS:START -->
 
 ```json
-// settings.json, generated at Sat Sep 28 2024 08:10:19 GMT+0800 (Singapore Standard Time)
+// settings.json, generated at Sat Sep 28 2024 12:39:02 GMT+0800 (Singapore Standard Time)
 {
   "workbench.settings.editor": "json", // Show setting in json as default
   // Color scheme and icon
@@ -971,7 +971,7 @@ Update your `keybindings.json` file with the following key bindings:
 <!-- ALL-KEYMAPS:START -->
 
 ```json
-// keybindings.json, generated at Sat Sep 28 2024 08:10:19 GMT+0800 (Singapore Standard Time)
+// keybindings.json, generated at Sat Sep 28 2024 12:39:02 GMT+0800 (Singapore Standard Time)
 [
   // Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
   {
@@ -1100,7 +1100,7 @@ Update your `keybindings.json` file with the following key bindings:
 <!-- ALL-NEOVIM:START -->
 
 ```lua
-// vscode.lua, generated at Sat Sep 28 2024 08:10:19 GMT+0800 (Singapore Standard Time)
+// vscode.lua, generated at Sat Sep 28 2024 12:39:02 GMT+0800 (Singapore Standard Time)
 if not vim.g.vscode then
   return {}
 end
@@ -1251,6 +1251,14 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 return {
+  {
+    "xiyaowong/fast-cursor-move.nvim",
+    vscode = true,
+    init = function()
+      -- Disable acceleration
+      vim.g.fast_cursor_move_acceleration = false
+    end,
+  },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = { highlight = { enable = false } },
