@@ -1,7 +1,7 @@
 {
   "workbench.settings.editor": "json", // Show setting in json as default
   // Color scheme and icon
-  "workbench.colorTheme": "Cobalt2",
+  "workbench.colorTheme": "Kanagawa",
   "workbench.iconTheme": "catppuccin-macchiato",
   // Set sidebar to the right
   "workbench.sideBar.location": "right",
@@ -13,8 +13,6 @@
   "window.nativeTabs": true,
   // Comment below to show multiple tabs
   "workbench.editor.showTabs": "single",
-  // Comment below to show status bar
-  "workbench.statusBar.visible": false,
   "window.titleBarStyle": "native",
   "window.customTitleBarVisibility": "never",
   // Change below font to your favorite font if you want to custom UI and sidebar
@@ -207,7 +205,7 @@
   "editor.cursorBlinking": "solid",
   "editor.cursorStyle": "line",
   "editor.cursorWidth": 5,
-  "editor.fontFamily": "GeistMono Nerd Font, JetBrainsMono NF, Menlo, Monaco, 'Courier New', monospacere",
+  "editor.fontFamily": "OperatorMonoLig Nerd Font, JetBrainsMono Nerd Font Mono, Menlo, Monaco, 'Courier New', monospacere",
   "editor.codeLensFontFamily": "JetBrainsMono Nerd Font Mono",
   "editor.fontLigatures": true,
   "editor.fontSize": 18.5,
@@ -251,6 +249,12 @@
       "command": "workbench.action.showCommands"
     },
     {
+      "key": ",",
+      "name": "Show all editors",
+      "type": "command",
+      "command": "workbench.action.showAllEditors"
+    },
+    {
       "key": "\t",
       "name": "Last editor",
       "type": "commands",
@@ -258,6 +262,12 @@
         "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
         "list.select"
       ]
+    },
+    {
+      "key": "e",
+      "name": "File Explorer",
+      "type": "command",
+      "command": "workbench.view.explorer"
     },
     {
       "key": "?",
@@ -270,6 +280,44 @@
       "name": "Repeat most recent action",
       "type": "command",
       "command": "whichkey.repeatMostRecent"
+    },
+    {
+      "key": "]",
+      "name": "Next",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "e",
+          "name": "Next error",
+          "type": "command",
+          "command": "editor.action.marker.next"
+        },
+        {
+          "key": "h",
+          "name": "Next change",
+          "type": "command",
+          "command": "workbench.action.editor.nextChange"
+        }
+      ]
+    },
+    {
+      "key": "[",
+      "name": "Previus",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "e",
+          "name": "Previous error",
+          "type": "command",
+          "command": "editor.action.marker.prev"
+        },
+        {
+          "key": "h",
+          "name": "Previous change",
+          "type": "command",
+          "command": "workbench.action.editor.previousChange"
+        }
+      ]
     },
     {
       "key": "b",
@@ -412,6 +460,12 @@
           "command": "workbench.action.openRecent"
         },
         {
+          "key": "t",
+          "name": "Open terminal",
+          "type": "command",
+          "command": "workbench.action.terminal.focus"
+        },
+        {
           "key": "s",
           "name": "Save file",
           "type": "command",
@@ -459,6 +513,19 @@
           "name": "Pull Request",
           "type": "command",
           "command": "workbench.view.extension.github-pull-request"
+        },
+        {
+          "key": "h",
+          "name": "Hunk",
+          "type": "bindings",
+          "bindings": [
+            {
+              "key": "r",
+              "name": "Revert selected ranges",
+              "type": "command",
+              "command": "git.revertSelectedRanges"
+            }
+          ]
         }
       ]
     },
@@ -643,6 +710,30 @@
           "name": "Maximize editor group",
           "type": "command",
           "command": "workbench.action.minimizeOtherEditors"
+        },
+        {
+          "key": "j",
+          "name": "Navigate down",
+          "type": "command",
+          "command": "workbench.action.navigateDown"
+        },
+        {
+          "key": "k",
+          "name": "Navigate up",
+          "type": "command",
+          "command": "workbench.action.navigateUp"
+        },
+        {
+          "key": "h",
+          "name": "Navigate left",
+          "type": "command",
+          "command": "workbench.action.navigateLeft"
+        },
+        {
+          "key": "l",
+          "name": "Navigate right",
+          "type": "command",
+          "command": "workbench.action.navigateRight"
         }
       ]
     },
@@ -769,13 +860,13 @@
   "vim.highlightedyank.enable": true,
   "vim.hlsearch": true,
   "vim.incsearch": true,
+  "vim.leader": "<space>",
   "vim.insertModeKeyBindings": [
     {
       "after": ["<Esc>"],
       "before": ["j", "j"]
     }
   ],
-  "vim.leader": "<space>",
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "after": ["d", "d"],
@@ -813,5 +904,11 @@
   "cursor.chat.alwaysSearchWeb": true,
   "chat.editor.fontSize": 21,
   // Only show error on Eslint
-  "eslint.quiet": true
+  "eslint.quiet": true,
+  "githubPullRequests.pullBranch": "never",
+  "editor.inlayHints.enabled": "on",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.activityBar.orientation": "vertical"
 }
