@@ -667,6 +667,12 @@
 					"command": "editor.action.toggleWordWrap"
 				},
 				{
+					"key": "m",
+					"name": "Toggle minimap",
+					"type": "command",
+					"command": "editor.action.toggleMinimap"
+				},
+				{
 					"key": "i",
 					"name": "Toggle inlay hint",
 					"type": "command",
@@ -939,5 +945,8 @@
 	},
 	"[css]": {
 		"editor.defaultFormatter": "vscode.css-language-features"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features"
 	}
 }

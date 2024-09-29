@@ -26,6 +26,7 @@
 - [antfu/vscode-file-nesting-config](https://github.com/antfu/vscode-file-nesting-config)
 - [catppuccin/vscode-icons](https://github.com/catppuccin/vscode-icons)
 - [usernamehw/vscode-error-lens](https://github.com/usernamehw/vscode-error-lens)
+- [vscode-api-playground/SettingsCycler](https://github.com/hoovercj/vscode-api-playground/blob/master/SettingsCycler/README.md)
 
 ### Recommended Extensions & Themes
 
@@ -42,7 +43,7 @@ Update your settings.json file with the following configuration:
 <!-- ALL-SETTINGS:START -->
 
 ```json
-// settings.json, generated at Sat Sep 28 2024 16:58:47 GMT+0800 (Singapore Standard Time)
+// settings.json, generated at Sun Sep 29 2024 11:08:22 GMT+0800 (Singapore Standard Time)
 {
 	"workbench.settings.editor": "json", // Show setting in json as default
 	// Color scheme and icon
@@ -712,6 +713,12 @@ Update your settings.json file with the following configuration:
 					"command": "editor.action.toggleWordWrap"
 				},
 				{
+					"key": "m",
+					"name": "Toggle minimap",
+					"type": "command",
+					"command": "editor.action.toggleMinimap"
+				},
+				{
 					"key": "i",
 					"name": "Toggle inlay hint",
 					"type": "command",
@@ -984,6 +991,9 @@ Update your settings.json file with the following configuration:
 	},
 	"[css]": {
 		"editor.defaultFormatter": "vscode.css-language-features"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features"
 	}
 }
 ```
@@ -999,7 +1009,7 @@ Update your `keybindings.json` file with the following key bindings:
 <!-- ALL-KEYMAPS:START -->
 
 ```json
-// keybindings.json, generated at Sat Sep 28 2024 16:58:47 GMT+0800 (Singapore Standard Time)
+// keybindings.json, generated at Sun Sep 29 2024 11:08:22 GMT+0800 (Singapore Standard Time)
 [
   // Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
   {
@@ -1128,7 +1138,7 @@ Update your `keybindings.json` file with the following key bindings:
 <!-- ALL-NEOVIM:START -->
 
 ```lua
-// vscode.lua, generated at Sat Sep 28 2024 16:58:47 GMT+0800 (Singapore Standard Time)
+// vscode.lua, generated at Sun Sep 29 2024 11:08:22 GMT+0800 (Singapore Standard Time)
 if not vim.g.vscode then
   return {}
 end
