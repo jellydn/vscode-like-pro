@@ -102,6 +102,7 @@
     "key": "cmd+k c",
     "command": "workbench.action.toggleCenteredLayout"
   },
+  // Chat on terminal
   {
     "key": "ctrl+cmd+k",
     "command": "cursorai.action.generateInTerminal",

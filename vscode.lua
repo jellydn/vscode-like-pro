@@ -28,6 +28,32 @@ vim.api.nvim_create_autocmd("User", {
     -- +File
     -- Find file
     vim.keymap.set("n", "<leader><space>", "<cmd>Find<cr>")
+
+    -- Need to install https://github.com/jellydn/vscode-fzf-picker
+    vim.keymap.set("n", "<leader>ff", function()
+      vscode.action("fzf-picker.findFiles")
+    end)
+    -- Find word
+    vim.keymap.set({ "n", "v" }, "<leader>fw", function()
+      vscode.action("fzf-picker.findWithinFiles")
+    end)
+    vim.keymap.set("n", "<leader>fw", function()
+      vscode.action("editor.action.addSelectionToNextFindMatch")
+      vscode.action("fzf-picker.findWithinFiles")
+    end)
+    -- Find file from git status
+    vim.keymap.set("n", "<leader>fg", function()
+      vscode.action("fzf-picker.pickFileFromGitStatus")
+    end)
+    -- Resume last search
+    vim.keymap.set("n", "<leader>fr", function()
+      vscode.action("fzf-picker.resumeSearch")
+    end)
+    -- Find todo/fixme
+    vim.keymap.set("n", "<leader>fx", function()
+      vscode.action("fzf-picker.findTodoFixme")
+    end)
+
     -- Open other files
     vim.keymap.set("n", "<leader>,", function()
       vscode.action("workbench.action.showAllEditors")
@@ -142,6 +168,29 @@ vim.api.nvim_create_autocmd("User", {
       vscode.action("markdown.showPreviewToSide")
     end)
 
+    -- Hurl runner, https://github.com/jellydn/vscode-hurl-runner
+    vim.keymap.set("n", "<leader>ha", function()
+      vscode.action("vscode-hurl-runner.runHurl")
+    end)
+    vim.keymap.set("n", "<leader>hr", function()
+      vscode.action("vscode-hurl-runner.rerunLastCommand")
+    end)
+    vim.keymap.set("n", "<leader>hA", function()
+      vscode.action("vscode-hurl-runner.runHurlFile")
+    end)
+    vim.keymap.set("n", "<leader>he", function()
+      vscode.action("vscode-hurl-runner.runHurlFromBegin")
+    end)
+    vim.keymap.set("n", "<leader>hE", function()
+      vscode.action("vscode-hurl-runner.runHurlToEnd")
+    end)
+    vim.keymap.set("n", "<leader>hg", function()
+      vscode.action("vscode-hurl-runner.manageInlineVariables")
+    end)
+    vim.keymap.set("v", "<leader>hh", function()
+      vscode.action("vscode-hurl-runner.runHurlSelection")
+    end)
+
     -- Other keymaps will be used with https://github.com/VSpaceCode/vscode-which-key, so we don't need to define them here
     -- Trigger which-key by pressing <CMD+Space>, refer more default keymaps https://github.com/VSpaceCode/vscode-which-key/blob/15c5aa2da5812a21210c5599d9779c46d7bfbd3c/package.json#L265
   end,
@@ -151,8 +200,9 @@ return {
   {
     "xiyaowong/fast-cursor-move.nvim",
     vscode = true,
+    enabled = vim.g.vscode,
     init = function()
-      -- Disable acceleration
+      -- Disable acceleration, use key repeat settings instead
       vim.g.fast_cursor_move_acceleration = false
     end,
   },
