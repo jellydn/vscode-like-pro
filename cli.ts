@@ -4,10 +4,10 @@ import path from "node:path";
 const filePath = path.join(__dirname, "README.md");
 
 const readFileSync = (filePath: string) => {
-  if (!fs.existsSync(filePath)) {
-    throw new Error(`File ${filePath} does not exist.`);
-  }
-  return fs.readFileSync(filePath, "utf8");
+	if (!fs.existsSync(filePath)) {
+		throw new Error(`File ${filePath} does not exist.`);
+	}
+	return fs.readFileSync(filePath, "utf8");
 };
 
 const generateMarkdown = (fileName: string, data: string, type = "json") => `
@@ -18,30 +18,30 @@ ${data}
 `;
 
 try {
-  const settings = readFileSync(path.join(__dirname, "settings.json"));
-  const keymaps = readFileSync(path.join(__dirname, "keybindings.json"));
-  const neovim = readFileSync(path.join(__dirname, "vscode.lua"));
-  const data = readFileSync(filePath);
+	const settings = readFileSync(path.join(__dirname, "settings.json"));
+	const keymaps = readFileSync(path.join(__dirname, "keybindings.json"));
+	const neovim = readFileSync(path.join(__dirname, "vscode.lua"));
+	const data = readFileSync(filePath);
 
-  const settingsMarkdown = generateMarkdown("settings.json", settings);
-  const keybindingsMarkdown = generateMarkdown("keybindings.json", keymaps);
-  const neovimMarkdown = generateMarkdown("vscode.lua", neovim, "lua");
+	const settingsMarkdown = generateMarkdown("settings.json", settings);
+	const keybindingsMarkdown = generateMarkdown("keybindings.json", keymaps);
+	const neovimMarkdown = generateMarkdown("vscode.lua", neovim, "lua");
 
-  let result = data.replace(
-    /(<!-- ALL-SETTINGS:START -->)[\s\S]*?(<!-- ALL-SETTINGS:END -->)/gs,
-    `$1\n${settingsMarkdown}\n$2`,
-  );
-  result = result.replace(
-    /(<!-- ALL-KEYMAPS:START -->)[\s\S]*?(<!-- ALL-KEYMAPS:END -->)/gs,
-    `$1\n${keybindingsMarkdown}\n$2`,
-  );
-  result = result.replace(
-    /(<!-- ALL-NEOVIM:START -->)[\s\S]*?(<!-- ALL-NEOVIM:END -->)/gs,
-    `$1\n${neovimMarkdown}\n$2`,
-  );
+	let result = data.replace(
+		/(<!-- ALL-SETTINGS:START -->)[\s\S]*?(<!-- ALL-SETTINGS:END -->)/gs,
+		`$1\n${settingsMarkdown}\n$2`,
+	);
+	result = result.replace(
+		/(<!-- ALL-KEYMAPS:START -->)[\s\S]*?(<!-- ALL-KEYMAPS:END -->)/gs,
+		`$1\n${keybindingsMarkdown}\n$2`,
+	);
+	result = result.replace(
+		/(<!-- ALL-NEOVIM:START -->)[\s\S]*?(<!-- ALL-NEOVIM:END -->)/gs,
+		`$1\n${neovimMarkdown}\n$2`,
+	);
 
-  fs.writeFileSync(filePath, result);
-  console.log("Done");
+	fs.writeFileSync(filePath, result);
+	console.log("Done");
 } catch (error) {
-  console.error(new Error("An error occurred", { cause: error }));
+	console.error(new Error("An error occurred", { cause: error }));
 }
