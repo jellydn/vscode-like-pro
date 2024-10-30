@@ -46,7 +46,7 @@ Update your settings.json file with the following configuration:
 <!-- ALL-SETTINGS:START -->
 
 ```json
-// settings.json, generated at Sat Oct 19 2024 21:35:50 GMT+0800 (Singapore Standard Time)
+// settings.json, generated at Wed Oct 30 2024 16:11:30 GMT+0800 (Singapore Standard Time)
 {
   "workbench.settings.editor": "json", // Show setting in json as default
   // Color scheme and icon
@@ -275,8 +275,12 @@ Update your settings.json file with the following configuration:
   "explorer.confirmDelete": false,
   "explorer.compactFolders": false,
   "explorer.confirmDragAndDrop": false,
-  "errorLens.enabledDiagnosticLevels": ["error"],
-  "errorLens.excludeBySource": ["cSpell"],
+  "errorLens.enabledDiagnosticLevels": [
+    "error"
+  ],
+  "errorLens.excludeBySource": [
+    "cSpell"
+  ],
   // Neovim setting, refer https://open-vsx.org/extension/asvetliakov/vscode-neovim
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
@@ -953,22 +957,41 @@ Update your settings.json file with the following configuration:
   "vim.leader": "<space>",
   "vim.insertModeKeyBindings": [
     {
-      "after": ["<Esc>"],
-      "before": ["j", "j"]
+      "after": [
+        "<Esc>"
+      ],
+      "before": [
+        "j",
+        "j"
+      ]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "after": ["d", "d"],
-      "before": ["<leader>", "d"]
+      "after": [
+        "d",
+        "d"
+      ],
+      "before": [
+        "<leader>",
+        "d"
+      ]
     },
     {
-      "before": ["<C-n>"],
-      "commands": [":nohl"]
+      "before": [
+        "<C-n>"
+      ],
+      "commands": [
+        ":nohl"
+      ]
     },
     {
-      "before": ["K"],
-      "commands": ["editor.action.showHover"]
+      "before": [
+        "K"
+      ],
+      "commands": [
+        "editor.action.showHover"
+      ]
     }
   ],
   "vim.useCtrlKeys": true,
@@ -978,7 +1001,11 @@ Update your settings.json file with the following configuration:
   // Setup Cursor AI
   "cursor.cmdk.useThemedDiffBackground": true,
   "cursor.diffs.useCharacterLevelDiffs": true,
-  "cursor.cpp.disabledLanguages": ["plaintext", "markdown", "scminput"],
+  "cursor.cpp.disabledLanguages": [
+    "plaintext",
+    "markdown",
+    "scminput"
+  ],
   "cursor.chat.premiumChatAutoScrollWhenAtBottom": true,
   "cursor.chat.showSuggestedFiles": true,
   "cursor.chat.smoothStreaming": true,
@@ -994,21 +1021,21 @@ Update your settings.json file with the following configuration:
   // Formatter per file type: use default LSP server
   // NOTE: Change to Prettier or Biome per project if needed
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.css-language-features"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
-  // Setup FindItFaster extension
+  // Setup fzf picker extension
   "fzf-picker.customTasks": [
     {
       "name": "zoxide",
@@ -1016,6 +1043,7 @@ Update your settings.json file with the following configuration:
     }
   ],
   "fzf-picker.general.openCommand": "cursor -g",
+  "fzf-picker.general.debugMode": true,
   // Git lens
   "gitlens.currentLine.enabled": false,
   "security.promptForLocalFileProtocolHandling": false,
@@ -1025,7 +1053,9 @@ Update your settings.json file with the following configuration:
     "quickfix.biome": "explicit"
     // Sort import, experimental
     // "source.organizeImports.biome": "explicit"
-  }
+  },
+  // hurl runner
+  "vscode-hurl-runner.captureToGlobalVariable": true
 }
 ```
 
@@ -1040,7 +1070,7 @@ Update your `keybindings.json` file with the following key bindings:
 <!-- ALL-KEYMAPS:START -->
 
 ```json
-// keybindings.json, generated at Sat Oct 19 2024 21:35:50 GMT+0800 (Singapore Standard Time)
+// keybindings.json, generated at Wed Oct 30 2024 16:11:30 GMT+0800 (Singapore Standard Time)
 [
   // Folding, refer https://github.com/vscode-neovim/vscode-neovim/issues/58#issuecomment-1316470317
   {
@@ -1169,7 +1199,7 @@ Update your `keybindings.json` file with the following key bindings:
 <!-- ALL-NEOVIM:START -->
 
 ```lua
-// vscode.lua, generated at Sat Oct 19 2024 21:35:50 GMT+0800 (Singapore Standard Time)
+// vscode.lua, generated at Wed Oct 30 2024 16:11:30 GMT+0800 (Singapore Standard Time)
 if not vim.g.vscode then
   return {}
 end
@@ -1201,6 +1231,11 @@ vim.api.nvim_create_autocmd("User", {
     -- Find file
     vim.keymap.set("n", "<leader><space>", "<cmd>Find<cr>")
 
+    -- Find recent open files
+    vim.keymap.set("n", "<leader>fr", function()
+      vscode.action("workbench.action.showAllEditorsByMostRecentlyUsed")
+    end)
+
     -- Need to install https://github.com/jellydn/vscode-fzf-picker
     vim.keymap.set("n", "<leader>ff", function()
       vscode.action("fzf-picker.findFiles")
@@ -1218,7 +1253,7 @@ vim.api.nvim_create_autocmd("User", {
       vscode.action("fzf-picker.pickFileFromGitStatus")
     end)
     -- Resume last search
-    vim.keymap.set("n", "<leader>fr", function()
+    vim.keymap.set("n", "<leader>fR", function()
       vscode.action("fzf-picker.resumeSearch")
     end)
     -- Find todo/fixme
@@ -1246,10 +1281,14 @@ vim.api.nvim_create_autocmd("User", {
     end)
     -- Search word under cursor
     vim.keymap.set("n", "<leader>sw", function()
-      local code = require("vscode")
-      code.action("editor.action.addSelectionToNextFindMatch")
-      code.action("workbench.action.findInFiles")
+      vscode.action("editor.action.addSelectionToNextFindMatch")
+      vscode.action("workbench.action.findInFiles")
       -- Or send as the param like this: code.action("workbench.action.findInFiles", { args = { query = vim.fn.expand("<cword>") } })
+    end)
+
+    -- Search work in current buffer
+    vim.keymap.set("n", "<leader>sb", function()
+      vscode.action("actions.find")
     end)
 
     -- +Code
@@ -1359,8 +1398,20 @@ vim.api.nvim_create_autocmd("User", {
     vim.keymap.set("n", "<leader>hg", function()
       vscode.action("vscode-hurl-runner.manageInlineVariables")
     end)
+    vim.keymap.set("n", "<leader>hh", function()
+      vscode.action("vscode-hurl-runner.viewLastResponse")
+    end)
     vim.keymap.set("v", "<leader>hh", function()
       vscode.action("vscode-hurl-runner.runHurlSelection")
+    end)
+
+    -- Run task
+    vim.keymap.set("n", "<leader>rt", function()
+      vscode.action("workbench.action.tasks.runTask")
+    end)
+    -- Re-run
+    vim.keymap.set("n", "<leader>rr", function()
+      vscode.action("workbench.action.tasks.reRunTask")
     end)
 
     -- Other keymaps will be used with https://github.com/VSpaceCode/vscode-which-key, so we don't need to define them here

@@ -29,6 +29,11 @@ vim.api.nvim_create_autocmd("User", {
     -- Find file
     vim.keymap.set("n", "<leader><space>", "<cmd>Find<cr>")
 
+    -- Find recent open files
+    vim.keymap.set("n", "<leader>fr", function()
+      vscode.action("workbench.action.showAllEditorsByMostRecentlyUsed")
+    end)
+
     -- Need to install https://github.com/jellydn/vscode-fzf-picker
     vim.keymap.set("n", "<leader>ff", function()
       vscode.action("fzf-picker.findFiles")
@@ -46,7 +51,7 @@ vim.api.nvim_create_autocmd("User", {
       vscode.action("fzf-picker.pickFileFromGitStatus")
     end)
     -- Resume last search
-    vim.keymap.set("n", "<leader>fr", function()
+    vim.keymap.set("n", "<leader>fR", function()
       vscode.action("fzf-picker.resumeSearch")
     end)
     -- Find todo/fixme
@@ -74,10 +79,14 @@ vim.api.nvim_create_autocmd("User", {
     end)
     -- Search word under cursor
     vim.keymap.set("n", "<leader>sw", function()
-      local code = require("vscode")
-      code.action("editor.action.addSelectionToNextFindMatch")
-      code.action("workbench.action.findInFiles")
+      vscode.action("editor.action.addSelectionToNextFindMatch")
+      vscode.action("workbench.action.findInFiles")
       -- Or send as the param like this: code.action("workbench.action.findInFiles", { args = { query = vim.fn.expand("<cword>") } })
+    end)
+
+    -- Search work in current buffer
+    vim.keymap.set("n", "<leader>sb", function()
+      vscode.action("actions.find")
     end)
 
     -- +Code
@@ -187,8 +196,20 @@ vim.api.nvim_create_autocmd("User", {
     vim.keymap.set("n", "<leader>hg", function()
       vscode.action("vscode-hurl-runner.manageInlineVariables")
     end)
+    vim.keymap.set("n", "<leader>hh", function()
+      vscode.action("vscode-hurl-runner.viewLastResponse")
+    end)
     vim.keymap.set("v", "<leader>hh", function()
       vscode.action("vscode-hurl-runner.runHurlSelection")
+    end)
+
+    -- Run task
+    vim.keymap.set("n", "<leader>rt", function()
+      vscode.action("workbench.action.tasks.runTask")
+    end)
+    -- Re-run
+    vim.keymap.set("n", "<leader>rr", function()
+      vscode.action("workbench.action.tasks.reRunTask")
     end)
 
     -- Other keymaps will be used with https://github.com/VSpaceCode/vscode-which-key, so we don't need to define them here
