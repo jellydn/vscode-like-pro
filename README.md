@@ -275,12 +275,8 @@ Update your settings.json file with the following configuration:
   "explorer.confirmDelete": false,
   "explorer.compactFolders": false,
   "explorer.confirmDragAndDrop": false,
-  "errorLens.enabledDiagnosticLevels": [
-    "error"
-  ],
-  "errorLens.excludeBySource": [
-    "cSpell"
-  ],
+  "errorLens.enabledDiagnosticLevels": ["error"],
+  "errorLens.excludeBySource": ["cSpell"],
   // Neovim setting, refer https://open-vsx.org/extension/asvetliakov/vscode-neovim
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
@@ -957,41 +953,22 @@ Update your settings.json file with the following configuration:
   "vim.leader": "<space>",
   "vim.insertModeKeyBindings": [
     {
-      "after": [
-        "<Esc>"
-      ],
-      "before": [
-        "j",
-        "j"
-      ]
+      "after": ["<Esc>"],
+      "before": ["j", "j"]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "after": [
-        "d",
-        "d"
-      ],
-      "before": [
-        "<leader>",
-        "d"
-      ]
+      "after": ["d", "d"],
+      "before": ["<leader>", "d"]
     },
     {
-      "before": [
-        "<C-n>"
-      ],
-      "commands": [
-        ":nohl"
-      ]
+      "before": ["<C-n>"],
+      "commands": [":nohl"]
     },
     {
-      "before": [
-        "K"
-      ],
-      "commands": [
-        "editor.action.showHover"
-      ]
+      "before": ["K"],
+      "commands": ["editor.action.showHover"]
     }
   ],
   "vim.useCtrlKeys": true,
@@ -1001,11 +978,7 @@ Update your settings.json file with the following configuration:
   // Setup Cursor AI
   "cursor.cmdk.useThemedDiffBackground": true,
   "cursor.diffs.useCharacterLevelDiffs": true,
-  "cursor.cpp.disabledLanguages": [
-    "plaintext",
-    "markdown",
-    "scminput"
-  ],
+  "cursor.cpp.disabledLanguages": ["plaintext", "markdown", "scminput"],
   "cursor.chat.premiumChatAutoScrollWhenAtBottom": true,
   "cursor.chat.showSuggestedFiles": true,
   "cursor.chat.smoothStreaming": true,
