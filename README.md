@@ -32,7 +32,7 @@
 - [jellydn/vscode-hurl-runner](https://github.com/jellydn/vscode-hurl-runner)
 - [jellydn/vscode-fzf-picker](https://github.com/jellydn/vscode-fzf-picker)
 - [VSpaceCode/vscode-which-key](https://github.com/VSpaceCode/vscode-which-key)
-- [cobalt2-vscode](https://github.com/wesbos/cobalt2-vscode) or [catppuccin](https://github.com/catppuccin/vscode)
+- [cobalt2-vscode](https://github.com/wesbos/cobalt2-vscode) or [catppuccin](https://github.com/catppuccin/vscode) or [kanagawa](https://github.com/barklan/kanagawa.vscode)
 - [vscode-spell-checker](https://github.com/streetsidesoftware/vscode-spell-checker)
 - [turbo-console-log](https://github.com/Chakroun-Anas/turbo-console-log)
 - [codeium](https://open-vsx.org/extension/Codeium/codeium)
