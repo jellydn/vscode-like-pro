@@ -7,7 +7,9 @@ const editor = process.argv[2];
 if (!editor) {
 	console.error("Please provide an editor name as argument.");
 	console.error("Usage: bun run cli.ts <editor>");
-	console.error("Valid editors: VSCode, VSCodium, VSCodiumInsider, VSCodeInsider, Cursor, Windsurf");
+	console.error(
+		"Valid editors: VSCode, VSCodium, VSCodiumInsider, VSCodeInsider, Cursor, Windsurf",
+	);
 	process.exit(1);
 }
 
@@ -25,7 +27,14 @@ ${data}
 \`\`\`
 `;
 
-const validEditors = ["VSCode", "VSCodium", "VSCodiumInsider", "VSCodeInsider", "Cursor", "Windsurf"];
+const validEditors = [
+	"VSCode",
+	"VSCodium",
+	"VSCodiumInsider",
+	"VSCodeInsider",
+	"Cursor",
+	"Windsurf",
+];
 if (!validEditors.includes(editor)) {
 	console.error(`Invalid editor: ${editor}`);
 	console.error("Valid editors:", validEditors.join(", "));
