@@ -171,6 +171,7 @@
   "typescript.inlayHints.parameterNames.enabled": "literals",
   "typescript.referencesCodeLens.enabled": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.preferTypeOnlyAutoImports": true,
   // Diff
   "diffEditor.codeLens": true,
   "diffEditor.hideUnchangedRegions.enabled": true,

@@ -964,7 +964,7 @@
   "workbench.startupEditor": "newUntitledFile",
   // Windsurf AI
   "windsurf.autocompleteSpeed": "fast",
-  "window.customTitleBarVisibility": "never",
   "windsurf.cascadeOpenOnReload": false,
-  "windsurf.chatFontSize": "large"
+  "windsurf.chatFontSize": "large",
+  "window.customTitleBarVisibility": "never"
 }

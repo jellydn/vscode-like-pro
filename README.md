@@ -49,7 +49,7 @@ Update your settings.json file with the following configuration:
 <!-- ALL-SETTINGS:START -->
 
 ```json
-// settings.json, generated at Sun Nov 17 2024 16:09:03 GMT+0800 (Singapore Standard Time)
+// settings.json, generated at Sun Nov 24 2024 17:06:55 GMT+0800 (Singapore Standard Time)
 {
   "workbench.settings.editor": "json",
   "workbench.iconTheme": "catppuccin-mocha",
@@ -223,6 +223,7 @@ Update your settings.json file with the following configuration:
   "typescript.inlayHints.parameterNames.enabled": "literals",
   "typescript.referencesCodeLens.enabled": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.preferTypeOnlyAutoImports": true,
   // Diff
   "diffEditor.codeLens": true,
   "diffEditor.hideUnchangedRegions.enabled": true,
