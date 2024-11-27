@@ -1440,7 +1440,7 @@ Also increasing Key Repeat and Delay Until Repeat settings in System Preferences
 - [Anthony Fu VS Code settings and extensions](https://github.com/antfu/vscode-settings)
 - [Ahmed Elsakaan VS Code](https://gist.github.com/ixahmedxi/8a728facb9a6a258be60398414c5f3d9)
 - [Visual Studio Code User Interface](https://code.visualstudio.com/docs/getstarted/userinterface)
-
+- [Cursor Agents Initial Impressions - Allow an AI to Build Your Entire Project](https://egghead.io/cursor-agents-initial-impressions-allow-an-ai-to-build-your-entire-project~eqlb4)
 - [![IT Man - Windsurf AI Editor: The Future of Intelligent Editing](https://i.ytimg.com/vi/JEeMeUqiVnA/mqdefault.jpg)](https://www.youtube.com/watch?v=JEeMeUqiVnA)
 
 ## My other editor setups
