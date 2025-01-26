@@ -34,6 +34,7 @@ const validEditors = [
 	"VSCodeInsider",
 	"Cursor",
 	"Windsurf",
+	"Trae",
 ];
 if (!validEditors.includes(editor)) {
 	console.error(`Invalid editor: ${editor}`);

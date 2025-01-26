@@ -1,52 +1,8 @@
 {
-  "workbench.settings.editor": "json", // Show setting in json as default
-  // Color scheme and icon
-  "workbench.colorTheme": "Kanagawa",
-  "workbench.iconTheme": "catppuccin-macchiato",
-  // Set sidebar to the right
-  "workbench.sideBar.location": "right",
-  // Show relative number
+  "workbench.settings.editor": "json",
   "editor.lineNumbers": "relative",
-  // Apc extension https://github.com/drcika/apc-extension, more examples on https://github.com/drcika/apc-extension/issues/5
-  "window.nativeTabs": true,
-  // Comment below to show multiple tabs
-  "workbench.editor.showTabs": "single",
-  "window.titleBarStyle": "native",
   "window.customTitleBarVisibility": "never",
-  // Change below font to your favorite font if you want to custom UI and sidebar
-  "apc.font.family": "JetBrainsMono Nerd Font Mono",
-  "apc.monospace.font.family": "JetBrainsMono Nerd Font Mono",
-  "apc.electron": {
-    "titleBarStyle": "hidden"
-  },
-  "apc.activityBar": {
-    "position": "bottom",
-    "hideSettings": true,
-    "size": 24
-  },
-  "apc.statusBar": {
-    "position": "editor-bottom",
-    "height": 24,
-    "fontSize": 13
-  },
-  "apc.header": {
-    "height": 35,
-    "fontSize": 13
-  },
-  "apc.stylesheet": {
-    // Setup for CSS for Which-Key
-    // Let the quick pick take the full window height, so that more bindings are visible.
-    ".quick-input-widget > .quick-input-list > .monaco-list": "max-height: 100vh !important;",
-    // Hide editor top-right buttons, except for the dirty file indicator and settings goto icon
-    ".editor .title .actions-container .action-item a:not(.codicon-close-dirty):not(.codicon-preferences-open-settings)": "display: none !important;"
-  },
-  "window.commandCenter": true,
-  "workbench.colorCustomizations": {
-    "editorCursor.foreground": "#ffc600",
-    "tab.activeBorder": "#ffc600"
-  },
   "workbench.layoutControl.enabled": false,
-  // Toggle excluded files extension, refer for more detail https://github.com/jellydn/vscode-toggle-excluded-files
   "files.exclude": {
     "**/bin": true,
     "**/git": true,
@@ -79,10 +35,7 @@
     "**/test-results": true,
     "**/playwright-report": true
   },
-  // Cspell, refer https://open-vsx.org/vscode/item?itemName=streetsidesoftware.code-spell-checker
   "cSpell.userWords": [],
-  // updated 2024-11-27 10:42
-  // https://github.com/antfu/vscode-file-nesting-config
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
@@ -176,18 +129,14 @@
   },
   "explorer.openEditors.visible": 1,
   "files.trimTrailingWhitespace": true,
-  // Git
   "git.autofetch": true,
   "git.confirmSync": false,
   "git.openRepositoryInParentFolders": "always",
-  // Screencast
   "screencastMode.fontSize": 32,
   "screencastMode.verticalOffset": 4,
-  // Terminal
   "terminal.integrated.fontFamily": "JetBrainsMono NF",
   "terminal.integrated.fontSize": 17,
   "terminal.integrated.sendKeybindingsToShell": true,
-  // Inlay hints
   "editor.inlayHints.enabled": "on",
   "editor.inlayHints.fontFamily": "GeistMono Nerd Font",
   "editor.inlayHints.fontSize": 1,
@@ -205,13 +154,9 @@
   "typescript.inlayHints.variableTypes.enabled": false,
   "typescript.referencesCodeLens.enabled": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "typescript.preferences.preferTypeOnlyAutoImports": true,
-  // make sure you're using the local typescript
   "typescript.tsdk": "node_modules/typescript/lib",
-  // Diff
   "diffEditor.codeLens": true,
   "diffEditor.hideUnchangedRegions.enabled": true,
-  // General editor settings
   "editor.autoIndent": "full",
   "editor.cursorBlinking": "solid",
   "editor.cursorStyle": "line",
@@ -244,7 +189,6 @@
   "errorLens.excludeBySource": [
     "cSpell"
   ],
-  // Neovim setting, refer https://open-vsx.org/extension/asvetliakov/vscode-neovim
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
   },
@@ -256,8 +200,6 @@
       "command": "vscode-neovim.escape"
     }
   },
-  // which key, refer https://github.com/VSpaceCode/vscode-which-key
-  // Override from default key bindings, search for 'whichkey.bindings' on https://github.com/VSpaceCode/vscode-which-key/blob/master/package.json#L265
   "whichkey.sortOrder": "alphabetically",
   "whichkey.bindings": [
     {
@@ -416,14 +358,12 @@
       "name": "+Debug",
       "type": "bindings",
       "bindings": [
-        // Need to install https://github.com/orta/vscode-twoslash-queries
         {
           "key": "d",
           "name": "Debug type below",
           "type": "command",
           "command": "orta.vscode-twoslash-queries.insert-twoslash-query"
         },
-        // Need to install https://github.com/Chakroun-Anas/turbo-console-log
         {
           "key": "v",
           "name": "Debug variable below",
@@ -643,7 +583,6 @@
           "type": "command",
           "command": "workbench.debug.action.toggleRepl"
         },
-        // Todo tree extension https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree
         {
           "key": "t",
           "name": "Show todo",
@@ -722,7 +661,6 @@
           "key": "i",
           "name": "Toggle inlay hint",
           "type": "command",
-          // Need to install https://marketplace.cursorapi.com/items?itemName=hoovercj.vscode-settings-cycler
           "command": "settings.cycle",
           "args": {
             "id": "toggle-inlay-hints",
@@ -868,46 +806,6 @@
       "command": "workbench.action.findInFiles"
     }
   ],
-  /*
-     Incremental usage: only override some keymap
-    "whichkey.bindingOverrides": [
-      // +f File
-      // Prefer to use <leader>e from neovim instead
-      {
-        "keys": "f.e",
-        "name": "Show tree/explorer view",
-        "type": "command",
-        "command": "workbench.view.explorer"
-      },
-      // Open file
-      {
-        "keys": "f.f",
-        "name": "Quick open file",
-        "type": "command",
-        "command": "workbench.action.quickOpen"
-      },
-      {
-        "key": "f.F",
-        "name": "Open file/folder",
-        "type": "command",
-        "command": "whichkey.openFile"
-      },
-      // More advanced usage on https://vspacecode.github.io/docs/whichkey/extra
-      {
-        "keys": "f.E",
-        "name": "Show active file in tree/explorer view",
-        "type": "command",
-        "command": "workbench.files.action.showActiveFileInExplorer"
-      },
-      // Open Github Pull Request on sidebar
-      {
-        "keys": "g.r",
-        "name": "Github Pull Requests",
-        "type": "command",
-        "command": "workbench.view.extension.github-pull-request"
-      }
-    ], */
-  // Vim settings, refer https://open-vsx.org/extension/vscodevim/vim
   "vim.easymotion": true,
   "vim.foldfix": true,
   "vim.handleKeys": {
@@ -959,27 +857,10 @@
   ],
   "vim.useCtrlKeys": true,
   "vim.useSystemClipboard": true,
-  // Turn off extension recommedations
   "extensions.ignoreRecommendations": true,
-  // Setup Cursor AI
-  "cursor.cmdk.useThemedDiffBackground": true,
-  "cursor.diffs.useCharacterLevelDiffs": true,
-  "cursor.cpp.disabledLanguages": [
-    "plaintext",
-    "markdown",
-    "scminput"
-  ],
-  "cursor.terminal.usePreviewBox": true,
-  "cursor.cpp.enablePartialAccepts": true,
-  "cursor.aipreview.enabled": true,
   "chat.editor.fontSize": 21,
-  // Only show error on Eslint
   "eslint.quiet": true,
   "githubPullRequests.pullBranch": "never",
-  // Workaround for Cursor IDE, refer https://github.com/getcursor/cursor/issues/1570
-  "workbench.activityBar.orientation": "vertical",
-  // Formatter per file type: use default LSP server
-  // NOTE: Change to Prettier or Biome per project if needed
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
@@ -995,26 +876,19 @@
   "[typescript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
-  // Setup fzf picker extension
   "fzf-picker.customTasks": [
     {
       "name": "zoxide",
-      "command": "cursor $(zoxide query --interactive)"
+      "command": "trae $(zoxide query --interactive)"
     }
   ],
-  "fzf-picker.general.openCommand": "cursor -g",
+  "fzf-picker.general.openCommand": "trae -g",
   "fzf-picker.general.debugMode": true,
-  // Git lens
   "gitlens.currentLine.enabled": false,
   "security.promptForLocalFileProtocolHandling": false,
-  // Biome setup
   "editor.codeActionsOnSave": {
-    // https://biomejs.dev/reference/vscode/#fix-on-save
     "quickfix.biome": "explicit"
-    // Sort import, experimental
-    // "source.organizeImports.biome": "explicit"
   },
-  // hurl runner
   "vscode-hurl-runner.captureToGlobalVariable": true,
   "vscode-hurl-runner.verboseMode": "very-verbose",
   "[html]": {
@@ -1023,7 +897,6 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  // Custom terminal
   "terminal.external.osxExec": "ghostty",
   "workbench.statusBar.visible": false
 }

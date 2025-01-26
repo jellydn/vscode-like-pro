@@ -12,6 +12,7 @@ VSCode="$basePath/Code/User"
 VSCodeInsider="$basePath/Code - Insiders/User"
 Cursor="$basePath/Cursor/User"
 Windsurf="$basePath/Windsurf/User"
+Trae="$basePath/Trae/User"
 
 # Define the files to copy
 files=("settings.json" "keybindings.json" "snippets/global-js.code-snippets")
@@ -19,7 +20,7 @@ files=("settings.json" "keybindings.json" "snippets/global-js.code-snippets")
 # Check if an environment was specified
 if [ -z "$1" ]; then
   echo "No specific editor provided. Copying configurations from all supported editors..."
-  editors=("VSCodium" "VSCodiumInsider" "VSCode" "VSCodeInsider" "Cursor" "Windsurf")
+  editors=("VSCodium" "VSCodiumInsider" "VSCode" "VSCodeInsider" "Cursor" "Windsurf" "Trae")
 
   # Process each editor
   for editor in "${editors[@]}"; do
@@ -30,6 +31,7 @@ if [ -z "$1" ]; then
     "VSCodeInsider") envPath=$VSCodeInsider ;;
     "Cursor") envPath=$Cursor ;;
     "Windsurf") envPath=$Windsurf ;;
+    "Trae") envPath=$Trae ;;
     esac
 
     if [ -d "$envPath" ]; then
@@ -72,6 +74,7 @@ case $1 in
 "VSCodeInsider") envPath=$VSCodeInsider ;;
 "Cursor") envPath=$Cursor ;;
 "Windsurf") envPath=$Windsurf ;;
+    "Trae") envPath=$Trae ;;
 *)
   echo "Invalid environment name. Please use one of the following: VSCodium, VSCodiumInsider, VSCode, VSCodeInsider, Cursor, Windsurf"
   exit 1
