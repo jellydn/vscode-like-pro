@@ -80,7 +80,7 @@ Update your settings.json file with the following configuration:
     // Let the quick pick take the full window height, so that more bindings are visible.
     ".quick-input-widget > .quick-input-list > .monaco-list": "max-height: 100vh !important;",
     // Hide editor top-right buttons, except for the dirty file indicator and settings goto icon
-    ".editor .title .actions-container .action-item a:not(.codicon-close-dirty):not(.codicon-preferences-open-settings)": "display: none !important;",
+    ".editor .title .actions-container .action-item a:not(.codicon-close-dirty):not(.codicon-preferences-open-settings)": "display: none !important;"
   },
   "window.commandCenter": true,
   "workbench.colorCustomizations": {
@@ -281,12 +281,8 @@ Update your settings.json file with the following configuration:
   "explorer.confirmDelete": false,
   "explorer.compactFolders": false,
   "explorer.confirmDragAndDrop": false,
-  "errorLens.enabledDiagnosticLevels": [
-    "error"
-  ],
-  "errorLens.excludeBySource": [
-    "cSpell"
-  ],
+  "errorLens.enabledDiagnosticLevels": ["error"],
+  "errorLens.excludeBySource": ["cSpell"],
   // Neovim setting, refer https://open-vsx.org/extension/asvetliakov/vscode-neovim
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
@@ -963,41 +959,22 @@ Update your settings.json file with the following configuration:
   "vim.leader": "<space>",
   "vim.insertModeKeyBindings": [
     {
-      "after": [
-        "<Esc>"
-      ],
-      "before": [
-        "j",
-        "j"
-      ]
+      "after": ["<Esc>"],
+      "before": ["j", "j"]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "after": [
-        "d",
-        "d"
-      ],
-      "before": [
-        "<leader>",
-        "d"
-      ]
+      "after": ["d", "d"],
+      "before": ["<leader>", "d"]
     },
     {
-      "before": [
-        "<C-n>"
-      ],
-      "commands": [
-        ":nohl"
-      ]
+      "before": ["<C-n>"],
+      "commands": [":nohl"]
     },
     {
-      "before": [
-        "K"
-      ],
-      "commands": [
-        "editor.action.showHover"
-      ]
+      "before": ["K"],
+      "commands": ["editor.action.showHover"]
     }
   ],
   "vim.useCtrlKeys": true,
@@ -1007,11 +984,7 @@ Update your settings.json file with the following configuration:
   // Setup Cursor AI
   "cursor.cmdk.useThemedDiffBackground": true,
   "cursor.diffs.useCharacterLevelDiffs": true,
-  "cursor.cpp.disabledLanguages": [
-    "plaintext",
-    "markdown",
-    "scminput"
-  ],
+  "cursor.cpp.disabledLanguages": ["plaintext", "markdown", "scminput"],
   "cursor.terminal.usePreviewBox": true,
   "cursor.cpp.enablePartialAccepts": true,
   "cursor.aipreview.enabled": true,
@@ -1064,7 +1037,7 @@ Update your settings.json file with the following configuration:
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   // Custom terminal
-  "terminal.external.osxExec": "ghostty",
+  "terminal.external.osxExec": "ghostty"
 }
 ```
 
