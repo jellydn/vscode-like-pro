@@ -26,6 +26,7 @@
 - [catppuccin/vscode-icons](https://github.com/catppuccin/vscode-icons)
 - [usernamehw/vscode-error-lens](https://github.com/usernamehw/vscode-error-lens)
 - [vscode-api-playground/SettingsCycler](https://github.com/hoovercj/vscode-api-playground/blob/master/SettingsCycler/README.md)
+- [subframe7536/vscode-custom-ui-style](https://github.com/subframe7536/vscode-custom-ui-style)
 
 ### Recommended Extensions & Themes
 
