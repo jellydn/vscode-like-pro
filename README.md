@@ -12,6 +12,7 @@
 ## Pre-requisites
 
 - [getnf/getnf: A better way to install Nerd Fonts](https://github.com/getnf/getnf)
+- [subframe7536/maple-font](https://github.com/subframe7536/maple-font) - The font used in this configuration
 - VSCode or VSCodium (e.g: https://formulae.brew.sh/cask/vscodium)
 
 ## Why
@@ -32,8 +33,11 @@
 
 - [jellydn/vscode-hurl-runner](https://github.com/jellydn/vscode-hurl-runner)
 - [jellydn/vscode-fzf-picker](https://github.com/jellydn/vscode-fzf-picker)
+- [jellydn/vscode-toggle-excluded-files](https://github.com/jellydn/vscode-toggle-excluded-files)
+- [jellydn/vscode-mux](https://github.com/jellydn/vscode-mux)
+- [jellydn/vscode-seal-code](https://github.com/jellydn/vscode-seal-code)
 - [VSpaceCode/vscode-which-key](https://github.com/VSpaceCode/vscode-which-key)
-- [cobalt2-vscode](https://github.com/wesbos/cobalt2-vscode) or [catppuccin](https://github.com/catppuccin/vscode) or [kanagawa](https://github.com/barklan/kanagawa.vscode)
+- [cobalt2-vscode](https://github.com/wesbos/cobalt2-vscode) or [catppuccin](https://github.com/catppuccin/vscode) or [kanagawa](https://github.com/barklan/kanagawa.vscode) or [vscode-theme-maple](https://github.com/subframe7536/vscode-theme-maple)
 - [vscode-spell-checker](https://github.com/streetsidesoftware/vscode-spell-checker)
 - [turbo-console-log](https://github.com/Chakroun-Anas/turbo-console-log)
 - [codeium](https://open-vsx.org/extension/Codeium/codeium)
