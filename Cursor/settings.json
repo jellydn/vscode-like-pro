@@ -247,8 +247,9 @@
     "delete",
     "s"
   ],
+  // VSCodeVim trial: disable asvetliakov.vscode-neovim, or both extensions take the same keys.
   "extensions.experimental.affinity": {
-    "asvetliakov.vscode-neovim": 1
+    "vscodevim.vim": 1
   },
   "vscode-neovim.compositeKeys": {
     "jj": {
@@ -966,7 +967,9 @@
           }
         ], */
   // Vim settings, refer https://open-vsx.org/extension/vscodevim/vim
-  "vim.easymotion": true,
+  // Space stays the leader. which-key stays on Shift+Space.
+  // Space is the leader. <leader><space> is the same chord as easymotion, so easymotion stays off.
+  "vim.easymotion": false,
   "vim.foldfix": true,
   "vim.handleKeys": {
     "<C-a>": false,
@@ -978,41 +981,549 @@
   "vim.leader": "<space>",
   "vim.insertModeKeyBindings": [
     {
-      "after": [
-        "<Esc>"
-      ],
-      "before": [
-        "j",
-        "j"
-      ]
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    },
+    {
+      "before": ["<C-m>"],
+      "commands": ["editor.action.addSelectionToNextFindMatch"],
+      "silent": true
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "after": [
-        "d",
-        "d"
-      ],
-      "before": [
-        "<leader>",
-        "d"
-      ]
+      "before": ["<leader>", "<space>"],
+      "commands": ["workbench.action.quickOpen"],
+      "silent": true
     },
     {
-      "before": [
-        "<C-n>"
-      ],
-      "commands": [
-        ":nohl"
-      ]
+      "before": ["<leader>", "f", "r"],
+      "commands": ["workbench.action.showAllEditorsByMostRecentlyUsed"],
+      "silent": true
     },
     {
-      "before": [
-        "K"
-      ],
-      "commands": [
-        "editor.action.showHover"
-      ]
+      "before": ["<leader>", "f", "f"],
+      "commands": ["fff-gpui.findFiles"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "f", "w"],
+      "commands": ["editor.action.addSelectionToNextFindMatch", "fff-gpui.grepFiles"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "f", "g"],
+      "commands": ["fzf-picker.pickFileFromGitStatus"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "f", "R"],
+      "commands": ["fzf-picker.resumeSearch"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "f", "x"],
+      "commands": ["fzf-picker.findTodoFixme"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", ","],
+      "commands": ["workbench.action.showAllEditors"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "/"],
+      "commands": ["workbench.action.findInFiles"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "e"],
+      "commands": ["workbench.view.explorer"],
+      "silent": true
+    },
+    {
+      "before": ["-"],
+      "commands": ["workbench.files.action.showActiveFileInExplorer"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "s", "s"],
+      "commands": ["workbench.action.gotoSymbol"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "s", "w"],
+      "commands": ["editor.action.addSelectionToNextFindMatch", "workbench.action.findInFiles"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "s", "b"],
+      "commands": ["actions.find"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "c", "a"],
+      "commands": ["editor.action.codeAction"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "c", "A"],
+      "commands": ["editor.action.sourceAction"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "c", "r"],
+      "commands": ["editor.action.rename"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "."],
+      "commands": ["editor.action.quickFix"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "c", "f"],
+      "commands": ["editor.action.formatDocument"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "c", "R"],
+      "commands": ["editor.action.refactor"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "c", "z"],
+      "commands": ["workbench.action.toggleZenMode"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "f", "t"],
+      "commands": ["workbench.action.terminal.focus"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "x", "x"],
+      "commands": ["workbench.actions.view.problems"],
+      "silent": true
+    },
+    {
+      "before": ["]", "e"],
+      "commands": ["editor.action.marker.next"],
+      "silent": true
+    },
+    {
+      "before": ["[", "e"],
+      "commands": ["editor.action.marker.prev"],
+      "silent": true
+    },
+    {
+      "before": ["g", "d"],
+      "commands": ["editor.action.revealDefinition"],
+      "silent": true
+    },
+    {
+      "before": ["g", "D"],
+      "commands": ["editor.action.revealDeclaration"],
+      "silent": true
+    },
+    {
+      "before": ["g", "i"],
+      "commands": ["editor.action.goToImplementation"],
+      "silent": true
+    },
+    {
+      "before": ["g", "y"],
+      "commands": ["editor.action.goToTypeDefinition"],
+      "silent": true
+    },
+    {
+      "before": ["g", "r"],
+      "commands": ["references-view.find"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "g", "s"],
+      "commands": ["workbench.view.scm"],
+      "silent": true
+    },
+    {
+      "before": ["]", "h"],
+      "commands": ["workbench.action.editor.nextChange"],
+      "silent": true
+    },
+    {
+      "before": ["[", "h"],
+      "commands": ["workbench.action.editor.previousChange"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "`"],
+      "commands": ["workbench.action.quickOpenPreviousRecentlyUsedEditor", "list.select"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "b", "d"],
+      "commands": ["workbench.action.closeActiveEditor"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "b", "o"],
+      "commands": ["workbench.action.closeOtherEditors"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "f", "p"],
+      "commands": ["workbench.action.openRecent"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "m", "p"],
+      "commands": ["markdown.showPreviewToSide"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "h", "a"],
+      "commands": ["vscode-hurl-runner.runHurl"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "h", "r"],
+      "commands": ["vscode-hurl-runner.rerunLastCommand"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "h", "A"],
+      "commands": ["vscode-hurl-runner.runHurlFile"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "h", "e"],
+      "commands": ["vscode-hurl-runner.runHurlFromBegin"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "h", "E"],
+      "commands": ["vscode-hurl-runner.runHurlToEnd"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "h", "g"],
+      "commands": ["vscode-hurl-runner.manageInlineVariables"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "h", "h"],
+      "commands": ["vscode-hurl-runner.viewLastResponse"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "r", "t"],
+      "commands": ["workbench.action.tasks.runTask"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "r", "r"],
+      "commands": ["workbench.action.tasks.reRunTask"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "d", "d"],
+      "commands": ["orta.vscode-twoslash-queries.insert-twoslash-query"],
+      "silent": true
+    },
+    {
+      "before": ["<C-m>"],
+      "commands": ["editor.action.addSelectionToNextFindMatch"],
+      "silent": true
+    },
+    {
+      "before": ["g", "l"],
+      "after": ["$"]
+    },
+    {
+      "before": ["g", "h"],
+      "after": ["^"]
+    },
+    {
+      "before": ["<C-h>"],
+      "commands": ["workbench.action.navigateLeft"],
+      "silent": true
+    },
+    {
+      "before": ["<C-j>"],
+      "commands": ["workbench.action.navigateDown"],
+      "silent": true
+    },
+    {
+      "before": ["<C-k>"],
+      "commands": ["workbench.action.navigateUp"],
+      "silent": true
+    },
+    {
+      "before": ["<C-l>"],
+      "commands": ["workbench.action.navigateRight"],
+      "silent": true
+    },
+    {
+      "before": ["<C-Up>"],
+      "commands": ["workbench.action.increaseViewHeight", "workbench.action.increaseViewHeight"],
+      "silent": true
+    },
+    {
+      "before": ["<C-Down>"],
+      "commands": ["workbench.action.decreaseViewHeight", "workbench.action.decreaseViewHeight"],
+      "silent": true
+    },
+    {
+      "before": ["<C-Left>"],
+      "commands": ["workbench.action.decreaseViewWidth", "workbench.action.decreaseViewWidth"],
+      "silent": true
+    },
+    {
+      "before": ["<C-Right>"],
+      "commands": ["workbench.action.increaseViewWidth", "workbench.action.increaseViewWidth"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "w", "w"],
+      "commands": ["workbench.action.focusNextGroup"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "w", "d"],
+      "commands": ["workbench.action.closeEditorsInGroup"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "w", "-"],
+      "commands": ["workbench.action.splitEditorDown"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "-"],
+      "commands": ["workbench.action.splitEditorDown"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "w", "|"],
+      "commands": ["workbench.action.splitEditor"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "|"],
+      "commands": ["workbench.action.splitEditor"],
+      "silent": true
+    },
+    {
+      "before": ["[", "b"],
+      "commands": ["workbench.action.previousEditor"],
+      "silent": true
+    },
+    {
+      "before": ["]", "b"],
+      "commands": ["workbench.action.nextEditor"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "b", "b"],
+      "commands": ["workbench.action.quickOpenPreviousRecentlyUsedEditor", "list.select"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "b", "r"],
+      "commands": ["workbench.action.closeEditorsToTheRight"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "b", "l"],
+      "commands": ["workbench.action.closeEditorsToTheLeft"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "f", "n"],
+      "commands": ["workbench.action.files.newUntitledFile"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "f", "s"],
+      "commands": ["workbench.action.files.save"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "q", "q"],
+      "commands": ["workbench.action.closeWindow"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "<Tab>", "l"],
+      "commands": ["workbench.action.lastEditorInGroup"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "<Tab>", "f"],
+      "commands": ["workbench.action.firstEditorInGroup"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "<Tab>", "o"],
+      "commands": ["workbench.action.closeOtherEditors"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "<Tab>", "<Tab>"],
+      "commands": ["workbench.action.files.newUntitledFile"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "<Tab>", "]"],
+      "commands": ["workbench.action.nextEditor"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "<Tab>", "["],
+      "commands": ["workbench.action.previousEditor"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "<Tab>", "d"],
+      "commands": ["workbench.action.closeActiveEditor"],
+      "silent": true
+    },
+    {
+      "before": ["]", "d"],
+      "commands": ["editor.action.marker.next"],
+      "silent": true
+    },
+    {
+      "before": ["[", "d"],
+      "commands": ["editor.action.marker.prev"],
+      "silent": true
+    },
+    {
+      "before": ["]", "w"],
+      "commands": ["editor.action.marker.next"],
+      "silent": true
+    },
+    {
+      "before": ["[", "w"],
+      "commands": ["editor.action.marker.prev"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "c", "d"],
+      "commands": ["editor.action.showHover"],
+      "silent": true
+    },
+    {
+      "before": ["K"],
+      "commands": ["editor.action.showHover"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "k"],
+      "commands": ["editor.action.showHover"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "c", "s"],
+      "commands": ["workbench.action.gotoSymbol"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "c", "l"],
+      "commands": ["references-view.find"],
+      "silent": true
+    },
+    {
+      "before": ["z", "v"],
+      "commands": ["editor.foldAll", "editor.unfold"],
+      "silent": true
+    },
+    {
+      "before": ["z", "j"],
+      "commands": ["editor.fold", "editor.gotoNextFold", "editor.unfold"],
+      "silent": true
+    },
+    {
+      "before": ["z", "k"],
+      "commands": ["editor.fold", "editor.gotoPreviousFold", "editor.unfold"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "t", "w"],
+      "commands": ["editor.action.toggleWordWrap"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "s", "r"],
+      "commands": ["workbench.action.replaceInFiles"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "s", "R"],
+      "commands": ["editor.action.startFindReplaceAction"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "g", "h", "s"],
+      "commands": ["git.stageSelectedRanges"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "g", "S"],
+      "commands": ["fzf-picker.pickFileFromGitStatus"],
+      "silent": true
+    },
+    {
+      "before": ["<C-n>"],
+      "commands": [":nohl"],
+      "silent": true
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "f", "w"],
+      "commands": ["fff-gpui.grepFiles"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "g", "h", "r"],
+      "commands": ["git.revertSelectedRanges"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "h", "h"],
+      "commands": ["vscode-hurl-runner.runHurlSelection"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "s", "r"],
+      "commands": ["workbench.action.replaceInFiles"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "s", "R"],
+      "commands": ["editor.action.startFindReplaceAction"],
+      "silent": true
+    },
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"],
+      "silent": true
+    },
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"],
+      "silent": true
+    },
+    {
+      "before": ["p"],
+      "after": ["p", "g", "v", "y"]
+    },
+    {
+      "before": ["<C-m>"],
+      "commands": ["editor.action.addSelectionToNextFindMatch"],
+      "silent": true
     }
   ],
   "vim.useCtrlKeys": true,
