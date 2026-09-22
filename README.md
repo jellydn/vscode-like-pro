@@ -36,16 +36,37 @@
 - [jellydn/vscode-toggle-excluded-files](https://github.com/jellydn/vscode-toggle-excluded-files)
 - [jellydn/vscode-mux](https://github.com/jellydn/vscode-mux)
 - [jellydn/vscode-seal-code](https://github.com/jellydn/vscode-seal-code)
-- [VSpaceCode/vscode-which-key](https://github.com/VSpaceCode/vscode-which-key)
+- [VSpaceCode/vscode-which-key](https://github.com/VSpaceCode/vscode-which-key) or the maintained fork [jellydn/vscode-whichkey](https://marketplace.visualstudio.com/items?itemName=jellydn.vscode-whichkey)
 - [cobalt2-vscode](https://github.com/wesbos/cobalt2-vscode) or [catppuccin](https://github.com/catppuccin/vscode) or [kanagawa](https://github.com/barklan/kanagawa.vscode) or [vscode-theme-maple](https://github.com/subframe7536/vscode-theme-maple)
 - [vscode-spell-checker](https://github.com/streetsidesoftware/vscode-spell-checker)
 - [turbo-console-log](https://github.com/Chakroun-Anas/turbo-console-log)
 - [codeium](https://open-vsx.org/extension/Codeium/codeium)
-- [vscode-neovim](https://github.com/vscode-neovim/vscode-neovim) or [VSCodeVim](https://github.com/VSCodeVim/Vim)
+- [vscode-neovim](https://github.com/vscode-neovim/vscode-neovim) or [VSCodeVim](https://github.com/VSCodeVim/Vim). Enable one of them. See [Vim](#vim).
 
 ### Deprecated
 
 - [drcika/apc-extension](https://github.com/drcika/apc-extension): This doesn't work well with VSCode >= 1.9.4
+
+## Vim
+
+Enable either vscode-neovim or VSCodeVim. Do not enable both. Both extensions take `Space`.
+
+`Space` is the leader. which-key stays on `Shift+Space` (`Cmd+Space` in Trae). Do not bind `Space` to `whichkey.show`.
+
+### vscode-neovim
+
+1. Install [vscode-neovim](https://github.com/vscode-neovim/vscode-neovim).
+2. Neovim loads [vscode.lua](vscode.lua) when `vim.g.vscode` is set. Leader maps in that file call VS Code with `vscode.action`.
+3. `vim.g.mapleader` in `~/.config/nvim` is `Space`.
+
+### VSCodeVim
+
+1. Install [VSCodeVim](https://github.com/VSCodeVim/Vim) and disable vscode-neovim.
+2. VSCodeVim does not load `vscode.lua`. Its [docs](https://github.com/VSCodeVim/Vim#vimrc-support) only read remap lines from a `.vimrc`. `set`, `if`, and Lua are ignored. Neovim integration (`vim.enableNeovim`) runs Ex commands such as `:normal`. It does not apply Neovim keymaps to the editor.
+3. The same maps are `vim.normalModeKeyBindingsNonRecursive`, `vim.visualModeKeyBindingsNonRecursive`, and `vim.insertModeKeyBindings` in each editor's `settings.json`. `commands` is the VS Code command id.
+4. `vim.easymotion` is off. With `Space` as leader, `<leader><leader>` is the same chord as `<leader><space>`.
+5. `j` and `k` move by display line from `keybindings.json`. A count such as `10j` does not work. That is the [VSCodeVim word-wrap FAQ](https://github.com/VSCodeVim/Vim#how-can-i-move-the-cursor-by-each-display-line-with-word-wrapping).
+6. Alt and Shift chords are in `keybindings.json`. VSCodeVim does not subscribe to those keys in its `package.json`.
 
 ### Settings
 
@@ -1071,7 +1092,7 @@ Update your settings.json file with the following configuration:
 
 ## Keymaps
 
-Generally, I use the combination of <CMD + K> + <shift + key> to trigger bindings. All other bindings are set up using Neovim's extension keymaps.
+Generally, I use the combination of <CMD + K> + <shift + key> to trigger bindings. Leader maps use `Space`, from `vscode.lua` (vscode-neovim) or `vim.*ModeKeyBindings` (VSCodeVim). which-key is `Shift+Space`.
 
 Update your `keybindings.json` file with the following key bindings:
 
@@ -1159,9 +1180,9 @@ Update your `keybindings.json` file with the following key bindings:
   // TODO: Wait for this to resolve https://github.com/usernamehw/vscode-error-lens/issues/208
   // Setup which-key
   {
-    "key": "cmd+space", // Disable Spotlight and use Raycast with Alt+space, refer https://manual.raycast.com/hotkey
+    "key": "shift+space", // Trae keeps cmd+space. Disable Spotlight and use Raycast with Alt+space, refer https://manual.raycast.com/hotkey
     "command": "whichkey.show",
-    "when": "editorTextFocus"
+    "when": "editorTextFocus && vim.mode != 'Insert'"
   },
   // Toggle full screen
   {
@@ -1199,15 +1220,20 @@ Update your `keybindings.json` file with the following key bindings:
 
 <!-- ALL-KEYMAPS:END -->
 
-## How to integrated with your Neovim
+## How to integrate with Neovim
+
+This file is for [vscode-neovim](https://github.com/vscode-neovim/vscode-neovim) only. VSCodeVim does not load it. The VSCodeVim copy of these maps is in `settings.json`. See [Vim](#vim).
 
 1. Install the [VSCode Neovim](https://open-vsx.org/extension/asvetliakov/vscode-neovim) extension.
-2. Below is my configuration from my [my personal neovim configuration](https://github.com/jellydn/my-nvim-ide/blob/main/lua/plugins/vscode.lua) with lazy.nvim as package manager.
+2. Below is [vscode.lua](vscode.lua), loaded from Neovim with lazy.nvim when `vim.g.vscode` is set.
 
 <!-- ALL-NEOVIM:START -->
 
 ```lua
-// vscode.lua, generated at Thu Feb 27 2025 20:59:48 GMT+0800 (Singapore Standard Time)
+// vscode.lua, generated at Tue Sep 22 2026 15:15:36
+-- vscode-neovim only. VSCodeVim does not load Lua.
+-- Its docs load remap lines from a .vimrc, and VS Code commands go in
+-- vim.*ModeKeyBindings in settings.json. Those bindings mirror this file.
 if not vim.g.vscode then
   return {}
 end
@@ -1215,14 +1241,13 @@ end
 local enabled = {
   "lazy.nvim",
   "nvim-treesitter",
-  "ts-comments.nvim",
-  "nvim-treesitter",
   "nvim-treesitter-textobjects",
   "nvim-ts-context-commentstring",
+  "ts-comments.nvim",
   "vim-repeat",
 }
 
-local Config = require("lazy.core.config")
+local Config = require "lazy.core.config"
 Config.options.checker.enabled = false
 Config.options.change_detection.enabled = false
 Config.options.defaults.cond = function(plugin)
@@ -1234,63 +1259,69 @@ end
 vim.api.nvim_create_autocmd("User", {
   pattern = "NvimIdeKeymaps", -- This pattern will be called when the plugin is loaded
   callback = function()
-    local vscode = require("vscode")
+    local vscode = require "vscode"
     -- +File
     -- Find file
     vim.keymap.set("n", "<leader><space>", "<cmd>Find<cr>")
 
     -- Find recent open files
     vim.keymap.set("n", "<leader>fr", function()
-      vscode.action("workbench.action.showAllEditorsByMostRecentlyUsed")
+      vscode.action "workbench.action.showAllEditorsByMostRecentlyUsed"
     end)
 
-    -- Need to install https://github.com/jellydn/vscode-fzf-picker
+    -- Need to install https://github.com/jellydn/vscode-fff-gpui
     vim.keymap.set("n", "<leader>ff", function()
-      vscode.action("fzf-picker.findFiles")
+      vscode.action "fff-gpui.findFiles"
     end)
-    -- Find word
-    vim.keymap.set({ "n", "v" }, "<leader>fw", function()
-      vscode.action("fzf-picker.findWithinFiles")
+    -- Grep files (replaces fzf-picker.findWithinFiles)
+    vim.keymap.set("v", "<leader>fw", function()
+      vscode.action "fff-gpui.grepFiles"
     end)
     vim.keymap.set("n", "<leader>fw", function()
-      vscode.action("editor.action.addSelectionToNextFindMatch")
-      vscode.action("fzf-picker.findWithinFiles")
+      vscode.action "editor.action.addSelectionToNextFindMatch"
+      vscode.action "fff-gpui.grepFiles"
     end)
-    -- Find file from git status
+    -- Find file from git status (via fzf-picker)
     vim.keymap.set("n", "<leader>fg", function()
-      vscode.action("fzf-picker.pickFileFromGitStatus")
+      vscode.action "fzf-picker.pickFileFromGitStatus"
     end)
-    -- Resume last search
+    -- Resume last search (via fzf-picker)
     vim.keymap.set("n", "<leader>fR", function()
-      vscode.action("fzf-picker.resumeSearch")
+      vscode.action "fzf-picker.resumeSearch"
     end)
-    -- Find todo/fixme
+    -- Find todo/fixme (via fzf-picker)
     vim.keymap.set("n", "<leader>fx", function()
-      vscode.action("fzf-picker.findTodoFixme")
+      vscode.action "fzf-picker.findTodoFixme"
     end)
 
     -- Open other files
     vim.keymap.set("n", "<leader>,", function()
-      vscode.action("workbench.action.showAllEditors")
+      vscode.action "workbench.action.showAllEditors"
     end)
     -- Find in files
     vim.keymap.set("n", "<leader>/", function()
-      vscode.action("workbench.action.findInFiles")
+      vscode.action "workbench.action.findInFiles"
     end)
     -- Open file explorer in left sidebar
     vim.keymap.set("n", "<leader>e", function()
-      vscode.action("workbench.view.explorer")
+      vscode.action "workbench.view.explorer"
     end)
+    -- Neovim 0.13 `nvim.dir` maps `-` to a buffer tree; reveal in VS Code instead
+    pcall(vim.keymap.del, "n", "-")
+    pcall(vim.api.nvim_del_augroup_by_name, "nvim.dir")
+    vim.keymap.set("n", "-", function()
+      vscode.action "workbench.files.action.showActiveFileInExplorer"
+    end, { desc = "Reveal in VS Code explorer" })
 
     -- +Search
     -- Open symbol
     vim.keymap.set("n", "<leader>ss", function()
-      vscode.action("workbench.action.gotoSymbol")
+      vscode.action "workbench.action.gotoSymbol"
     end)
     -- Search word under cursor
     vim.keymap.set("n", "<leader>sw", function()
-      vscode.action("editor.action.addSelectionToNextFindMatch")
-      vscode.action("workbench.action.findInFiles")
+      vscode.action "editor.action.addSelectionToNextFindMatch"
+      vscode.action "workbench.action.findInFiles"
       -- Or send as the param like this: code.action("workbench.action.findInFiles", { args = { query = vim.fn.expand("<cword>") } })
     end)
 
@@ -1300,142 +1331,168 @@ vim.api.nvim_create_autocmd("User", {
     -- Navigate VSCode tabs like lazyvim buffers
     vim.keymap.set("n", "<S-h>", "<Cmd>call VSCodeNotify('workbench.action.previousEditor')<CR>")
     vim.keymap.set("n", "<S-l>", "<Cmd>call VSCodeNotify('workbench.action.nextEditor')<CR>")
+    -- Expand/shrink: shared helper (g<Space> primary; vscode also gets <BS> / n-mode gS)
+    require("utils.vscode_treesitter").setup_keymaps { vscode = true }
 
     -- Search work in current buffer
     vim.keymap.set("n", "<leader>sb", function()
-      vscode.action("actions.find")
+      vscode.action "actions.find"
     end)
 
     -- +Code
     -- Code Action
     vim.keymap.set("n", "<leader>ca", function()
-      vscode.action("editor.action.codeAction")
+      vscode.action "editor.action.codeAction"
     end)
     -- Source Action
     vim.keymap.set("n", "<leader>cA", function()
-      vscode.action("editor.action.sourceAction")
+      vscode.action "editor.action.sourceAction"
     end)
     -- Code Rename
     vim.keymap.set("n", "<leader>cr", function()
-      vscode.action("editor.action.rename")
+      vscode.action "editor.action.rename"
     end)
     -- Quickfix shortcut
     vim.keymap.set("n", "<leader>.", function()
-      vscode.action("editor.action.quickFix")
+      vscode.action "editor.action.quickFix"
     end)
     -- Code format
     vim.keymap.set("n", "<leader>cf", function()
-      vscode.action("editor.action.formatDocument")
+      vscode.action "editor.action.formatDocument"
     end)
     -- Refactor
     vim.keymap.set("n", "<leader>cR", function()
-      vscode.action("editor.action.refactor")
+      vscode.action "editor.action.refactor"
     end)
 
     -- +Terminal
     -- Open terminal
     vim.keymap.set("n", "<leader>ft", function()
-      vscode.action("workbench.action.terminal.focus")
+      vscode.action "workbench.action.terminal.focus"
     end)
 
     -- +LSP
     -- View problem
     vim.keymap.set("n", "<leader>xx", function()
-      vscode.action("workbench.actions.view.problems")
+      vscode.action "workbench.actions.view.problems"
     end)
     -- Go to next/prev error
     vim.keymap.set("n", "]e", function()
-      vscode.action("editor.action.marker.next")
+      vscode.action "editor.action.marker.next"
     end)
     vim.keymap.set("n", "[e", function()
-      vscode.action("editor.action.marker.prev")
+      vscode.action "editor.action.marker.prev"
     end)
 
     -- Find references
     vim.keymap.set("n", "gr", function()
-      vscode.action("references-view.find")
+      vscode.action "references-view.find"
     end)
 
     -- +Git
     -- Git status
     vim.keymap.set("n", "<leader>gs", function()
-      vscode.action("workbench.view.scm")
+      vscode.action "workbench.view.scm"
     end)
     -- Go to next/prev change
     vim.keymap.set("n", "]h", function()
-      vscode.action("workbench.action.editor.nextChange")
+      vscode.action "workbench.action.editor.nextChange"
     end)
     vim.keymap.set("n", "[h", function()
-      vscode.action("workbench.action.editor.previousChange")
+      vscode.action "workbench.action.editor.previousChange"
     end)
 
     -- Revert change
     vim.keymap.set("v", "<leader>ghr", function()
-      vscode.action("git.revertSelectedRanges")
+      vscode.action "git.revertSelectedRanges"
     end)
 
     -- +Buffer
+    -- Switch buffer
+    vim.keymap.set("n", "<leader>`", function()
+      vscode.action "workbench.action.quickOpenPreviousRecentlyUsedEditor"
+      vscode.action "list.select"
+    end)
+
     -- Close buffer
     vim.keymap.set("n", "<leader>bd", function()
-      vscode.action("workbench.action.closeActiveEditor")
+      vscode.action "workbench.action.closeActiveEditor"
     end)
     -- Close other buffers
     vim.keymap.set("n", "<leader>bo", function()
-      vscode.action("workbench.action.closeOtherEditors")
+      vscode.action "workbench.action.closeOtherEditors"
     end)
 
     -- +Project
     vim.keymap.set("n", "<leader>fp", function()
-      vscode.action("workbench.action.openRecent")
+      vscode.action "workbench.action.openRecent"
     end)
 
     -- Markdown preview
     vim.keymap.set("n", "<leader>mp", function()
-      vscode.action("markdown.showPreviewToSide")
+      vscode.action "markdown.showPreviewToSide"
     end)
 
     -- Hurl runner, https://github.com/jellydn/vscode-hurl-runner
     vim.keymap.set("n", "<leader>ha", function()
-      vscode.action("vscode-hurl-runner.runHurl")
+      vscode.action "vscode-hurl-runner.runHurl"
     end)
     vim.keymap.set("n", "<leader>hr", function()
-      vscode.action("vscode-hurl-runner.rerunLastCommand")
+      vscode.action "vscode-hurl-runner.rerunLastCommand"
     end)
     vim.keymap.set("n", "<leader>hA", function()
-      vscode.action("vscode-hurl-runner.runHurlFile")
+      vscode.action "vscode-hurl-runner.runHurlFile"
     end)
     vim.keymap.set("n", "<leader>he", function()
-      vscode.action("vscode-hurl-runner.runHurlFromBegin")
+      vscode.action "vscode-hurl-runner.runHurlFromBegin"
     end)
     vim.keymap.set("n", "<leader>hE", function()
-      vscode.action("vscode-hurl-runner.runHurlToEnd")
+      vscode.action "vscode-hurl-runner.runHurlToEnd"
     end)
     vim.keymap.set("n", "<leader>hg", function()
-      vscode.action("vscode-hurl-runner.manageInlineVariables")
+      vscode.action "vscode-hurl-runner.manageInlineVariables"
     end)
     vim.keymap.set("n", "<leader>hh", function()
-      vscode.action("vscode-hurl-runner.viewLastResponse")
+      vscode.action "vscode-hurl-runner.viewLastResponse"
     end)
     vim.keymap.set("v", "<leader>hh", function()
-      vscode.action("vscode-hurl-runner.runHurlSelection")
+      vscode.action "vscode-hurl-runner.runHurlSelection"
     end)
 
     -- Run task
     vim.keymap.set("n", "<leader>rt", function()
-      vscode.action("workbench.action.tasks.runTask")
+      vscode.action "workbench.action.tasks.runTask"
     end)
     -- Re-run
     vim.keymap.set("n", "<leader>rr", function()
-      vscode.action("workbench.action.tasks.reRunTask")
+      vscode.action "workbench.action.tasks.reRunTask"
     end)
 
     -- Debug typescript type, used with https://marketplace.visualstudio.com/items?itemName=Orta.vscode-twoslash-queries
     vim.keymap.set("n", "<leader>dd", function()
-      vscode.action("orta.vscode-twoslash-queries.insert-twoslash-query")
+      vscode.action "orta.vscode-twoslash-queries.insert-twoslash-query"
     end)
 
     -- Other keymaps will be used with https://github.com/VSpaceCode/vscode-which-key, so we don't need to define them here
     -- Trigger which-key by pressing <CMD+Space>, refer more default keymaps https://github.com/VSpaceCode/vscode-which-key/blob/15c5aa2da5812a21210c5599d9779c46d7bfbd3c/package.json#L265
+
+    -- Multiple cursors
+    vim.keymap.set({ "n", "x", "i" }, "<C-m>", function()
+      require("vscode-multi-cursor").addSelectionToNextFindMatch()
+    end)
+
+    -- Save file, need to add this key to "vscode-neovim.ctrlKeysForInsertMode" and "vscode-neovim.ctrlKeysForNormalMode" in settings.json
+    vim.keymap.set({ "n", "i", "v" }, "<C-s>", function()
+      vscode.action "workbench.action.files.save"
+      if vim.fn.mode() ~= "n" then
+        vim.cmd "stopinsert"
+      end
+    end)
+
+    -- Close file/buffer
+    vim.keymap.set("n", "<S-q>", function()
+      vscode.action "workbench.action.closeActiveEditor"
+    end)
   end,
 })
 
@@ -1449,12 +1506,21 @@ return {
       vim.g.fast_cursor_move_acceleration = false
     end,
   },
+  -- Refer https://github.com/vscode-neovim/vscode-multi-cursor.nvim to more usages
+  -- gcc: clear multi cursors
+  -- gc: create multi cursors
+  -- mi/mI/ma/MA: insert text at each cursor
+  {
+    "vscode-neovim/vscode-multi-cursor.nvim",
+    event = "VeryLazy",
+    cond = not not vim.g.vscode,
+    opts = {},
+  },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = { highlight = { enable = false } },
   },
 }
-
 ```
 
 <!-- ALL-NEOVIM:END -->

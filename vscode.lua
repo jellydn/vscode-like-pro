@@ -1,3 +1,6 @@
+-- vscode-neovim only. VSCodeVim does not load Lua.
+-- Its docs load remap lines from a .vimrc, and VS Code commands go in
+-- vim.*ModeKeyBindings in settings.json. Those bindings mirror this file.
 if not vim.g.vscode then
   return {}
 end
@@ -5,10 +8,9 @@ end
 local enabled = {
   "lazy.nvim",
   "nvim-treesitter",
-  "ts-comments.nvim",
-  "nvim-treesitter",
   "nvim-treesitter-textobjects",
   "nvim-ts-context-commentstring",
+  "ts-comments.nvim",
   "vim-repeat",
 }
 
@@ -34,27 +36,27 @@ vim.api.nvim_create_autocmd("User", {
       vscode.action "workbench.action.showAllEditorsByMostRecentlyUsed"
     end)
 
-    -- Need to install https://github.com/jellydn/vscode-fzf-picker
+    -- Need to install https://github.com/jellydn/vscode-fff-gpui
     vim.keymap.set("n", "<leader>ff", function()
-      vscode.action "fzf-picker.findFiles"
+      vscode.action "fff-gpui.findFiles"
     end)
-    -- Find word
-    vim.keymap.set({ "n", "v" }, "<leader>fw", function()
-      vscode.action "fzf-picker.findWithinFiles"
+    -- Grep files (replaces fzf-picker.findWithinFiles)
+    vim.keymap.set("v", "<leader>fw", function()
+      vscode.action "fff-gpui.grepFiles"
     end)
     vim.keymap.set("n", "<leader>fw", function()
       vscode.action "editor.action.addSelectionToNextFindMatch"
-      vscode.action "fzf-picker.findWithinFiles"
+      vscode.action "fff-gpui.grepFiles"
     end)
-    -- Find file from git status
+    -- Find file from git status (via fzf-picker)
     vim.keymap.set("n", "<leader>fg", function()
       vscode.action "fzf-picker.pickFileFromGitStatus"
     end)
-    -- Resume last search
+    -- Resume last search (via fzf-picker)
     vim.keymap.set("n", "<leader>fR", function()
       vscode.action "fzf-picker.resumeSearch"
     end)
-    -- Find todo/fixme
+    -- Find todo/fixme (via fzf-picker)
     vim.keymap.set("n", "<leader>fx", function()
       vscode.action "fzf-picker.findTodoFixme"
     end)
@@ -71,6 +73,12 @@ vim.api.nvim_create_autocmd("User", {
     vim.keymap.set("n", "<leader>e", function()
       vscode.action "workbench.view.explorer"
     end)
+    -- Neovim 0.13 `nvim.dir` maps `-` to a buffer tree; reveal in VS Code instead
+    pcall(vim.keymap.del, "n", "-")
+    pcall(vim.api.nvim_del_augroup_by_name, "nvim.dir")
+    vim.keymap.set("n", "-", function()
+      vscode.action "workbench.files.action.showActiveFileInExplorer"
+    end, { desc = "Reveal in VS Code explorer" })
 
     -- +Search
     -- Open symbol
@@ -90,6 +98,8 @@ vim.api.nvim_create_autocmd("User", {
     -- Navigate VSCode tabs like lazyvim buffers
     vim.keymap.set("n", "<S-h>", "<Cmd>call VSCodeNotify('workbench.action.previousEditor')<CR>")
     vim.keymap.set("n", "<S-l>", "<Cmd>call VSCodeNotify('workbench.action.nextEditor')<CR>")
+    -- Expand/shrink: shared helper (g<Space> primary; vscode also gets <BS> / n-mode gS)
+    require("utils.vscode_treesitter").setup_keymaps { vscode = true }
 
     -- Search work in current buffer
     vim.keymap.set("n", "<leader>sb", function()
