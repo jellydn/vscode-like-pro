@@ -339,10 +339,7 @@ Update your settings.json file with the following configuration:
       "key": "\t",
       "name": "Last editor",
       "type": "commands",
-      "commands": [
-        "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
-        "list.select"
-      ]
+      "commands": ["workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup", "list.select"]
     },
     {
       "key": "e",
@@ -658,10 +655,7 @@ Update your settings.json file with the following configuration:
           "key": "w",
           "name": "Search word in a project",
           "type": "commands",
-          "commands": [
-            "editor.action.addSelectionToNextFindMatch",
-            "workbench.action.findInFiles"
-          ]
+          "commands": ["editor.action.addSelectionToNextFindMatch", "workbench.action.findInFiles"]
         },
         {
           "key": "r",
@@ -1177,7 +1171,6 @@ Update your `keybindings.json` file with the following key bindings:
     "key": "cmd+k shift+w",
     "command": "errorLens.toggleWarning"
   },
-  // TODO: Wait for this to resolve https://github.com/usernamehw/vscode-error-lens/issues/208
   // Setup which-key
   {
     "key": "shift+space", // Trae keeps cmd+space. Disable Spotlight and use Raycast with Alt+space, refer https://manual.raycast.com/hotkey
