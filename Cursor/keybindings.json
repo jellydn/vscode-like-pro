@@ -91,7 +91,6 @@
     "key": "cmd+k shift+w",
     "command": "errorLens.toggleWarning"
   },
-  // TODO: Wait for this to resolve https://github.com/usernamehw/vscode-error-lens/issues/208
   // Setup which-key
   {
     "key": "shift+space", // Disable Spotlight and use Raycast with Alt+space, refer https://manual.raycast.com/hotkey
