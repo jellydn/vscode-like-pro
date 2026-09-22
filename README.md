@@ -1054,7 +1054,7 @@ Update your settings.json file with the following configuration:
       }
     ], */
   // Vim settings, refer https://open-vsx.org/extension/vscodevim/vim
-  "vim.easymotion": true,
+  "vim.easymotion": false,
   "vim.foldfix": true,
   "vim.handleKeys": {
     "<C-a>": false,

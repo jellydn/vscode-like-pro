@@ -17,5 +17,8 @@
 	},
 	"formatter": {
 		"enabled": true
+	},
+	"files": {
+		"ignore": ["**/settings.json", "**/keybindings.json"]
 	}
 }

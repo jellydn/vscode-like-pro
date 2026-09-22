@@ -326,16 +326,6 @@
       "silent": true
     },
     {
-      "before": ["u"],
-      "commands": ["undo"],
-      "silent": true
-    },
-    {
-      "before": ["<C-r>"],
-      "commands": ["redo"],
-      "silent": true
-    },
-    {
       "before": ["<leader>", "s", "b"],
       "commands": ["actions.find"],
       "silent": true
@@ -513,11 +503,6 @@
     {
       "before": ["<C-m>"],
       "commands": ["editor.action.addSelectionToNextFindMatch"],
-      "silent": true
-    },
-    {
-      "before": ["<S-q>"],
-      "commands": ["workbench.action.closeActiveEditor"],
       "silent": true
     },
     {
