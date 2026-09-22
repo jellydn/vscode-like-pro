@@ -339,7 +339,10 @@ Update your settings.json file with the following configuration:
       "key": "\t",
       "name": "Last editor",
       "type": "commands",
-      "commands": ["workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup", "list.select"]
+      "commands": [
+        "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
+        "list.select"
+      ]
     },
     {
       "key": "e",
@@ -655,7 +658,10 @@ Update your settings.json file with the following configuration:
           "key": "w",
           "name": "Search word in a project",
           "type": "commands",
-          "commands": ["editor.action.addSelectionToNextFindMatch", "workbench.action.findInFiles"]
+          "commands": [
+            "editor.action.addSelectionToNextFindMatch",
+            "workbench.action.findInFiles"
+          ]
         },
         {
           "key": "r",
