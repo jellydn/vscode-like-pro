@@ -72,65 +72,65 @@ Enable either vscode-neovim or VSCodeVim. Do not enable both. Both extensions ta
 
 `Space` is `<leader>` in both vscode-neovim and VSCodeVim. which-key is `Shift+Space`.
 
-| Keys | Action |
-| --- | --- |
-| `Space Space` | Quick open |
-| `Space f f` | Find files |
-| `Space f r` | Recent editors |
-| `Space f w` | Grep |
-| `Space f g` | Git status files |
-| `Space f R` | Resume search |
-| `Space f x` | Todo and fixme |
-| `Space f t` | Terminal |
-| `Space f n` | New file |
-| `Space f s` | Save |
-| `Space f p` | Recent projects |
-| `Space e` | Explorer |
-| `-` | Reveal the file in the explorer |
-| `Space ,` | All editors |
-| `Space /` | Search in the project |
-| `Space s s` | Symbols in the file |
-| `Space s w` | Search the word in the project |
-| `Space s b` | Search in the buffer |
-| `Space s r` | Replace in files |
-| `Space s R` | Replace in the buffer |
-| `Space c a` | Code action |
-| `Space c A` | Source action |
-| `Space c r` | Rename |
-| `Space c R` | Refactor |
-| `Space c f` | Format |
-| `Space c z` | Zen mode |
-| `Space c d` | Hover |
-| `Space c s` | Document symbols |
-| `Space c l` | References |
-| `Space .` | Quick fix |
-| `Space x x` | Problems |
-| `Space g s` | Source control |
-| `Space g h s` | Stage the selection |
-| `Space g h r` | Revert the selection |
-| `Space g S` | Pick a git-status file |
-| `Space b d` | Close the editor |
-| `Space b o` | Close other editors |
-| `Space b b` | Last editor |
-| `Space b r` / `Space b l` | Close editors to the right or left |
-| `Space w w` | Next editor group |
-| `Space w d` | Close the group |
-| `Space -` / `Space w -` | Split down |
-| `Space \|` / `Space w \|` | Split right |
-| `Space Tab` then `f` `l` `o` `d` `[` `]` | First, last, close others, close, previous, next editor |
-| `Space m p` | Markdown preview |
-| `Space h …` | Hurl runner |
-| `Space r t` / `Space r r` | Run task, rerun task |
-| `Space d d` | Insert a twoslash query |
-| `Space t w` | Toggle word wrap |
-| `Space q q` | Close the window |
-| `Space k` / `K` | Hover |
-| `gd` / `gD` / `gi` / `gy` / `gr` | Definition, declaration, implementation, type definition, references |
-| `]e` `[e` `]d` `[d` | Next or previous problem |
-| `]h` `[h` | Next or previous change |
-| `]b` `[b` | Next or previous editor |
-| `Ctrl+h` `j` `k` `l` | Move between editor groups |
-| `jj` | Leave insert mode |
+| Keys                                     | Action                                                               |
+| ---------------------------------------- | -------------------------------------------------------------------- |
+| `Space Space`                            | Quick open                                                           |
+| `Space f f`                              | Find files                                                           |
+| `Space f r`                              | Recent editors                                                       |
+| `Space f w`                              | Grep                                                                 |
+| `Space f g`                              | Git status files                                                     |
+| `Space f R`                              | Resume search                                                        |
+| `Space f x`                              | Todo and fixme                                                       |
+| `Space f t`                              | Terminal                                                             |
+| `Space f n`                              | New file                                                             |
+| `Space f s`                              | Save                                                                 |
+| `Space f p`                              | Recent projects                                                      |
+| `Space e`                                | Explorer                                                             |
+| `-`                                      | Reveal the file in the explorer                                      |
+| `Space ,`                                | All editors                                                          |
+| `Space /`                                | Search in the project                                                |
+| `Space s s`                              | Symbols in the file                                                  |
+| `Space s w`                              | Search the word in the project                                       |
+| `Space s b`                              | Search in the buffer                                                 |
+| `Space s r`                              | Replace in files                                                     |
+| `Space s R`                              | Replace in the buffer                                                |
+| `Space c a`                              | Code action                                                          |
+| `Space c A`                              | Source action                                                        |
+| `Space c r`                              | Rename                                                               |
+| `Space c R`                              | Refactor                                                             |
+| `Space c f`                              | Format                                                               |
+| `Space c z`                              | Zen mode                                                             |
+| `Space c d`                              | Hover                                                                |
+| `Space c s`                              | Document symbols                                                     |
+| `Space c l`                              | References                                                           |
+| `Space .`                                | Quick fix                                                            |
+| `Space x x`                              | Problems                                                             |
+| `Space g s`                              | Source control                                                       |
+| `Space g h s`                            | Stage the selection                                                  |
+| `Space g h r`                            | Revert the selection                                                 |
+| `Space g S`                              | Pick a git-status file                                               |
+| `Space b d`                              | Close the editor                                                     |
+| `Space b o`                              | Close other editors                                                  |
+| `Space b b`                              | Last editor                                                          |
+| `Space b r` / `Space b l`                | Close editors to the right or left                                   |
+| `Space w w`                              | Next editor group                                                    |
+| `Space w d`                              | Close the group                                                      |
+| `Space -` / `Space w -`                  | Split down                                                           |
+| `Space \|` / `Space w \|`                | Split right                                                          |
+| `Space Tab` then `f` `l` `o` `d` `[` `]` | First, last, close others, close, previous, next editor              |
+| `Space m p`                              | Markdown preview                                                     |
+| `Space h …`                              | Hurl runner                                                          |
+| `Space r t` / `Space r r`                | Run task, rerun task                                                 |
+| `Space d d`                              | Insert a twoslash query                                              |
+| `Space t w`                              | Toggle word wrap                                                     |
+| `Space q q`                              | Close the window                                                     |
+| `Space k` / `K`                          | Hover                                                                |
+| `gd` / `gD` / `gi` / `gy` / `gr`         | Definition, declaration, implementation, type definition, references |
+| `]e` `[e` `]d` `[d`                      | Next or previous problem                                             |
+| `]h` `[h`                                | Next or previous change                                              |
+| `]b` `[b`                                | Next or previous editor                                              |
+| `Ctrl+h` `j` `k` `l`                     | Move between editor groups                                           |
+| `jj`                                     | Leave insert mode                                                    |
 
 ### Settings
 
