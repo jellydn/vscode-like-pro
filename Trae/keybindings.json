@@ -77,7 +77,7 @@
   },
   // Setup which-key
   {
-    "key": "cmd+space", // Disable Spotlight and use Raycast with Alt+space, refer https://manual.raycast.com/hotkey
+    "key": "shift+space", // Disable Spotlight and use Raycast with Alt+space, refer https://manual.raycast.com/hotkey
     "command": "whichkey.show",
     "when": "editorTextFocus && vim.mode != 'Insert'"
   },

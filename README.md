@@ -51,7 +51,7 @@
 
 Enable either vscode-neovim or VSCodeVim. Do not enable both. Both extensions take `Space`.
 
-`Space` is the leader. which-key stays on `Shift+Space` (`Cmd+Space` in Trae). Do not bind `Space` to `whichkey.show`.
+`Space` is the leader. which-key stays on `Shift+Space` in every editor, including Trae. Do not bind `Space` to `whichkey.show`.
 
 ### vscode-neovim
 
@@ -67,6 +67,70 @@ Enable either vscode-neovim or VSCodeVim. Do not enable both. Both extensions ta
 4. `vim.easymotion` is off. With `Space` as leader, `<leader><leader>` is the same chord as `<leader><space>`.
 5. `j` and `k` move by display line from `keybindings.json`. A count such as `10j` does not work. That is the [VSCodeVim word-wrap FAQ](https://github.com/VSCodeVim/Vim#how-can-i-move-the-cursor-by-each-display-line-with-word-wrapping).
 6. Alt and Shift chords are in `keybindings.json`. VSCodeVim does not subscribe to those keys in its `package.json`.
+
+### Keymaps
+
+`Space` is `<leader>` in both vscode-neovim and VSCodeVim. which-key is `Shift+Space`.
+
+| Keys | Action |
+| --- | --- |
+| `Space Space` | Quick open |
+| `Space f f` | Find files |
+| `Space f r` | Recent editors |
+| `Space f w` | Grep |
+| `Space f g` | Git status files |
+| `Space f R` | Resume search |
+| `Space f x` | Todo and fixme |
+| `Space f t` | Terminal |
+| `Space f n` | New file |
+| `Space f s` | Save |
+| `Space f p` | Recent projects |
+| `Space e` | Explorer |
+| `-` | Reveal the file in the explorer |
+| `Space ,` | All editors |
+| `Space /` | Search in the project |
+| `Space s s` | Symbols in the file |
+| `Space s w` | Search the word in the project |
+| `Space s b` | Search in the buffer |
+| `Space s r` | Replace in files |
+| `Space s R` | Replace in the buffer |
+| `Space c a` | Code action |
+| `Space c A` | Source action |
+| `Space c r` | Rename |
+| `Space c R` | Refactor |
+| `Space c f` | Format |
+| `Space c z` | Zen mode |
+| `Space c d` | Hover |
+| `Space c s` | Document symbols |
+| `Space c l` | References |
+| `Space .` | Quick fix |
+| `Space x x` | Problems |
+| `Space g s` | Source control |
+| `Space g h s` | Stage the selection |
+| `Space g h r` | Revert the selection |
+| `Space g S` | Pick a git-status file |
+| `Space b d` | Close the editor |
+| `Space b o` | Close other editors |
+| `Space b b` | Last editor |
+| `Space b r` / `Space b l` | Close editors to the right or left |
+| `Space w w` | Next editor group |
+| `Space w d` | Close the group |
+| `Space -` / `Space w -` | Split down |
+| `Space \|` / `Space w \|` | Split right |
+| `Space Tab` then `f` `l` `o` `d` `[` `]` | First, last, close others, close, previous, next editor |
+| `Space m p` | Markdown preview |
+| `Space h …` | Hurl runner |
+| `Space r t` / `Space r r` | Run task, rerun task |
+| `Space d d` | Insert a twoslash query |
+| `Space t w` | Toggle word wrap |
+| `Space q q` | Close the window |
+| `Space k` / `K` | Hover |
+| `gd` / `gD` / `gi` / `gy` / `gr` | Definition, declaration, implementation, type definition, references |
+| `]e` `[e` `]d` `[d` | Next or previous problem |
+| `]h` `[h` | Next or previous change |
+| `]b` `[b` | Next or previous editor |
+| `Ctrl+h` `j` `k` `l` | Move between editor groups |
+| `jj` | Leave insert mode |
 
 ### Settings
 
@@ -1179,7 +1243,7 @@ Update your `keybindings.json` file with the following key bindings:
   },
   // Setup which-key
   {
-    "key": "shift+space", // Trae keeps cmd+space. Disable Spotlight and use Raycast with Alt+space, refer https://manual.raycast.com/hotkey
+    "key": "shift+space", // Disable Spotlight and use Raycast with Alt+space, refer https://manual.raycast.com/hotkey
     "command": "whichkey.show",
     "when": "editorTextFocus && vim.mode != 'Insert'"
   },
@@ -1229,7 +1293,7 @@ This file is for [vscode-neovim](https://github.com/vscode-neovim/vscode-neovim)
 <!-- ALL-NEOVIM:START -->
 
 ```lua
-// vscode.lua, generated at Tue Sep 22 2026 15:15:36
+// vscode.lua, generated at Tue Sep 22 2026 20:12:28
 -- vscode-neovim only. VSCodeVim does not load Lua.
 -- Its docs load remap lines from a .vimrc, and VS Code commands go in
 -- vim.*ModeKeyBindings in settings.json. Those bindings mirror this file.
@@ -1473,7 +1537,7 @@ vim.api.nvim_create_autocmd("User", {
     end)
 
     -- Other keymaps will be used with https://github.com/VSpaceCode/vscode-which-key, so we don't need to define them here
-    -- Trigger which-key by pressing <CMD+Space>, refer more default keymaps https://github.com/VSpaceCode/vscode-which-key/blob/15c5aa2da5812a21210c5599d9779c46d7bfbd3c/package.json#L265
+    -- Trigger which-key by pressing <Shift+Space>, refer more default keymaps https://github.com/VSpaceCode/vscode-which-key/blob/15c5aa2da5812a21210c5599d9779c46d7bfbd3c/package.json#L265
 
     -- Multiple cursors
     vim.keymap.set({ "n", "x", "i" }, "<C-m>", function()
