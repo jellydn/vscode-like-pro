@@ -1491,6 +1491,11 @@
       "silent": true
     },
     {
+      "before": ["<leader>", "c", "z"],
+      "commands": ["workbench.action.toggleZenMode"],
+      "silent": true
+    },
+    {
       "before": ["<leader>", "f", "t"],
       "commands": ["workbench.action.terminal.focus"],
       "silent": true
