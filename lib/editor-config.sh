@@ -57,7 +57,7 @@ copy_managed_file() {
 		return 0
 	fi
 
-	mkdir -p "$(dirname "$destination")"
-	cp "$source" "$destination"
+	mkdir -p "$(dirname "$destination")" || return 1
+	cp "$source" "$destination" || return 1
 	printf 'Copied: %s -> %s\n' "$source" "$destination"
 }

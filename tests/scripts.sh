@@ -123,10 +123,26 @@ test_invalid_editor() {
 	fi
 }
 
+test_copy_failure() {
+	local source="$TEST_DIRECTORY/copy source"
+	local blocked_parent="$TEST_DIRECTORY/blocked parent"
+
+	printf 'source' >"$source"
+	printf 'not a directory' >"$blocked_parent"
+	if (
+		source "$ROOT_DIRECTORY/lib/editor-config.sh"
+		DRY_RUN=false
+		copy_managed_file "$source" "$blocked_parent/destination" >/dev/null 2>&1
+	); then
+		fail "copy_managed_file ignored a destination creation failure"
+	fi
+}
+
 bash -n "$ROOT_DIRECTORY/install.sh" "$ROOT_DIRECTORY/generate.sh" "$ROOT_DIRECTORY/lib/editor-config.sh"
 test_install
 test_generate
 test_bootstrap_install
 test_invalid_editor
+test_copy_failure
 
 echo "Script tests passed."
