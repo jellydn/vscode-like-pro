@@ -7,13 +7,43 @@
 
 [![IT Man - Level up your VS Code with which-key like menu](https://i.ytimg.com/vi/2LXOv8jA6Io/hqdefault.jpg)](https://www.youtube.com/watch?v=2LXOv8jA6Io)
 
-[![Cobalt2](https://i.gyazo.com/79068e955711e7eab85fa7470de3097e.png)](https://gyazo.com/79068e955711e7eab85fa7470de3097e)
-
 ## Pre-requisites
 
+- Bash 3.0+
+- Git (for the one-line installer)
+- Bun (to regenerate the embedded configuration examples)
 - [getnf/getnf: A better way to install Nerd Fonts](https://github.com/getnf/getnf)
 - [subframe7536/maple-font](https://github.com/subframe7536/maple-font) - The font used in this configuration
 - VSCode or VSCodium (e.g: https://formulae.brew.sh/cask/vscodium)
+
+## Install and update configurations
+
+Install the repository configuration into all detected editors:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/jellydn/vscode-like-pro/main/install.sh | bash
+```
+
+To review the script first, download it instead of piping it directly to Bash.
+The installer accepts an optional editor name and `--dry-run`:
+
+```bash
+./install.sh --dry-run Cursor
+./install.sh Cursor
+```
+
+Supported editors are VSCodium, VSCodiumInsider, VSCode, VSCodeInsider,
+Cursor, Windsurf, and Trae. Paths follow the macOS `Library/Application Support`
+layout used by these editors.
+
+To export local configurations back into this repository, use `generate.sh`.
+Without an editor name, it exports every detected editor. Selecting one editor
+also regenerates the configuration examples in this README:
+
+```bash
+./generate.sh --dry-run Cursor
+./generate.sh Cursor
+```
 
 ## Why
 
@@ -1622,10 +1652,12 @@ Also increasing Key Repeat and Delay Until Repeat settings in System Preferences
 
 - Disable `full stop with double-space` if you see the delay with `<space>-<space>`
 
-[![Which-key](https://i.gyazo.com/6403f6c57d2e54aca230589b2173eeb0.png)](https://gyazo.com/6403f6c57d2e54aca230589b2173eeb0)## How to generate the settings
+[![Which-key](https://i.gyazo.com/6403f6c57d2e54aca230589b2173eeb0.png)](https://gyazo.com/6403f6c57d2e54aca230589b2173eeb0)
+
+## How to generate the settings
 
 ```bash
-sh cli.sh $EDITOR_NAME
+./generate.sh "$EDITOR_NAME"
 ```
 
 - Improve key repeat on Mac OSX, need to restart

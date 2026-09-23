@@ -2,6 +2,11 @@
 	"name": "vscode-like-pro",
 	"module": "index.ts",
 	"type": "module",
+	"scripts": {
+		"test": "bash tests/scripts.sh",
+		"typecheck": "tsc --noEmit",
+		"check": "bun run test && bun run typecheck && biome check ."
+	},
 	"devDependencies": {
 		"@biomejs/biome": "2.5.14",
 		"@types/bun": "latest"
