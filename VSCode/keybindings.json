@@ -15,6 +15,12 @@
       "text": "\\\r\n"
     }
   },
+  // Setup which-key
+  {
+    "key": "shift+space",
+    "command": "whichkey.show",
+    "when": "editorTextFocus && vim.mode != 'Insert'"
+  },
   // vscode.lua maps VSCodeVim does not receive. Alt and Shift are not in VSCodeVim's package.json.
   {
     "key": "shift+h",

@@ -129,6 +129,20 @@ test_vscode_settings_are_synced() {
 		fail "VSCode and VSCodeInsider settings.json files differ"
 }
 
+test_which_key_shortcuts() {
+	local keybindings
+
+	for keybindings in VSCode/keybindings.json VSCodeInsider/keybindings.json; do
+		awk 'BEGIN { RS = "}" } /"key"[[:space:]]*:[[:space:]]*"shift\+space"/ && /"command"[[:space:]]*:[[:space:]]*"whichkey\.show"/ { found = 1 } END { exit !found }' \
+			"$ROOT_DIRECTORY/$keybindings" || fail "$keybindings does not bind Shift+Space to whichkey.show"
+
+		if awk 'BEGIN { RS = "}" } /"key"[[:space:]]*:[[:space:]]*"space"/ && /"command"[[:space:]]*:[[:space:]]*"whichkey\.show"/ { found = 1 } END { exit !found }' \
+			"$ROOT_DIRECTORY/$keybindings"; then
+			fail "$keybindings binds Space to whichkey.show"
+		fi
+	done
+}
+
 test_copy_failure() {
 	local source="$TEST_DIRECTORY/copy source"
 	local blocked_parent="$TEST_DIRECTORY/blocked parent"
@@ -272,6 +286,7 @@ test_generate
 test_bootstrap_install
 test_invalid_editor
 test_vscode_settings_are_synced
+test_which_key_shortcuts
 test_copy_failure
 test_platform_paths
 test_extension_install
