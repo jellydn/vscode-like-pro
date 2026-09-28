@@ -26,6 +26,7 @@ copy_scripts() {
 
 	mkdir -p "$repository"
 	cp "$ROOT_DIRECTORY/install.sh" "$ROOT_DIRECTORY/generate.sh" "$repository/"
+	cp "$ROOT_DIRECTORY/extensions.txt" "$ROOT_DIRECTORY/extensions-vscode-marketplace.txt" "$repository/"
 	cp -R "$ROOT_DIRECTORY/lib" "$repository/"
 }
 
@@ -43,7 +44,7 @@ test_install() {
 
 	VSCODE_LIKE_PRO_APP_SUPPORT_DIR="$application_support" \
 		VSCODE_LIKE_PRO_NVIM_CONFIG="$nvim_file" \
-		bash "$repository/install.sh" Cursor >/dev/null
+		bash "$repository/install.sh" --skip-extensions Cursor >/dev/null
 
 	assert_content "repository settings" "$editor_directory/settings.json"
 	assert_content "repository keys" "$editor_directory/keybindings.json"
@@ -108,7 +109,7 @@ EOF
 		PATH="$fake_bin:$PATH" \
 		VSCODE_LIKE_PRO_APP_SUPPORT_DIR="$application_support" \
 		VSCODE_LIKE_PRO_NVIM_CONFIG="$TEST_DIRECTORY/bootstrap nvim/vscode.lua" \
-		bash "$downloaded_directory/install.sh" Cursor >/dev/null
+		bash "$downloaded_directory/install.sh" --skip-extensions Cursor >/dev/null
 
 	assert_content "bootstrap settings" "$editor_directory/settings.json"
 }
@@ -138,11 +139,136 @@ test_copy_failure() {
 	fi
 }
 
+test_platform_paths() {
+	(
+		source "$ROOT_DIRECTORY/lib/editor-config.sh"
+		unset VSCODE_LIKE_PRO_APP_SUPPORT_DIR
+		SCRIPT_DIR="$ROOT_DIRECTORY"
+
+		VSCODE_LIKE_PRO_PLATFORM=linux
+		XDG_CONFIG_HOME="/tmp/linux config"
+		[[ "$(editor_user_directory VSCode)" == "/tmp/linux config/Code/User" ]] ||
+			fail "Linux editor path was incorrect"
+
+		VSCODE_LIKE_PRO_PLATFORM=macos
+		HOME="/tmp/mac home"
+		[[ "$(editor_user_directory Cursor)" == "/tmp/mac home/Library/Application Support/Cursor/User" ]] ||
+			fail "macOS editor path was incorrect"
+
+		VSCODE_LIKE_PRO_PLATFORM=windows
+		APPDATA="/tmp/windows home/AppData/Roaming"
+		LOCALAPPDATA="/tmp/windows home/AppData/Local"
+		[[ "$(editor_user_directory VSCodeInsider)" == "/tmp/windows home/AppData/Roaming/Code - Insiders/User" ]] ||
+			fail "Windows editor path was incorrect"
+		[[ "$(neovim_config_file)" == "/tmp/windows home/AppData/Local/nvim/lua/plugins/vscode.lua" ]] ||
+			fail "Windows Neovim path was incorrect"
+		[[ "$(editor_extension_files VSCodium)" == "$ROOT_DIRECTORY/extensions.txt" ]] ||
+			fail "VSCodium included VS Code Marketplace-only extensions"
+		[[ "$(editor_extension_files Cursor)" == "$ROOT_DIRECTORY/extensions.txt" ]] ||
+			fail "Cursor included VS Code Marketplace-only extensions"
+		[[ "$(editor_extension_files VSCode)" == "$ROOT_DIRECTORY/extensions.txt"$'\n'"$ROOT_DIRECTORY/extensions-vscode-marketplace.txt" ]] ||
+			fail "VS Code extension manifests were incorrect"
+
+		if command -v cygpath >/dev/null 2>&1; then
+			APPDATA='C:\Users\Test\AppData\Roaming'
+			LOCALAPPDATA='C:\Users\Test\AppData\Local'
+			[[ "$(editor_user_directory VSCode)" == "$(cygpath -u "$APPDATA")/Code/User" ]] ||
+				fail "Git Bash did not convert the Windows APPDATA path"
+			[[ "$(neovim_config_file)" == "$(cygpath -u "$LOCALAPPDATA")/nvim/lua/plugins/vscode.lua" ]] ||
+				fail "Git Bash did not convert the Windows LOCALAPPDATA path"
+		fi
+	)
+}
+
+test_extension_install() {
+	local repository="$TEST_DIRECTORY/extensions repository"
+	local application_support="$TEST_DIRECTORY/extensions home/.config"
+	local editor_directory="$application_support/Code/User"
+	local fake_bin="$TEST_DIRECTORY/extensions fake bin"
+	local extension_log="$TEST_DIRECTORY/extensions.log"
+
+	copy_scripts "$repository"
+	mkdir -p "$repository/VSCode" "$editor_directory" "$fake_bin"
+	printf 'repository settings' >"$repository/VSCode/settings.json"
+	printf 'repository nvim' >"$repository/vscode.lua"
+	printf '%s\r\n' 'publisher.first' 'publisher.second' >"$repository/extensions.txt"
+	printf '%s\n' 'publisher.marketplace' >"$repository/extensions-vscode-marketplace.txt"
+	cat >"$fake_bin/code" <<'EOF'
+#!/usr/bin/env bash
+printf '%s\n' "$*" >>"$EXTENSION_LOG"
+EOF
+	chmod +x "$fake_bin/code"
+
+	PATH="$fake_bin:$PATH" \
+		EXTENSION_LOG="$extension_log" \
+		VSCODE_LIKE_PRO_APP_SUPPORT_DIR="$application_support" \
+		VSCODE_LIKE_PRO_NVIM_CONFIG="$TEST_DIRECTORY/extensions nvim/vscode.lua" \
+		bash "$repository/install.sh" VSCode >/dev/null
+
+	assert_content $'--install-extension publisher.first --force\n--install-extension publisher.second --force\n--install-extension publisher.marketplace --force' "$extension_log"
+
+	PATH="$fake_bin:$PATH" \
+		EXTENSION_LOG="$extension_log" \
+		VSCODE_LIKE_PRO_APP_SUPPORT_DIR="$application_support" \
+		VSCODE_LIKE_PRO_NVIM_CONFIG="$TEST_DIRECTORY/extensions nvim/vscode.lua" \
+		bash "$repository/install.sh" --dry-run VSCode >/dev/null
+	assert_content $'--install-extension publisher.first --force\n--install-extension publisher.second --force\n--install-extension publisher.marketplace --force' "$extension_log"
+}
+
+test_extension_failure() {
+	local repository="$TEST_DIRECTORY/failing extensions repository"
+	local application_support="$TEST_DIRECTORY/failing extensions home/.config"
+	local editor_directory="$application_support/Cursor/User"
+	local fake_bin="$TEST_DIRECTORY/failing extensions fake bin"
+	local extension_log="$TEST_DIRECTORY/failing extensions.log"
+
+	copy_scripts "$repository"
+	mkdir -p "$repository/Cursor" "$editor_directory" "$fake_bin"
+	printf 'repository settings' >"$repository/Cursor/settings.json"
+	printf 'repository nvim' >"$repository/vscode.lua"
+	printf '%s\n' 'publisher.first' 'publisher.second' >"$repository/extensions.txt"
+	cat >"$fake_bin/cursor" <<'EOF'
+#!/usr/bin/env bash
+printf '%s\n' "$*" >>"$EXTENSION_LOG"
+[[ "$*" != *publisher.first* ]]
+EOF
+	chmod +x "$fake_bin/cursor"
+	for command in codium codium-insiders code code-insiders windsurf trae; do
+		cat >"$fake_bin/$command" <<'EOF'
+#!/usr/bin/env bash
+exit 0
+EOF
+		chmod +x "$fake_bin/$command"
+	done
+
+	if PATH="$fake_bin:$PATH" \
+		EXTENSION_LOG="$extension_log" \
+		VSCODE_LIKE_PRO_APP_SUPPORT_DIR="$application_support" \
+		VSCODE_LIKE_PRO_NVIM_CONFIG="$TEST_DIRECTORY/failing extensions nvim/vscode.lua" \
+		bash "$repository/install.sh" Cursor >/dev/null 2>&1; then
+		fail "install.sh ignored an extension installation failure"
+	fi
+	assert_content '--install-extension publisher.first --force' "$extension_log"
+
+	: >"$extension_log"
+	if PATH="$fake_bin:$PATH" \
+		EXTENSION_LOG="$extension_log" \
+		VSCODE_LIKE_PRO_APP_SUPPORT_DIR="$application_support" \
+		VSCODE_LIKE_PRO_NVIM_CONFIG="$TEST_DIRECTORY/failing extensions nvim/vscode.lua" \
+		bash "$repository/install.sh" >/dev/null 2>&1; then
+		fail "all-editor install ignored an extension installation failure"
+	fi
+	assert_content '--install-extension publisher.first --force' "$extension_log"
+}
+
 bash -n "$ROOT_DIRECTORY/install.sh" "$ROOT_DIRECTORY/generate.sh" "$ROOT_DIRECTORY/lib/editor-config.sh"
 test_install
 test_generate
 test_bootstrap_install
 test_invalid_editor
 test_copy_failure
+test_platform_paths
+test_extension_install
+test_extension_failure
 
 echo "Script tests passed."

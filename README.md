@@ -9,7 +9,7 @@
 
 ## Pre-requisites
 
-- Bash 3.0+
+- Bash 3.0+ on macOS/Linux, or PowerShell 5.1+ on Windows 11
 - Git (for the one-line installer)
 - Bun (to regenerate the embedded configuration examples)
 - [getnf/getnf: A better way to install Nerd Fonts](https://github.com/getnf/getnf)
@@ -18,23 +18,48 @@
 
 ## Install and update configurations
 
-Install the repository configuration into all detected editors:
+The installer copies the repository configuration and installs the extensions
+listed in [`extensions.txt`](extensions.txt) into every detected editor. VS Code
+and VS Code Insiders also install the compatible Marketplace additions in
+[`extensions-vscode-marketplace.txt`](extensions-vscode-marketplace.txt).
+
+On macOS or Linux:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/jellydn/vscode-like-pro/main/install.sh | bash
 ```
 
-To review the script first, download it instead of piping it directly to Bash.
-The installer accepts an optional editor name and `--dry-run`:
+On Windows 11, run PowerShell:
+
+```powershell
+Set-ExecutionPolicy -Scope Process Bypass -Force
+irm https://raw.githubusercontent.com/jellydn/vscode-like-pro/main/install.ps1 | iex
+```
+
+The execution-policy change applies only to the current PowerShell process.
+
+To review an installer first, clone the repository and run it locally. Both
+installers accept one editor, a dry run, and an option to skip extensions:
 
 ```bash
 ./install.sh --dry-run Cursor
+./install.sh --skip-extensions Cursor
 ./install.sh Cursor
 ```
 
+```powershell
+Set-ExecutionPolicy -Scope Process Bypass -Force
+.\install.ps1 -DryRun -Editor Cursor
+.\install.ps1 -SkipExtensions -Editor Cursor
+.\install.ps1 -Editor Cursor
+```
+
 Supported editors are VSCodium, VSCodiumInsider, VSCode, VSCodeInsider,
-Cursor, Windsurf, and Trae. Paths follow the macOS `Library/Application Support`
-layout used by these editors.
+Cursor, Windsurf, and Trae. Configuration paths use `%APPDATA%` on Windows,
+`~/Library/Application Support` on macOS, and `${XDG_CONFIG_HOME:-~/.config}` on
+Linux. The installer uses each editor's command-line interface to install
+extensions. It reports and skips extension installation if that command is not
+on `PATH`.
 
 To export local configurations back into this repository, use `generate.sh`.
 Without an editor name, it exports every detected editor. Selecting one editor

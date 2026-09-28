@@ -70,7 +70,7 @@ generate_editor() {
 
 generate_neovim_configuration() {
 	copy_managed_file \
-		"${VSCODE_LIKE_PRO_NVIM_CONFIG:-$HOME/.config/nvim/lua/plugins/vscode.lua}" \
+		"$(neovim_config_file)" \
 		"$SCRIPT_DIR/vscode.lua"
 }
 

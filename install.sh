@@ -34,21 +34,23 @@ source "$SCRIPT_DIR/lib/editor-config.sh"
 
 usage() {
 	cat <<EOF
-Usage: ./install.sh [--dry-run] [editor]
+Usage: ./install.sh [--dry-run] [--skip-extensions] [editor]
 
-Install repository configurations into one editor. Without an editor, install
-into every detected editor.
+Install repository configurations and extensions into one editor. Without an
+editor, install into every detected editor.
 
 Editors: $(print_editor_names)
 EOF
 }
 
 DRY_RUN=false
+SKIP_EXTENSIONS=false
 EDITOR=""
 
 for argument in "$@"; do
 	case "$argument" in
 	--dry-run) DRY_RUN=true ;;
+	--skip-extensions) SKIP_EXTENSIONS=true ;;
 	-h | --help)
 		usage
 		exit 0
@@ -70,6 +72,7 @@ done
 
 install_editor() {
 	local editor="$1"
+	local cli
 	local destination_directory
 	local relative_path
 
@@ -78,7 +81,8 @@ install_editor() {
 		return 2
 	fi
 
-	if [[ ! -d "$destination_directory" ]]; then
+	cli="$(editor_cli "$editor")"
+	if [[ ! -d "$destination_directory" ]] && ! command -v "$cli" >/dev/null 2>&1; then
 		printf 'Skipped (not installed): %s\n' "$editor"
 		return 1
 	fi
@@ -89,12 +93,43 @@ install_editor() {
 			"$SCRIPT_DIR/$editor/$relative_path" \
 			"$destination_directory/$relative_path"
 	done
+
+	install_editor_extensions "$editor" "$cli"
+}
+
+install_editor_extensions() {
+	local editor="$1"
+	local cli="$2"
+	local extension
+	local extensions_file
+
+	if [[ "$SKIP_EXTENSIONS" == "true" ]]; then
+		printf 'Skipped extensions: %s\n' "$editor"
+		return
+	fi
+	if ! command -v "$cli" >/dev/null 2>&1; then
+		printf 'Skipped extensions (CLI not found: %s): %s\n' "$cli" "$editor"
+		return
+	fi
+
+	while IFS= read -r extensions_file; do
+		while IFS= read -r extension || [[ -n "$extension" ]]; do
+			extension="${extension%$'\r'}"
+			[[ -z "$extension" || "$extension" == \#* ]] && continue
+			if [[ "$DRY_RUN" == "true" ]]; then
+				printf 'Would run: %s --install-extension %s --force\n' "$cli" "$extension"
+			elif ! "$cli" --install-extension "$extension" --force; then
+				printf 'Failed to install extension with %s: %s\n' "$cli" "$extension" >&2
+				return 3
+			fi
+		done <"$extensions_file"
+	done < <(editor_extension_files "$editor")
 }
 
 install_neovim_configuration() {
 	copy_managed_file \
 		"$SCRIPT_DIR/vscode.lua" \
-		"${VSCODE_LIKE_PRO_NVIM_CONFIG:-$HOME/.config/nvim/lua/plugins/vscode.lua}"
+		"$(neovim_config_file)"
 }
 
 if [[ -n "$EDITOR" ]]; then
@@ -111,6 +146,11 @@ else
 	for editor in "${EDITOR_NAMES[@]}"; do
 		if install_editor "$editor"; then
 			detected_editors=$((detected_editors + 1))
+		else
+			status=$?
+			if [[ $status -ne 1 ]]; then
+				exit "$status"
+			fi
 		fi
 	done
 

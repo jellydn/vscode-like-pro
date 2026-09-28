@@ -6,7 +6,7 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  unix:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -15,3 +15,21 @@ jobs:
       - uses: oven-sh/setup-bun@v2
       - run: bun install --frozen-lockfile
       - run: bun run check
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Test Windows installer
+        shell: pwsh
+        run: ./tests/scripts.ps1
+      - name: Test Windows PowerShell installer
+        shell: powershell
+        run: |
+          Set-ExecutionPolicy -Scope Process Bypass -Force
+          ./tests/scripts.ps1
+      - name: Test Git Bash installer
+        shell: bash
+        run: bash tests/scripts.sh
