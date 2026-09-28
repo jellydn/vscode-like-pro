@@ -15,6 +15,13 @@ function Assert-Equal {
 	}
 }
 
+function Test-InvokeExpressionInstall {
+	param([Parameter(Mandatory)][string]$Installer)
+
+	Set-Variable -Name Editor -Value "PowerShell Editor Services" -Option ReadOnly
+	Invoke-Expression (Get-Content -LiteralPath $Installer -Raw)
+}
+
 try {
 	$repository = Join-Path $testDirectory "repository with spaces"
 	$fakeBin = Join-Path $testDirectory "fake bin"
@@ -101,6 +108,7 @@ cp -R "$BOOTSTRAP_FIXTURE"/. "$destination/"
 	& (Join-Path $downloadedDirectory "install.ps1") -Editor VSCode -SkipExtensions | Out-Null
 	Assert-Equal "bootstrap settings" (Get-Content -LiteralPath (Join-Path $vscodeDirectory "settings.json") -Raw) "Downloaded Windows installer did not bootstrap the repository."
 	Assert-Equal $beforeDryRun (Get-Content -LiteralPath $extensionLog -Raw) "SkipExtensions invoked the editor CLI."
+	Test-InvokeExpressionInstall -Installer (Join-Path $downloadedDirectory "install.ps1") | Out-Null
 
 	Write-Host "PowerShell script tests passed."
 }

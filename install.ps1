@@ -2,12 +2,17 @@
 param(
 	[switch]$DryRun,
 	[switch]$SkipExtensions,
-	[ValidateSet("VSCodium", "VSCodiumInsider", "VSCode", "VSCodeInsider", "Cursor", "Windsurf", "Trae")]
-	[string]$Editor
+	[Alias("Editor")]
+	[string]$SelectedEditor
 )
 
 $ErrorActionPreference = "Stop"
 $scriptDirectory = $PSScriptRoot
+$validEditors = @("VSCodium", "VSCodiumInsider", "VSCode", "VSCodeInsider", "Cursor", "Windsurf", "Trae")
+
+if ($SelectedEditor -and $SelectedEditor -notin $validEditors) {
+	throw "Unknown editor: $SelectedEditor. Valid editors: $($validEditors -join ', ')"
+}
 
 if (-not $scriptDirectory -or -not (Test-Path (Join-Path $scriptDirectory "lib/editor-config.ps1"))) {
 	if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
@@ -89,8 +94,8 @@ function Install-Editor {
 	return $true
 }
 
-if ($Editor) {
-	if (-not (Install-Editor $Editor)) {
+if ($SelectedEditor) {
+	if (-not (Install-Editor $SelectedEditor)) {
 		exit 1
 	}
 }
