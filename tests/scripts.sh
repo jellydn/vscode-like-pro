@@ -124,6 +124,11 @@ test_invalid_editor() {
 	fi
 }
 
+test_vscode_settings_are_synced() {
+	cmp -s "$ROOT_DIRECTORY/VSCode/settings.json" "$ROOT_DIRECTORY/VSCodeInsider/settings.json" ||
+		fail "VSCode and VSCodeInsider settings.json files differ"
+}
+
 test_copy_failure() {
 	local source="$TEST_DIRECTORY/copy source"
 	local blocked_parent="$TEST_DIRECTORY/blocked parent"
@@ -266,6 +271,7 @@ test_install
 test_generate
 test_bootstrap_install
 test_invalid_editor
+test_vscode_settings_are_synced
 test_copy_failure
 test_platform_paths
 test_extension_install
